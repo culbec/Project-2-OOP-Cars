@@ -791,7 +791,7 @@ branch  2 taken 1
     %%%%%:   70-block  1
 call    3 never executed
         -:   71:
-        -:   72:    // for deleting any other car, except for the last one
+        -:   72:    // for deleting any other car, except for the last one coverage
         1:   73:    carRepository.addCar(car3);
         1:   73-block  0
 call    0 returned 1
@@ -2727,7 +2727,7 @@ call    5 never executed
         -:  185:    // verificam exceptia daca vrem sa adaugam un element deja adaugat
         -:  186:
         -:  187:    try {
-        1:  188:        carValid.validateCar(car1, carRepo);
+        1:  188:        Validator::validateCar(car1, carRepo);
         1:  188-block  0
 call    0 returned 1
 branch  1 taken 0 (fallthrough)
@@ -3153,7 +3153,7 @@ branch  4 taken 1 (fallthrough)
 branch  5 taken 0 (throw)
         -:  318:
         -:  319:    try {
-        1:  320:        carValid.validateCar(badCar3, carRepo);
+        1:  320:        Validator::validateCar(badCar3, carRepo);
         1:  320-block  0
 call    0 returned 1
 branch  1 taken 0 (fallthrough)
@@ -4374,15 +4374,524 @@ call   10 never executed
     $$$$$:  429-block  6
 call   11 never executed
         -:  430:
-function _Z8runTestsv called 1 returned 100% blocks executed 100%
-        1:  431:void runTests() {
-        1:  432:    domainTests();
+function _Z9sortTestsv called 1 returned 100% blocks executed 47%
+        1:  431:void sortTests() {
+        1:  432:    Service carService;
         1:  432-block  0
 call    0 returned 1
-        1:  433:    repositoryTests();
+        -:  433:
+        1:  434:    carService.addCarService("CJ11SSS", "Volkswagen", "Tiguan", "SUV");
 call    0 returned 1
-        1:  434:    validatorTests();
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  434-block  0
+call    4 returned 1
+call    5 returned 1
+branch  6 taken 1 (fallthrough)
+branch  7 taken 0 (throw)
+        1:  434-block  1
+call    8 returned 1
+call    9 returned 1
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0 (throw)
+        1:  434-block  2
+call   12 returned 1
+call   13 returned 1
+branch 14 taken 1 (fallthrough)
+branch 15 taken 0 (throw)
+        1:  434-block  3
+call   16 returned 1
+branch 17 taken 1 (fallthrough)
+branch 18 taken 0 (throw)
+        1:  434-block  4
+call   19 returned 1
+call   20 returned 1
+call   21 returned 1
+call   22 returned 1
+call   23 returned 1
+call   24 returned 1
+call   25 returned 1
+call   26 returned 1
+    $$$$$:  434-block  5
+call   27 never executed
+    $$$$$:  434-block  6
+call   28 never executed
+    $$$$$:  434-block  7
+    $$$$$:  434-block  8
+    $$$$$:  434-block  9
+call   29 never executed
+    $$$$$:  434-block 10
+call   30 never executed
+    $$$$$:  434-block 11
+    $$$$$:  434-block 12
+    $$$$$:  434-block 13
+call   31 never executed
+    $$$$$:  434-block 14
+call   32 never executed
+    $$$$$:  434-block 15
+    $$$$$:  434-block 16
+    $$$$$:  434-block 17
+call   33 never executed
+    $$$$$:  434-block 18
+call   34 never executed
+    $$$$$:  434-block 19
+    $$$$$:  434-block 20
+        1:  435:    carService.addCarService("CJ11LLL", "Skoda", "Superb", "Sedan");
 call    0 returned 1
-        1:  435:    serviceTests();
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  435-block  0
+call    4 returned 1
+call    5 returned 1
+branch  6 taken 1 (fallthrough)
+branch  7 taken 0 (throw)
+        1:  435-block  1
+call    8 returned 1
+call    9 returned 1
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0 (throw)
+        1:  435-block  2
+call   12 returned 1
+call   13 returned 1
+branch 14 taken 1 (fallthrough)
+branch 15 taken 0 (throw)
+        1:  435-block  3
+call   16 returned 1
+branch 17 taken 1 (fallthrough)
+branch 18 taken 0 (throw)
+        1:  435-block  4
+call   19 returned 1
+call   20 returned 1
+call   21 returned 1
+call   22 returned 1
+call   23 returned 1
+call   24 returned 1
+call   25 returned 1
+call   26 returned 1
+    $$$$$:  435-block  5
+call   27 never executed
+    $$$$$:  435-block  6
+call   28 never executed
+    $$$$$:  435-block  7
+    $$$$$:  435-block  8
+    $$$$$:  435-block  9
+call   29 never executed
+    $$$$$:  435-block 10
+call   30 never executed
+    $$$$$:  435-block 11
+    $$$$$:  435-block 12
+    $$$$$:  435-block 13
+call   31 never executed
+    $$$$$:  435-block 14
+call   32 never executed
+    $$$$$:  435-block 15
+    $$$$$:  435-block 16
+    $$$$$:  435-block 17
+call   33 never executed
+    $$$$$:  435-block 18
+call   34 never executed
+    $$$$$:  435-block 19
+    $$$$$:  435-block 20
+        1:  436:    carService.addCarService("VS16LOL", "Seat", "Ibiza", "Sport");
 call    0 returned 1
-        1:  436:}
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  436-block  0
+call    4 returned 1
+call    5 returned 1
+branch  6 taken 1 (fallthrough)
+branch  7 taken 0 (throw)
+        1:  436-block  1
+call    8 returned 1
+call    9 returned 1
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0 (throw)
+        1:  436-block  2
+call   12 returned 1
+call   13 returned 1
+branch 14 taken 1 (fallthrough)
+branch 15 taken 0 (throw)
+        1:  436-block  3
+call   16 returned 1
+branch 17 taken 1 (fallthrough)
+branch 18 taken 0 (throw)
+        1:  436-block  4
+call   19 returned 1
+call   20 returned 1
+call   21 returned 1
+call   22 returned 1
+call   23 returned 1
+call   24 returned 1
+call   25 returned 1
+call   26 returned 1
+    $$$$$:  436-block  5
+call   27 never executed
+    $$$$$:  436-block  6
+call   28 never executed
+    $$$$$:  436-block  7
+    $$$$$:  436-block  8
+    $$$$$:  436-block  9
+call   29 never executed
+    $$$$$:  436-block 10
+call   30 never executed
+    $$$$$:  436-block 11
+    $$$$$:  436-block 12
+    $$$$$:  436-block 13
+call   31 never executed
+    $$$$$:  436-block 14
+call   32 never executed
+    $$$$$:  436-block 15
+    $$$$$:  436-block 16
+    $$$$$:  436-block 17
+call   33 never executed
+    $$$$$:  436-block 18
+call   34 never executed
+    $$$$$:  436-block 19
+    $$$$$:  436-block 20
+        1:  437:    carService.addCarService("CV99SUL", "Seat", "Altea", "Hatch");
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  437-block  0
+call    4 returned 1
+call    5 returned 1
+branch  6 taken 1 (fallthrough)
+branch  7 taken 0 (throw)
+        1:  437-block  1
+call    8 returned 1
+call    9 returned 1
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0 (throw)
+        1:  437-block  2
+call   12 returned 1
+call   13 returned 1
+branch 14 taken 1 (fallthrough)
+branch 15 taken 0 (throw)
+        1:  437-block  3
+call   16 returned 1
+branch 17 taken 1 (fallthrough)
+branch 18 taken 0 (throw)
+        1:  437-block  4
+call   19 returned 1
+call   20 returned 1
+call   21 returned 1
+call   22 returned 1
+call   23 returned 1
+call   24 returned 1
+call   25 returned 1
+call   26 returned 1
+    $$$$$:  437-block  5
+call   27 never executed
+    $$$$$:  437-block  6
+call   28 never executed
+    $$$$$:  437-block  7
+    $$$$$:  437-block  8
+    $$$$$:  437-block  9
+call   29 never executed
+    $$$$$:  437-block 10
+call   30 never executed
+    $$$$$:  437-block 11
+    $$$$$:  437-block 12
+    $$$$$:  437-block 13
+call   31 never executed
+    $$$$$:  437-block 14
+call   32 never executed
+    $$$$$:  437-block 15
+    $$$$$:  437-block 16
+    $$$$$:  437-block 17
+call   33 never executed
+    $$$$$:  437-block 18
+call   34 never executed
+    $$$$$:  437-block 19
+    $$$$$:  437-block 20
+        -:  438:
+        1:  439:    carList sortedRegNumber = Service::sortRegNumber(carService.getCars());
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  439-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  440:    carList sortedType = Service::sortType(carService.getCars());
+        1:  440-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  440-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  441:    carList sortedProducerModel = Service::sortProducerModel(carService.getCars());
+        1:  441-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  441-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        -:  442:
+       1*:  443:    assert(sortedRegNumber.at(0).getRegNumber() == "CJ11LLL");
+        1:  443-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  443-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  443-block  2
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:  443-block  3
+call    9 never executed
+        1:  443-block  4
+call   10 returned 1
+call   11 returned 1
+    $$$$$:  443-block  5
+call   12 never executed
+    $$$$$:  443-block  6
+    $$$$$:  443-block  7
+       1*:  444:    assert(sortedRegNumber.at(1).getRegNumber() == "CJ11SSS");
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  444-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  444-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:  444-block  2
+call    9 never executed
+        1:  444-block  3
+call   10 returned 1
+call   11 returned 1
+    $$$$$:  444-block  4
+call   12 never executed
+    $$$$$:  444-block  5
+    $$$$$:  444-block  6
+        -:  445:
+       1*:  446:    assert(sortedType.at(0).getType() == "Hatch");
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  446-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  446-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:  446-block  2
+call    9 never executed
+        1:  446-block  3
+call   10 returned 1
+call   11 returned 1
+    $$$$$:  446-block  4
+call   12 never executed
+    $$$$$:  446-block  5
+    $$$$$:  446-block  6
+       1*:  447:    assert(sortedType.at(1).getType() == "SUV");
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  447-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  447-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:  447-block  2
+call    9 never executed
+        1:  447-block  3
+call   10 returned 1
+call   11 returned 1
+    $$$$$:  447-block  4
+call   12 never executed
+    $$$$$:  447-block  5
+    $$$$$:  447-block  6
+        -:  448:
+       2*:  449:    assert(sortedProducerModel.at(0).getProducer() == "Seat" && sortedProducerModel.at(0).getModel() == "Altea");
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  449-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  449-block  1
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0
+        1:  449-block  2
+call    9 returned 1
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0 (throw)
+        1:  449-block  3
+call   12 returned 1
+branch 13 taken 1 (fallthrough)
+branch 14 taken 0 (throw)
+        1:  449-block  4
+call   15 returned 1
+branch 16 taken 1 (fallthrough)
+branch 17 taken 0
+    %%%%%:  449-block  5
+call   18 never executed
+        1:  449-block  6
+branch 19 taken 1 (fallthrough)
+branch 20 taken 0
+        1:  449-block  7
+call   21 returned 1
+        1:  449-block  8
+branch 22 taken 1 (fallthrough)
+branch 23 taken 0
+        1:  449-block  9
+call   24 returned 1
+        1:  449-block 10
+branch 25 taken 1 (fallthrough)
+branch 26 taken 0
+        1:  449-block 11
+call   27 returned 1
+        1:  449-block 12
+branch 28 taken 1 (fallthrough)
+branch 29 taken 0
+        1:  449-block 13
+call   30 returned 1
+    $$$$$:  449-block 14
+branch 31 never executed
+branch 32 never executed
+    $$$$$:  449-block 15
+call   33 never executed
+    $$$$$:  449-block 16
+    $$$$$:  449-block 17
+branch 34 never executed
+branch 35 never executed
+    $$$$$:  449-block 18
+call   36 never executed
+    $$$$$:  449-block 19
+    $$$$$:  449-block 20
+branch 37 never executed
+branch 38 never executed
+    $$$$$:  449-block 21
+call   39 never executed
+    $$$$$:  449-block 22
+    $$$$$:  449-block 23
+branch 40 never executed
+branch 41 never executed
+    $$$$$:  449-block 24
+call   42 never executed
+    $$$$$:  449-block 25
+       2*:  450:    assert(sortedProducerModel.at(1).getProducer() == "Seat" && sortedProducerModel.at(1).getModel() == "Ibiza");
+        1:  450-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  450-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  450-block  2
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0
+        1:  450-block  3
+call    9 returned 1
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0 (throw)
+        1:  450-block  4
+call   12 returned 1
+branch 13 taken 1 (fallthrough)
+branch 14 taken 0 (throw)
+        1:  450-block  5
+call   15 returned 1
+branch 16 taken 1 (fallthrough)
+branch 17 taken 0
+    %%%%%:  450-block  6
+call   18 never executed
+        1:  450-block  7
+branch 19 taken 1 (fallthrough)
+branch 20 taken 0
+        1:  450-block  8
+call   21 returned 1
+        1:  450-block  9
+branch 22 taken 1 (fallthrough)
+branch 23 taken 0
+        1:  450-block 10
+call   24 returned 1
+        1:  450-block 11
+branch 25 taken 1 (fallthrough)
+branch 26 taken 0
+        1:  450-block 12
+call   27 returned 1
+        1:  450-block 13
+branch 28 taken 1 (fallthrough)
+branch 29 taken 0
+        1:  450-block 14
+call   30 returned 1
+    $$$$$:  450-block 15
+branch 31 never executed
+branch 32 never executed
+    $$$$$:  450-block 16
+call   33 never executed
+    $$$$$:  450-block 17
+    $$$$$:  450-block 18
+branch 34 never executed
+branch 35 never executed
+    $$$$$:  450-block 19
+call   36 never executed
+    $$$$$:  450-block 20
+    $$$$$:  450-block 21
+branch 37 never executed
+branch 38 never executed
+    $$$$$:  450-block 22
+call   39 never executed
+    $$$$$:  450-block 23
+    $$$$$:  450-block 24
+branch 40 never executed
+branch 41 never executed
+    $$$$$:  450-block 25
+call   42 never executed
+    $$$$$:  450-block 26
+        1:  451:}
+        1:  451-block  0
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+call    3 returned 1
+    $$$$$:  451-block  1
+call    4 never executed
+    $$$$$:  451-block  2
+call    5 never executed
+    $$$$$:  451-block  3
+call    6 never executed
+    $$$$$:  451-block  4
+call    7 never executed
+        -:  452:
+function _Z8runTestsv called 1 returned 100% blocks executed 100%
+        1:  453:void runTests() {
+        1:  454:    domainTests();
+        1:  454-block  0
+call    0 returned 1
+        1:  455:    repositoryTests();
+call    0 returned 1
+        1:  456:    validatorTests();
+call    0 returned 1
+        1:  457:    serviceTests();
+call    0 returned 1
+        -:  458:
+        -:  459:    // separate sorting tests
+        1:  460:    sortTests();
+call    0 returned 1
+        1:  461:}

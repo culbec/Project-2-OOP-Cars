@@ -71,6 +71,13 @@ public:
     */
     void uiFilterByType() const;
 
+    // functiile de sortare
+    void uiSortRegNumber() const;
+
+    void uiSortType() const;
+
+    void uiSortProducerModel() const;
+
 
     // rulare pentru UI
     void uiRun();

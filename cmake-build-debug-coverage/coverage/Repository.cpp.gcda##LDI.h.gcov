@@ -28,39 +28,39 @@
         -:   24:     * @pre: true
         -:   25:     * @post: se creeaza un nod
         -:   26:     */
-function _ZN4NodeI3CarEC2ES0_PS1_S2_ called 23 returned 100% blocks executed 100%
-       23:   27:    Node(TElem data, Node *prev, Node *next) : data{data}, prev{prev}, next{next} {}
-       23:   27-block  0
-call    0 returned 23
+function _ZN4NodeI3CarEC2ES0_PS1_S2_ called 39 returned 100% blocks executed 100%
+       39:   27:    Node(TElem data, Node *prev, Node *next) : data{data}, prev{prev}, next{next} {}
+       39:   27-block  0
+call    0 returned 39
         -:   28:
         -:   29:    // getters & setters
-function _ZNK4NodeI3CarE7getDataEv called 86 returned 100% blocks executed 100%
-       86:   30:    TElem getData() const { return this->data; }
-       86:   30-block  0
-call    0 returned 86
+function _ZNK4NodeI3CarE7getDataEv called 170 returned 100% blocks executed 100%
+      170:   30:    TElem getData() const { return this->data; }
+      170:   30-block  0
+call    0 returned 170
         -:   31:
-function _ZN4NodeI3CarE7setDataERKS0_ called 2 returned 100% blocks executed 100%
-        2:   32:    void setData(const TElem &elem) { this->data = elem; }
-        2:   32-block  0
-call    0 returned 2
+function _ZN4NodeI3CarE7setDataERKS0_ called 24 returned 100% blocks executed 100%
+       24:   32:    void setData(const TElem &elem) { this->data = elem; }
+       24:   32-block  0
+call    0 returned 24
         -:   33:
 function _ZNK4NodeI3CarE7getPrevEv called 4 returned 100% blocks executed 100%
         4:   34:    Node *getPrev() const { return this->prev; }
         4:   34-block  0
         -:   35:
-function _ZN4NodeI3CarE7setPrevEPS1_ called 16 returned 100% blocks executed 100%
-       16:   36:    void setPrev(Node *prevS) {
-       16:   37:        this->prev = prevS;
-       16:   38:    }
+function _ZN4NodeI3CarE7setPrevEPS1_ called 28 returned 100% blocks executed 100%
+       28:   36:    void setPrev(Node *prevS) {
+       28:   37:        this->prev = prevS;
+       28:   38:    }
         -:   39:
-function _ZNK4NodeI3CarE7getNextEv called 82 returned 100% blocks executed 100%
-       82:   40:    Node<TElem> *getNext() const { return this->next; }
-       82:   40-block  0
+function _ZNK4NodeI3CarE7getNextEv called 207 returned 100% blocks executed 100%
+      207:   40:    Node<TElem> *getNext() const { return this->next; }
+      207:   40-block  0
         -:   41:
-function _ZN4NodeI3CarE7setNextEPS1_ called 17 returned 100% blocks executed 100%
-       17:   42:    void setNext(Node *nextS) {
-       17:   43:        this->next = nextS;
-       17:   44:    }
+function _ZN4NodeI3CarE7setNextEPS1_ called 29 returned 100% blocks executed 100%
+       29:   42:    void setNext(Node *nextS) {
+       29:   43:        this->next = nextS;
+       29:   44:    }
         -:   45:};
         -:   46:
         -:   47:template<typename TElem>
@@ -78,315 +78,315 @@ function _ZN4NodeI3CarE7setNextEPS1_ called 17 returned 100% blocks executed 100
         -:   59:    // si dimensiunea sa
         -:   60:    unsigned int sizeLDI;
         -:   61:
-        -:   62:public:
-        -:   63:    // constructor
-function _ZN3LDII3CarEC2Ev called 11 returned 100% blocks executed 100%
-       11:   64:    LDI<TElem>() : prim{nullptr}, ultim{nullptr}, sizeLDI{0} {}
-        -:   65:
-        -:   66:    // constructor de copiere
-        -:   67:    LDI<TElem>(const LDI<TElem> &other) : prim{nullptr}, ultim{nullptr}, sizeLDI{0} {
-        -:   68:        Node<TElem> *refOther = other.prim; // parcurgem lista pentru a adauga noile elemente
+        -:   62:    // functie de delete a listei inlantuite
+function _ZN3LDII3CarE11deleteNodesEP4NodeIS0_E called 42 returned 100% blocks executed 100%
+       42:   63:    void deleteNodes(Node<TElem> *ref) {
+       42:   64:        if (ref == ultim)
+       42:   64-block  0
+branch  0 taken 20 (fallthrough)
+branch  1 taken 22
+       20:   65:            return;
+       20:   65-block  0
+       22:   66:        deleteNodes(ref->getNext());
+       22:   66-block  0
+call    0 returned 22
+call    1 returned 22
+       22:   67:        delete ref;
+branch  0 taken 22 (fallthrough)
+branch  1 taken 0
+       22:   67-block  0
+call    2 returned 22
+call    3 returned 22
+        -:   68:    }
         -:   69:
-        -:   70:        while (refOther != nullptr) {
-        -:   71:            this->add(refOther->getData());
-        -:   72:
-        -:   73:            refOther = refOther->getNext();
-        -:   74:        }
-        -:   75:    }
-        -:   76:
-        -:   77:    // constructor de copiere (assignment)
-        -:   78:    LDI<TElem> &operator=(const LDI<TElem> &other) {
-        -:   79:        if (this == &other) // s-a facut L = L
-        -:   80:            return *this;
-        -:   81:
-        -:   82:        // distrugem instanta curenta
-        -:   83:        this->deleteNodes(this->prim);
-        -:   84:        this->prim = nullptr;
-        -:   85:        this->ultim = nullptr;
-        -:   86:
-        -:   87:        Node<TElem> *refOther = other.prim; // parcurgem lista pentru a adauga noile elemente
-        -:   88:
-        -:   89:        while (refOther != nullptr) {
-        -:   90:            this->add(refOther->getData()); // adaugam elementul
-        -:   91:
-        -:   92:            refOther = refOther->getNext(); // iteram in continuare
-        -:   93:        }
-        -:   94:        this->sizeLDI = other.sizeLDI; // actualizam lungimea
-        -:   95:
-        -:   96:        return *this; // returnam lista
-        -:   97:    }
-        -:   98:
-        -:   99:    // move constructor - fura datele de la other si il marcheaza pentru distrugere
-        -:  100:    LDI<TElem>(LDI<TElem> &&other) noexcept: prim{other.prim}, ultim{other.ultim}, sizeLDI{other.sizeLDI} {
-        -:  101:        // dealocam datele de la sursa de unde am mutat informatiile
-        -:  102:        other.prim = nullptr;
-        -:  103:        other.ultim = nullptr;
-        -:  104:        other.sizeLDI = 0;
+        -:   70:public:
+        -:   71:    // constructor
+function _ZN3LDII3CarEC2Ev called 15 returned 100% blocks executed 100%
+       15:   72:    LDI<TElem>() : prim{nullptr}, ultim{nullptr}, sizeLDI{0} {}
+        -:   73:
+        -:   74:    // constructor de copiere
+        -:   75:    LDI<TElem>(const LDI<TElem> &other) : prim{nullptr}, ultim{nullptr}, sizeLDI{0} {
+        -:   76:        Node<TElem> *refOther = other.prim; // parcurgem lista pentru a adauga noile elemente
+        -:   77:
+        -:   78:        while (refOther != nullptr) {
+        -:   79:            this->add(refOther->getData());
+        -:   80:
+        -:   81:            refOther = refOther->getNext();
+        -:   82:        }
+        -:   83:    }
+        -:   84:
+        -:   85:    // constructor de copiere (assignment)
+        -:   86:    LDI<TElem> &operator=(const LDI<TElem> &other) {
+        -:   87:        if (this == &other) // s-a facut L = L
+        -:   88:            return *this;
+        -:   89:
+        -:   90:        // distrugem instanta curenta
+        -:   91:        this->deleteNodes(this->prim);
+        -:   92:        this->prim = nullptr;
+        -:   93:        this->ultim = nullptr;
+        -:   94:
+        -:   95:        Node<TElem> *refOther = other.prim; // parcurgem lista pentru a adauga noile elemente
+        -:   96:
+        -:   97:        while (refOther != nullptr) {
+        -:   98:            this->add(refOther->getData()); // adaugam elementul
+        -:   99:
+        -:  100:            refOther = refOther->getNext(); // iteram in continuare
+        -:  101:        }
+        -:  102:        this->sizeLDI = other.sizeLDI; // actualizam lungimea
+        -:  103:
+        -:  104:        return *this; // returnam lista
         -:  105:    }
         -:  106:
-        -:  107:    // move constructor (assignment) - distruge instanta curenta, fura datele de la other si il marcheaza
-        -:  108:    //                                 pentru distrugere
-        -:  109:    LDI<TElem> &operator=(LDI<TElem> &&other) noexcept {
-        -:  110:        if (this == &other) // s-a facut L = L
-        -:  111:            return *this;
-        -:  112:
-        -:  113:        // stergem instanta curenta
-        -:  114:        this->deleteNodes(this->prim);
-        -:  115:
-        -:  116:        // 'furam' datele
-        -:  117:        this->prim = other.prim;
-        -:  118:        this->ultim = other.ultim;
-        -:  119:        this->sizeLDI = other.sizeLDI;
+        -:  107:    // move constructor - fura datele de la other si il marcheaza pentru distrugere
+        -:  108:    LDI<TElem>(LDI<TElem> &&other) noexcept: prim{other.prim}, ultim{other.ultim}, sizeLDI{other.sizeLDI} {
+        -:  109:        // dealocam datele de la sursa de unde am mutat informatiile
+        -:  110:        other.prim = nullptr;
+        -:  111:        other.ultim = nullptr;
+        -:  112:        other.sizeLDI = 0;
+        -:  113:    }
+        -:  114:
+        -:  115:    // move constructor (assignment) - distruge instanta curenta, fura datele de la other si il marcheaza
+        -:  116:    //                                 pentru distrugere
+        -:  117:    LDI<TElem> &operator=(LDI<TElem> &&other) noexcept {
+        -:  118:        if (this == &other) // s-a facut L = L
+        -:  119:            return *this;
         -:  120:
-        -:  121:        // il pregatim pe other pentru distrugere
-        -:  122:        other.prim = nullptr;
-        -:  123:        other.ultim = nullptr;
-        -:  124:        other.sizeLDI = 0;
-        -:  125:
-        -:  126:        return *this;
-        -:  127:    }
+        -:  121:        // stergem instanta curenta
+        -:  122:        this->deleteNodes(this->prim);
+        -:  123:
+        -:  124:        // 'furam' datele
+        -:  125:        this->prim = other.prim;
+        -:  126:        this->ultim = other.ultim;
+        -:  127:        this->sizeLDI = other.sizeLDI;
         -:  128:
-        -:  129:    /**
-        -:  130:     * @brief push_back pentru LDI
-        -:  131:     * @pre true
-        -:  132:     * @post se adauga elementul in lista inlantuita
-        -:  133:     */
-        -:  134:
-function _ZN3LDII3CarE9push_backERKS0_ called 23 returned 100% blocks executed 69%
-       23:  135:    void push_back(const TElem &elem) {
-        -:  136:        // instantiem un nod nou
-       23:  137:        auto *nod = new Node<TElem>(elem, nullptr, nullptr);
-       23:  137-block  0
-call    0 returned 23
-call    1 returned 23
-branch  2 taken 23 (fallthrough)
+        -:  129:        // il pregatim pe other pentru distrugere
+        -:  130:        other.prim = nullptr;
+        -:  131:        other.ultim = nullptr;
+        -:  132:        other.sizeLDI = 0;
+        -:  133:
+        -:  134:        return *this;
+        -:  135:    }
+        -:  136:
+        -:  137:    /**
+        -:  138:     * @brief push_back pentru LDI
+        -:  139:     * @pre true
+        -:  140:     * @post se adauga elementul in lista inlantuita
+        -:  141:     */
+        -:  142:
+function _ZN3LDII3CarE9push_backERKS0_ called 39 returned 100% blocks executed 69%
+       39:  143:    void push_back(const TElem &elem) {
+        -:  144:        // instantiem un nod nou
+       39:  145:        auto *nod = new Node<TElem>(elem, nullptr, nullptr);
+       39:  145-block  0
+call    0 returned 39
+call    1 returned 39
+branch  2 taken 39 (fallthrough)
 branch  3 taken 0 (throw)
-       23:  137-block  1
-call    4 returned 23
-branch  5 taken 23 (fallthrough)
+       39:  145-block  1
+call    4 returned 39
+branch  5 taken 39 (fallthrough)
 branch  6 taken 0 (throw)
-       23:  137-block  2
-call    7 returned 23
-    $$$$$:  137-block  3
+       39:  145-block  2
+call    7 returned 39
+    $$$$$:  145-block  3
 call    8 never executed
-    $$$$$:  137-block  4
-    $$$$$:  137-block  5
+    $$$$$:  145-block  4
+    $$$$$:  145-block  5
 branch  9 never executed
 branch 10 never executed
-    $$$$$:  137-block  6
+    $$$$$:  145-block  6
 call   11 never executed
-        -:  138:
-        -:  139:        // lista este goala
-       23:  140:        if (this->prim == nullptr) {
-branch  0 taken 9 (fallthrough)
-branch  1 taken 14
-        9:  141:            this->prim = nod;
-        9:  142:            this->ultim = nod;
-        9:  142-block  0
-        -:  143:        }
-        -:  144:            // lista nu este goala
-        -:  145:        else {
-       14:  146:            nod->setPrev(this->ultim);
-       14:  146-block  0
-call    0 returned 14
-       14:  147:            this->ultim->setNext(nod);
-call    0 returned 14
-       14:  148:            this->ultim = nod;
-        -:  149:        }
-        -:  150:        // incrementam dimensiunea
-       23:  151:        this->sizeLDI++;
-       23:  152:    }
-       23:  152-block  0
-        -:  153:
-        -:  154:    void add(const TElem &elem) {
-        -:  155:        this->push_back(elem);
-        -:  156:    }
-        -:  157:
-        -:  158:    // functie ce returneaza dimensiunea listei
-function _ZNK3LDII3CarE4sizeEv called 77 returned 100% blocks executed 100%
-       77:  159:    unsigned int size() const { return this->sizeLDI; }
-       77:  159-block  0
-        -:  160:
-        -:  161:    // functie pentru verificarea listei vide
-        -:  162:    bool empty() const { return this->sizeLDI == 0; }
-        -:  163:
-        -:  164:    /**
-        -:  165:     * @brief Functia 'at' -> returneaza un element de pe o anumita pozitie
-        -:  166:     * @param poz Pozitia elementului care va fi sters
-        -:  167:     * @pre: poz -> pozitie valida din lista inlantuita
-        -:  168:     * @post: elementul de pe pozitia poz sau
-        -:  169:     */
-function _ZNK3LDII3CarE2atEj called 54 returned 100% blocks executed 100%
-       54:  170:    TElem at(unsigned int poz) const {
-        -:  171:        // pastram o referinta catre primul element
-       54:  172:        auto *ref = this->prim;
-        -:  173:
-        -:  174:        // iteram pana cand gasim elementul
-       88:  175:        for (unsigned int i = 0; i < poz; i++)
-       54:  175-block  0
-       88:  175-block  1
-branch  0 taken 34
-branch  1 taken 54 (fallthrough)
-       34:  176:            ref = ref->getNext();
-       34:  176-block  0
-call    0 returned 34
-        -:  177:
-        -:  178:        // returnam elementul
-       54:  179:        return ref->getData();
-       54:  179-block  0
-call    0 returned 54
-        -:  180:    }
+        -:  146:
+        -:  147:        // lista este goala
+       39:  148:        if (this->prim == nullptr) {
+branch  0 taken 13 (fallthrough)
+branch  1 taken 26
+       13:  149:            this->prim = nod;
+       13:  150:            this->ultim = nod;
+       13:  150-block  0
+        -:  151:        }
+        -:  152:            // lista nu este goala
+        -:  153:        else {
+       26:  154:            nod->setPrev(this->ultim);
+       26:  154-block  0
+call    0 returned 26
+       26:  155:            this->ultim->setNext(nod);
+call    0 returned 26
+       26:  156:            this->ultim = nod;
+        -:  157:        }
+        -:  158:        // incrementam dimensiunea
+       39:  159:        this->sizeLDI++;
+       39:  160:    }
+       39:  160-block  0
+        -:  161:
+        -:  162:    void add(const TElem &elem) {
+        -:  163:        this->push_back(elem);
+        -:  164:    }
+        -:  165:
+        -:  166:    // functie ce returneaza dimensiunea listei
+function _ZNK3LDII3CarE4sizeEv called 126 returned 100% blocks executed 100%
+      126:  167:    unsigned int size() const { return this->sizeLDI; }
+      126:  167-block  0
+        -:  168:
+        -:  169:    // functie pentru verificarea listei vide
+        -:  170:    bool empty() const { return this->sizeLDI == 0; }
+        -:  171:
+        -:  172:    /**
+        -:  173:     * @brief Functia 'at' -> returneaza un element de pe o anumita pozitie
+        -:  174:     * @param poz Pozitia elementului care va fi sters
+        -:  175:     * @pre: poz -> pozitie valida din lista inlantuita
+        -:  176:     * @post: elementul de pe pozitia poz sau
+        -:  177:     */
+function _ZNK3LDII3CarE2atEj called 104 returned 100% blocks executed 100%
+      104:  178:    TElem at(unsigned int poz) const {
+        -:  179:        // pastram o referinta catre primul element
+      104:  180:        auto *ref = this->prim;
         -:  181:
-        -:  182:    TElem get(unsigned int poz) const {
-        -:  183:        auto *ref = this->prim;
-        -:  184:
-        -:  185:        for (unsigned int i = 0; i < poz; i++)
-        -:  186:            ref = ref->getNext();
-        -:  187:
-        -:  188:        return ref->getData();
-        -:  189:    }
-        -:  190:
-        -:  191:    /**
-        -:  192:     * @brief Functia 'erase' -> sterge un element de pe o anumita pozitie
-        -:  193:     * @pre refElem -> referinta catre elementul de sters
-        -:  194:     * @post elementul se va sterge din lista
-        -:  195:     */
-        -:  196:
+        -:  182:        // iteram pana cand gasim elementul
+      200:  183:        for (unsigned int i = 0; i < poz; i++)
+      104:  183-block  0
+      200:  183-block  1
+branch  0 taken 96
+branch  1 taken 104 (fallthrough)
+       96:  184:            ref = ref->getNext();
+       96:  184-block  0
+call    0 returned 96
+        -:  185:
+        -:  186:        // returnam elementul
+      104:  187:        return ref->getData();
+      104:  187-block  0
+call    0 returned 104
+        -:  188:    }
+        -:  189:
+        -:  190:    TElem get(unsigned int poz) const {
+        -:  191:        auto *ref = this->prim;
+        -:  192:
+        -:  193:        for (unsigned int i = 0; i < poz; i++)
+        -:  194:            ref = ref->getNext();
+        -:  195:
+        -:  196:        return ref->getData();
+        -:  197:    }
+        -:  198:
+        -:  199:    /**
+        -:  200:     * @brief Functia 'erase' -> sterge un element de pe o anumita pozitie
+        -:  201:     * @pre refElem -> referinta catre elementul de sters
+        -:  202:     * @post elementul se va sterge din lista
+        -:  203:     */
+        -:  204:
 function _ZN3LDII3CarE5eraseEP4NodeIS0_E called 5 returned 100% blocks executed 100%
-        5:  197:    void erase(Node<TElem> *refElem) {
-        5:  198:        if (this->sizeLDI == 1) {
-        5:  198-block  0
+        5:  205:    void erase(Node<TElem> *refElem) {
+        5:  206:        if (this->sizeLDI == 1) {
+        5:  206-block  0
 branch  0 taken 1 (fallthrough)
 branch  1 taken 4
-        1:  199:            delete refElem;
-        1:  199-block  0
+        1:  207:            delete refElem;
+        1:  207-block  0
 branch  0 taken 1 (fallthrough)
 branch  1 taken 0
-        1:  199-block  1
+        1:  207-block  1
 call    2 returned 1
 call    3 returned 1
-        1:  200:            this->prim = nullptr;
-        1:  201:            this->ultim = nullptr;
-        1:  202:            this->sizeLDI--;
-        1:  202-block  0
-        4:  203:        } else if (refElem == this->prim) {
-        4:  203-block  0
+        1:  208:            this->prim = nullptr;
+        1:  209:            this->ultim = nullptr;
+        1:  210:            this->sizeLDI--;
+        1:  210-block  0
+        4:  211:        } else if (refElem == this->prim) {
+        4:  211-block  0
 branch  0 taken 1 (fallthrough)
 branch  1 taken 3
-        1:  204:            this->prim = refElem->getNext();
-        1:  204-block  0
+        1:  212:            this->prim = refElem->getNext();
+        1:  212-block  0
 call    0 returned 1
-        1:  205:            this->prim->setPrev(nullptr);
+        1:  213:            this->prim->setPrev(nullptr);
 call    0 returned 1
-        1:  206:            delete refElem;
+        1:  214:            delete refElem;
 branch  0 taken 1 (fallthrough)
 branch  1 taken 0
-        1:  206-block  0
+        1:  214-block  0
 call    2 returned 1
 call    3 returned 1
-        1:  207:            this->sizeLDI--;
-        1:  207-block  0
-        -:  208:        }
-        -:  209:            // verificam daca se sterge ultimul element
-        3:  210:        else if (refElem == this->ultim) {
-        3:  210-block  0
+        1:  215:            this->sizeLDI--;
+        1:  215-block  0
+        -:  216:        }
+        -:  217:            // verificam daca se sterge ultimul element
+        3:  218:        else if (refElem == this->ultim) {
+        3:  218-block  0
 branch  0 taken 2 (fallthrough)
 branch  1 taken 1
-        2:  211:            this->ultim = refElem->getPrev();
-        2:  211-block  0
+        2:  219:            this->ultim = refElem->getPrev();
+        2:  219-block  0
 call    0 returned 2
-        2:  212:            this->ultim->setNext(nullptr);
+        2:  220:            this->ultim->setNext(nullptr);
 call    0 returned 2
-        2:  213:            delete refElem;
+        2:  221:            delete refElem;
 branch  0 taken 2 (fallthrough)
 branch  1 taken 0
-        2:  213-block  0
+        2:  221-block  0
 call    2 returned 2
 call    3 returned 2
-        2:  214:            this->sizeLDI--;
-        2:  214-block  0
-        -:  215:        }
-        -:  216:            // se sterge un element oarecare din lista
-        -:  217:        else {
-        1:  218:            refElem->getPrev()->setNext(refElem->getNext());
-        1:  218-block  0
+        2:  222:            this->sizeLDI--;
+        2:  222-block  0
+        -:  223:        }
+        -:  224:            // se sterge un element oarecare din lista
+        -:  225:        else {
+        1:  226:            refElem->getPrev()->setNext(refElem->getNext());
+        1:  226-block  0
 call    0 returned 1
 call    1 returned 1
 call    2 returned 1
-        1:  219:            refElem->getNext()->setPrev(refElem->getPrev());
+        1:  227:            refElem->getNext()->setPrev(refElem->getPrev());
 call    0 returned 1
 call    1 returned 1
 call    2 returned 1
-        1:  220:            delete refElem;
+        1:  228:            delete refElem;
 branch  0 taken 1 (fallthrough)
 branch  1 taken 0
-        1:  220-block  0
+        1:  228-block  0
 call    2 returned 1
 call    3 returned 1
-        1:  221:            this->sizeLDI--;
-        1:  221-block  0
-        -:  222:        }
-        5:  223:    }
-        -:  224:
-        -:  225:    void swap(const unsigned int &thisPos, const unsigned int &otherPos) {
-        -:  226:        // parcurgem lista pana la prima pozitie
-        -:  227:        Node<TElem> *refThis = this->prim;
-        -:  228:
-        -:  229:        for (unsigned int i = 0; i < thisPos; i++)
-        -:  230:            refThis = refThis->getNext();
-        -:  231:
-        -:  232:        // parcurgem lista pana la a doua pozitie
-        -:  233:        Node<TElem> *refOther = this->prim;
-        -:  234:
-        -:  235:        for (unsigned int i = 0; i < otherPos; i++)
-        -:  236:            refOther = refOther->getNext();
-        -:  237:
-        -:  238:        // swap intre elemente
-        -:  239:        TElem temp = refThis->getData();
-        -:  240:        refThis->setData(refOther->getData());
-        -:  241:        refOther->setData(temp);
-        -:  242:    }
-        -:  243:
-        -:  244:    /**
-        -:  245:     * @brief Functia 'begin' / end -> returneaza un iterator peste primul / ultimul element din lista
-        -:  246:     * @pre: true
-        -:  247:     * @post: referinta catre primul / ultimul element din lista
-        -:  248:     */
-function _ZNK3LDII3CarE5beginEv called 14 returned 100% blocks executed 100%
-       14:  249:    IteratorLDI<TElem> begin() const { return IteratorLDI<TElem>(*this); }
-       14:  249-block  0
-call    0 returned 14
-        -:  250:
-function _ZNK3LDII3CarE3endEv called 7 returned 100% blocks executed 100%
-        7:  251:    IteratorLDI<TElem> end() const { return IteratorLDI<TElem>(*this, this->ultim->getNext()); }
-        7:  251-block  0
-call    0 returned 7
-call    1 returned 7
-        -:  252:
-        -:  253:    // functie de delete a listei inlantuite
-function _ZN3LDII3CarE11deleteNodesEP4NodeIS0_E called 23 returned 100% blocks executed 100%
-       23:  254:    void deleteNodes(Node<TElem> *ref) {
-       23:  255:        if (ref == ultim)
-       23:  255-block  0
-branch  0 taken 13 (fallthrough)
-branch  1 taken 10
-       13:  256:            return;
-       13:  256-block  0
-       10:  257:        deleteNodes(ref->getNext());
-       10:  257-block  0
+        1:  229:            this->sizeLDI--;
+        1:  229-block  0
+        -:  230:        }
+        5:  231:    }
+        -:  232:
+        -:  233:    void swap(const unsigned int &thisPos, const unsigned int &otherPos) {
+        -:  234:        // parcurgem lista pana la prima pozitie
+        -:  235:        Node<TElem> *refThis = this->prim;
+        -:  236:
+        -:  237:        for (unsigned int i = 0; i < thisPos; i++)
+        -:  238:            refThis = refThis->getNext();
+        -:  239:
+        -:  240:        // parcurgem lista pana la a doua pozitie
+        -:  241:        Node<TElem> *refOther = this->prim;
+        -:  242:
+        -:  243:        for (unsigned int i = 0; i < otherPos; i++)
+        -:  244:            refOther = refOther->getNext();
+        -:  245:
+        -:  246:        // swap intre elemente
+        -:  247:        TElem temp = refThis->getData();
+        -:  248:        refThis->setData(refOther->getData());
+        -:  249:        refOther->setData(temp);
+        -:  250:    }
+        -:  251:
+        -:  252:    /**
+        -:  253:     * @brief Functia 'begin' / end -> returneaza un iterator peste primul / ultimul element din lista
+        -:  254:     * @pre: true
+        -:  255:     * @post: referinta catre primul / ultimul element din lista
+        -:  256:     */
+function _ZNK3LDII3CarE5beginEv called 17 returned 100% blocks executed 100%
+       17:  257:    IteratorLDI<TElem> begin() const { return IteratorLDI<TElem>(*this); }
+       17:  257-block  0
+call    0 returned 17
+        -:  258:
+function _ZNK3LDII3CarE3endEv called 10 returned 100% blocks executed 100%
+       10:  259:    IteratorLDI<TElem> end() const { return IteratorLDI<TElem>(*this, this->ultim->getNext()); }
+       10:  259-block  0
 call    0 returned 10
 call    1 returned 10
-       10:  258:        delete ref;
-branch  0 taken 10 (fallthrough)
-branch  1 taken 0
-       10:  258-block  0
-call    2 returned 10
-call    3 returned 10
-        -:  259:    }
         -:  260:
         -:  261:    // destructor
-function _ZN3LDII3CarED2Ev called 11 returned 100% blocks executed 100%
-       11:  262:    ~LDI() { this->deleteNodes(this->prim); }
-       11:  262-block  0
-call    0 returned 11
+function _ZN3LDII3CarED2Ev called 18 returned 100% blocks executed 100%
+       18:  262:    ~LDI() { this->deleteNodes(this->prim); }
+       18:  262-block  0
+call    0 returned 18
         -:  263:};

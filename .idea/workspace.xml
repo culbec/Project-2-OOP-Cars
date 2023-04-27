@@ -22,19 +22,64 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e83854e1-b6a5-4420-acc2-6f1c7c53be7a" name="Changes" comment="Lab 7 commit">
-      <change afterPath="$PROJECT_DIR$/.idea/Project-2-OOP-Cars.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Headers/Repository.h" beforeDir="false" afterPath="$PROJECT_DIR$/Headers/Repository.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Headers/Service.h" beforeDir="false" afterPath="$PROJECT_DIR$/Headers/Service.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Headers/Validator.h" beforeDir="false" afterPath="$PROJECT_DIR$/Headers/Validator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Car.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Car.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Headers/UI.h" beforeDir="false" afterPath="$PROJECT_DIR$/Headers/UI.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Repository.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Repository.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Service.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Service.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/UI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/UI.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Validator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Validator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/tests.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.gcda" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.gcda" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.gcda" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.gcda" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.gcno" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.gcno" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.gcda" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.gcda" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.gcno" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.gcno" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.gcda" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.gcda" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.gcno" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.gcno" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.gcda" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.gcda" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.gcno" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.gcno" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.gcda" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.gcda" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.gcno" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.gcno" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.gcda" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.gcda" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.gcno" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.gcno" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/Project_2_OOP_Cars" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/Project_2_OOP_Cars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Car.cpp.gcda##Car.cpp.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Car.cpp.gcda##Car.cpp.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Car.cpp.gcda##move.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Car.cpp.gcda##move.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##IteratorLDI.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##IteratorLDI.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##LDI.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##LDI.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##Repository.cpp.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##Repository.cpp.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##Repository.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##Repository.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##basic_string.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##basic_string.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##char_traits.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##char_traits.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##exception.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Repository.cpp.gcda##exception.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Service.cpp.gcda##LDI.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Service.cpp.gcda##LDI.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Service.cpp.gcda##Service.cpp.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Service.cpp.gcda##Service.cpp.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Service.cpp.gcda##Service.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Service.cpp.gcda##Service.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Service.cpp.gcda##basic_string.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Service.cpp.gcda##basic_string.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Service.cpp.gcda##char_traits.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Service.cpp.gcda##char_traits.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/UI.cpp.gcda##Service.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/UI.cpp.gcda##Service.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Validator.cpp.gcda##Validator.cpp.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/Validator.cpp.gcda##Validator.cpp.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/tests.cpp.gcda##Service.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/tests.cpp.gcda##Service.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/tests.cpp.gcda##basic_string.h.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/tests.cpp.gcda##basic_string.h.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/tests.cpp.gcda##tests.cpp.gcov" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug-coverage/coverage/tests.cpp.gcda##tests.cpp.gcov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Project_2_OOP_Cars" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Project_2_OOP_Cars" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +90,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug-Coverage" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -154,7 +199,7 @@
       <workItem from="1682621275561" duration="99000" />
       <workItem from="1682621413349" duration="10000" />
       <workItem from="1682623084141" duration="702000" />
-      <workItem from="1682623852433" duration="1115000" />
+      <workItem from="1682623852433" duration="2972000" />
     </task>
     <task id="LOCAL-00001" summary="Lab 7 commit">
       <created>1682623587861</created>
@@ -163,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682623587861</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Lab 7 commit">
+      <created>1682625002027</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682625002027</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,11 +259,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Sources/UI.cpp</url>
-          <line>200</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Sources/tests.cpp</url>
           <line>345</line>
           <option name="timeStamp" value="10" />
@@ -221,6 +268,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="../../../OOP/Project-2-OOP-Cars/cmake-build-debug-coverage" NAME="Project_2_OOP_Cars Coverage Results" MODIFIED="1681841254625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="gcov/llvm" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="../../../OOP/Project-2-OOP-Cars/cmake-build-debug-coverage" NAME="Project_2_OOP_Cars Coverage Results" MODIFIED="1682624916212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="gcov/llvm" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="../../../OOP/Project-2-OOP-Cars/cmake-build-debug-coverage" NAME="Project_2_OOP_Cars Coverage Results" MODIFIED="1682626352237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="gcov/llvm" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

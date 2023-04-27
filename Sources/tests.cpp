@@ -185,7 +185,7 @@ void validatorTests() {
     // verificam exceptia daca vrem sa adaugam un element deja adaugat
 
     try {
-        carValid.validateCar(car1, carRepo);
+        Validator::validateCar(car1, carRepo);
         assert(false);
     }
     catch (const ValidatorException &) { assert(true); }
@@ -317,7 +317,7 @@ void validatorTests() {
     catch (const ValidatorException &) { assert(true); }
 
     try {
-        carValid.validateCar(badCar3, carRepo);
+        Validator::validateCar(badCar3, carRepo);
         assert(false);
     }
     catch (const ValidatorException &) { assert(true); }
@@ -428,9 +428,34 @@ void serviceTests() {
 
 }
 
+void sortTests() {
+    Service carService;
+
+    carService.addCarService("CJ11SSS", "Volkswagen", "Tiguan", "SUV");
+    carService.addCarService("CJ11LLL", "Skoda", "Superb", "Sedan");
+    carService.addCarService("VS16LOL", "Seat", "Ibiza", "Sport");
+    carService.addCarService("CV99SUL", "Seat", "Altea", "Hatch");
+
+    carList sortedRegNumber = Service::sortRegNumber(carService.getCars());
+    carList sortedType = Service::sortType(carService.getCars());
+    carList sortedProducerModel = Service::sortProducerModel(carService.getCars());
+
+    assert(sortedRegNumber.at(0).getRegNumber() == "CJ11LLL");
+    assert(sortedRegNumber.at(1).getRegNumber() == "CJ11SSS");
+
+    assert(sortedType.at(0).getType() == "Hatch");
+    assert(sortedType.at(1).getType() == "SUV");
+
+    assert(sortedProducerModel.at(0).getProducer() == "Seat" && sortedProducerModel.at(0).getModel() == "Altea");
+    assert(sortedProducerModel.at(1).getProducer() == "Seat" && sortedProducerModel.at(1).getModel() == "Ibiza");
+}
+
 void runTests() {
     domainTests();
     repositoryTests();
     validatorTests();
     serviceTests();
+
+    // separate sorting tests
+    sortTests();
 }

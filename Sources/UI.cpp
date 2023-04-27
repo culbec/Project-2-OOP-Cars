@@ -7,12 +7,11 @@ UI::UI() noexcept: carService(Service()) {}
 
 void UI::uiCommands() {
     cout << "\nComenzile sunt: ";
-    cout << "help, show_cars, add_car, delete_car, modify_car, find_car, filter_producer, filter_type, exit.\n";
+    cout << "help, show_cars, add_car, delete_car, modify_car, find_car, filter_producer, filter_type, sort_reg_number, sort_type, "
+            "sort _producer_model, exit.\n";
 }
 
 void UI::uiShowCars() const {
-    //carList cars = this->carService.getRepository().getCars();
-
     if (this->carService.getCars().empty()) {
         cout << "\nNu exista masini in lista!\n";
         return;
@@ -144,6 +143,27 @@ void UI::uiFilterByType() const {
     catch (ServiceException &sE) { cout << sE.getMessage(); }
 }
 
+void UI::uiSortRegNumber() const {
+    cout << "\nLista de masini sortata dupa numarul de inmatriculare este:\n";
+    for (const auto &car: Service::sortRegNumber(this->carService.getCars()))
+        cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
+             << car.getType() << std::endl;
+}
+
+void UI::uiSortType() const {
+    cout << "\nLista de masini sortata dupa tip este:\n";
+    for (const auto &car: Service::sortType(this->carService.getCars()))
+        cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
+             << car.getType() << std::endl;
+}
+
+void UI::uiSortProducerModel() const {
+    cout << "\nLista de masini sortata dupa producator si model este:\n";
+    for (const auto &car: Service::sortProducerModel(this->carService.getCars()))
+        cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
+             << car.getType() << std::endl;
+}
+
 void UI::uiRun() {
     string option;
     while (true) {
@@ -166,6 +186,12 @@ void UI::uiRun() {
             this->uiFilterByProducer();
         else if (option == "filter_type")
             this->uiFilterByType();
+        else if (option == "sort_reg_number")
+            this->uiSortRegNumber();
+        else if (option == "sort_type")
+            this->uiSortType();
+        else if (option == "sort_producer_model")
+            this->uiSortProducerModel();
         else if (option == "exit") {
             cout << "Leaving...";
             return;

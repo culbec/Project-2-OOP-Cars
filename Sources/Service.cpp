@@ -78,3 +78,31 @@ carList Service::filter(const string &whatFilter, bool(*compareMethod)(const Car
     // altfel, returnam lista
     return filteredCars;
 }
+
+carList Service::generalSort(carList list, bool (*compareMethod)(const Car &, const Car &)) {
+    for(auto i = 0; i < list.size() - 1; i++)
+        for(auto j = i + 1; j < list.size(); j++)
+            if(compareMethod(list.at(i), list.at(j)))
+                list.swap(i, j);
+    return list;
+}
+
+carList Service::sortRegNumber(const carList &list) {
+    return Service::generalSort(Repository::copyList(list), [](const Car &car1, const Car &car2) {
+        return car1.getRegNumber() > car2.getRegNumber();
+    });
+}
+
+carList Service::sortType(const carList &list) {
+    return Service::generalSort(Repository::copyList(list), [](const Car &car1, const Car &car2) {
+        return car1.getType() > car2.getType();
+    });
+}
+
+carList Service::sortProducerModel(const carList &list) {
+    return Service::generalSort(Repository::copyList(list), [](const Car &car1, const Car &car2) {
+        if (car1.getProducer() == car2.getProducer())
+            return car1.getModel() > car2.getModel();
+        return car1.getProducer() > car2.getProducer();
+    });
+}

@@ -22,12 +22,12 @@
         -:   18:private:
         -:   19:    string errorMessage;
         -:   20:public:
-function _ZN19RepositoryExceptionC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 20 returned 100% blocks executed 100%
-       20:   21:    explicit RepositoryException(string message) : errorMessage(std::move(message)) {}
-       20:   21-block  0
-call    0 returned 20
-call    1 returned 20
-call    2 returned 20
+function _ZN19RepositoryExceptionC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 24 returned 100% blocks executed 100%
+       24:   21:    explicit RepositoryException(string message) : errorMessage(std::move(message)) {}
+       24:   21-block  0
+call    0 returned 24
+call    1 returned 24
+call    2 returned 24
         -:   22:
         -:   23:    string getMessage() { return this->errorMessage; }
         -:   24:};

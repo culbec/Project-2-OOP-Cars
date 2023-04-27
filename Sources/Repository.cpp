@@ -60,10 +60,4 @@ carList Repository::copyList(const carList &list) {
         copyList.push_back(copyCar);
     }
 
-//	for(auto iter = this->cars.begin(); iter != this->cars.end(); iter++) {
-//		Car copyCar(*iter);
-//		copyList.push_back(copyCar);
-//	}
-
-    return copyList;
-}
+    return copyList; }

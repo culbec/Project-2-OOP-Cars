@@ -79,6 +79,13 @@ public:
     }
 
     // functii de sortare
+    static carList generalSort(carList, bool(*compareMethod)(const Car &, const Car &));
+
+    static carList sortRegNumber(const carList &);
+
+    static carList sortType(const carList &);
+
+    static carList sortProducerModel(const carList &);
 
 
 };

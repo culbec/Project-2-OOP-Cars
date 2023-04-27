@@ -23,12 +23,12 @@
         -:   19:
         -:   20:public:
         -:   21:    // constructor implicit
-function _ZN11IteratorLDII3CarEC2ERK3LDIIS0_E called 14 returned 100% blocks executed 100%
-       14:   22:    explicit IteratorLDI(const LDI<TElem> &ldi) : list(ldi), current(list.prim) {}
+function _ZN11IteratorLDII3CarEC2ERK3LDIIS0_E called 17 returned 100% blocks executed 100%
+       17:   22:    explicit IteratorLDI(const LDI<TElem> &ldi) : list(ldi), current(list.prim) {}
         -:   23:
         -:   24:    // constructor cu specificare de pozitie
-function _ZN11IteratorLDII3CarEC2ERK3LDIIS0_EP4NodeIS0_E called 7 returned 100% blocks executed 100%
-        7:   25:    IteratorLDI(const LDI<TElem> &ldi, Node<TElem> *pos) : list(ldi), current(pos) {}
+function _ZN11IteratorLDII3CarEC2ERK3LDIIS0_EP4NodeIS0_E called 10 returned 100% blocks executed 100%
+       10:   25:    IteratorLDI(const LDI<TElem> &ldi, Node<TElem> *pos) : list(ldi), current(pos) {}
         -:   26:
 function _ZN11IteratorLDII3CarE10getCurrentEv called 7 returned 100% blocks executed 100%
         7:   27:    Node<TElem> *getCurrent() { return this->current; }
@@ -55,19 +55,19 @@ function _ZN11IteratorLDII3CarE10getCurrentEv called 7 returned 100% blocks exec
         -:   47:    }
         -:   48:
         -:   49:    // pt. ++iter -> increment, dupa efectueaza operatia
-function _ZN11IteratorLDII3CarEppEv called 28 returned 100% blocks executed 100%
-       28:   50:    void operator++() { this->current = this->current->getNext(); }
-       28:   50-block  0
-call    0 returned 28
+function _ZN11IteratorLDII3CarEppEv called 40 returned 100% blocks executed 100%
+       40:   50:    void operator++() { this->current = this->current->getNext(); }
+       40:   50-block  0
+call    0 returned 40
         -:   51:
-function _ZN11IteratorLDII3CarEdeEv called 32 returned 100% blocks executed 100%
-       32:   52:    TElem operator*() { return this->current->getData(); }
-       32:   52-block  0
-call    0 returned 32
+function _ZN11IteratorLDII3CarEdeEv called 44 returned 100% blocks executed 100%
+       44:   52:    TElem operator*() { return this->current->getData(); }
+       44:   52-block  0
+call    0 returned 44
         -:   53:
-function _ZN11IteratorLDII3CarEneERKS1_ called 32 returned 100% blocks executed 100%
-       32:   54:    bool operator!=(const IteratorLDI<TElem> &iter) {
-       32:   55:        return this->current != iter.current;
-       32:   55-block  0
+function _ZN11IteratorLDII3CarEneERKS1_ called 47 returned 100% blocks executed 100%
+       47:   54:    bool operator!=(const IteratorLDI<TElem> &iter) {
+       47:   55:        return this->current != iter.current;
+       47:   55-block  0
         -:   56:    }
         -:   57:};

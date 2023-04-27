@@ -13,11 +13,7 @@ function main called 1 returned 100% blocks executed 100%
 call    0 returned 1
 branch  1 taken 1 (fallthrough)
 branch  2 taken 0 (throw)
-        1:    7:    std::cout << "Tests ok!\n\n";
-        1:    7-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
-branch  2 taken 0 (throw)
+        -:    7:    //std::cout << "Tests ok!\n\n";
         -:    8:
         1:    9:    UI ui;
         1:    9-block  0

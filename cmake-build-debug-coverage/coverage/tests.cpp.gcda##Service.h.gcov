@@ -104,6 +104,13 @@ call    4 returned 12
         -:   79:    }
         -:   80:
         -:   81:    // functii de sortare
-        -:   82:
+        -:   82:    static carList generalSort(carList, bool(*compareMethod)(const Car &, const Car &));
         -:   83:
-        -:   84:};
+        -:   84:    static carList sortRegNumber(const carList &);
+        -:   85:
+        -:   86:    static carList sortType(const carList &);
+        -:   87:
+        -:   88:    static carList sortProducerModel(const carList &);
+        -:   89:
+        -:   90:
+        -:   91:};

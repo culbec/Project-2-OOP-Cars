@@ -59,6 +59,14 @@ private:
     // si dimensiunea sa
     unsigned int sizeLDI;
 
+    // functie de delete a listei inlantuite
+    void deleteNodes(Node<TElem> *ref) {
+        if (ref == ultim)
+            return;
+        deleteNodes(ref->getNext());
+        delete ref;
+    }
+
 public:
     // constructor
     LDI<TElem>() : prim{nullptr}, ultim{nullptr}, sizeLDI{0} {}
@@ -249,14 +257,6 @@ public:
     IteratorLDI<TElem> begin() const { return IteratorLDI<TElem>(*this); }
 
     IteratorLDI<TElem> end() const { return IteratorLDI<TElem>(*this, this->ultim->getNext()); }
-
-    // functie de delete a listei inlantuite
-    void deleteNodes(Node<TElem> *ref) {
-        if (ref == ultim)
-            return;
-        deleteNodes(ref->getNext());
-        delete ref;
-    }
 
     // destructor
     ~LDI() { this->deleteNodes(this->prim); }
