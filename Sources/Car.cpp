@@ -11,7 +11,7 @@ Car::Car(string regNumberC, string producerC, string modelC, string typeC) {
 }
 
 Car::Car(const Car &other) {
-    std::cout << "Copy constructor called!\n";
+    //std::cout << "Copy constructor called!\n";
 
     this->setRegNumber(other.getRegNumber());
     this->setProducer(other.getProducer());

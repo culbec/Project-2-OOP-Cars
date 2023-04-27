@@ -2,7 +2,7 @@
 
 #include "Repository.h"
 
-class ValidatorException {
+class ValidatorException : std::exception {
 private:
     string errorMessage;
 public:
@@ -67,6 +67,6 @@ public:
         @exception: nu are parametrii valizi sau exista deja in lista
     */
 
-    bool validateCar(const Car &, const Repository &) const;
+    static bool validateCar(const Car &, const Repository &) ;
 };
 

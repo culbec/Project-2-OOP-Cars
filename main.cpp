@@ -3,11 +3,11 @@
 #include "Headers/tests.h"
 
 int main() {
-    //runTests();
+    runTests();
     std::cout << "Tests ok!\n\n";
 
     UI ui;
-    ui.uiRun();
+    //ui.uiRun();
 
     return 0;
 }

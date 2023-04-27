@@ -1,0 +1,109 @@
+        -:    0:Source:/home/culbec/OOP/Project-2-OOP-Cars/Headers/Service.h
+        -:    0:Graph:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.gcno
+        -:    0:Data:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#pragma once
+        -:    2:
+        -:    3:#include "Validator.h"
+        -:    4:
+        -:    5:class ServiceException : std::exception {
+        -:    6:private:
+        -:    7:    string errorMessage;
+        -:    8:public:
+        -:    9:    explicit ServiceException(string message) : errorMessage(std::move(message)) {}
+        -:   10:
+function _ZN16ServiceException10getMessageB5cxx11Ev called 0 returned 0% blocks executed 0%
+    #####:   11:    string getMessage() { return this->errorMessage; }
+    %%%%%:   11-block  0
+call    0 never executed
+        -:   12:};
+        -:   13:
+        -:   14:class Service {
+        -:   15:private:
+        -:   16:    // fiecare instanta de tip Service va contine un repository propriu si un validator propriu
+        -:   17:    Repository carRepository;
+        -:   18:
+        -:   19:public:
+        -:   20:    // definim un constructor implicit
+        -:   21:    Service() noexcept;
+        -:   22:
+        -:   23:    // functie care returneaza repo-ul service-ului
+        -:   24:    //const Repository& getRepository() const;
+        -:   25:
+        -:   26:    const carList &getCars() const;
+        -:   27:
+        -:   28:    //// functie care returneaza validatorul service-ului
+        -:   29:    //Validator getValidator() const;
+        -:   30:
+        -:   31:    /*
+        -:   32:        Se adauga o masina in lista de masini.
+        -:   33:        @pre: se primesc 4 parametrii de tip string, ce reprezinta parametrii masinii de adaugat
+        -:   34:        @post: masina se adauga
+        -:   35:        @exception: masina invalida sau deja exista in lista.
+        -:   36:    */
+        -:   37:
+        -:   38:    bool addCarService(const string &, const string &, const string &, const string &);
+        -:   39:
+        -:   40:    /*
+        -:   41:        Se modifica o masina din lista de masini
+        -:   42:        @pre: se primesc 4 parametrii, de tip string, ce reprezinta:
+        -:   43:              - numarul de inmatriculare al masinii de modificat;
+        -:   44:              - parametrii ce masinii ce vor fi modificati;
+        -:   45:        @post: masina cu parametrii specificati se modifica;
+        -:   46:        @exception: masina invalida sau nu exista masina in lista;
+        -:   47:    */
+        -:   48:
+        -:   49:    Car modifyCarService(const string &, const string &, const string &, const string &);
+        -:   50:
+        -:   51:    /*
+        -:   52:        Se sterge o masina din lista de masini
+        -:   53:        @pre: se primeste un parametru, de tip string, ce reprezinta numarul de inmatriculare al masinii de sters
+        -:   54:        @post: se sterge masina
+        -:   55:        @exception: nu exista masina in lista
+        -:   56:    */
+        -:   57:
+        -:   58:    Car deleteCarService(const string &);
+        -:   59:
+        -:   60:    /*
+        -:   61:        Cautare masina dupa numar de inmatriculare.
+        -:   62:        @pre: parametru de tip string, ce reprezinta numarul masinii de inmatriculare al masinii de gasit
+        -:   63:        @post: masina cu numarul de inmatriculare
+        -:   64:        @exception: nu exista masina in lista
+        -:   65:    */
+        -:   66:
+        -:   67:    Car findCarService(const string &);
+        -:   68:
+        -:   69:    // functie generala de filtrare
+        -:   70:
+        -:   71:    carList filter(const string &, bool(*compareMethod)(const Car &, const string &)) const;
+        -:   72:
+function _ZN7Service17compareByProducerERK3CarRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
+    #####:   73:    static bool compareByProducer(const Car &car, const string &producer) {
+    #####:   74:        return car.getProducer() == producer;
+    %%%%%:   74-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   74-block  1
+call    3 never executed
+call    4 never executed
+    %%%%%:   74-block  2
+        -:   75:    }
+        -:   76:
+function _ZN7Service13compareByTypeERK3CarRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
+    #####:   77:    static bool compareByType(const Car &car, const string &type) {
+    #####:   78:        return car.getType() == type;
+    %%%%%:   78-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   78-block  1
+call    3 never executed
+call    4 never executed
+    %%%%%:   78-block  2
+        -:   79:    }
+        -:   80:
+        -:   81:    // functii de sortare
+        -:   82:
+        -:   83:
+        -:   84:};

@@ -1,0 +1,79 @@
+        -:    0:Source:/home/culbec/OOP/Project-2-OOP-Cars/Headers/Validator.h
+        -:    0:Graph:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.gcno
+        -:    0:Data:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#pragma once
+        -:    2:
+        -:    3:#include "Repository.h"
+        -:    4:
+        -:    5:class ValidatorException : std::exception {
+        -:    6:private:
+        -:    7:    string errorMessage;
+        -:    8:public:
+        -:    9:    explicit ValidatorException(string message) : errorMessage{std::move(message)} {}
+        -:   10:
+function _ZN18ValidatorException10getMessageB5cxx11Ev called 11 returned 100% blocks executed 100%
+       11:   11:    string getMessage() { return this->errorMessage; }
+       11:   11-block  0
+call    0 returned 11
+        -:   12:};
+        -:   13:
+        -:   14:class Validator {
+        -:   15:    // nu vom avea o reprezentare privata, deoarece validatorul nu va contine
+        -:   16:    // propriu-zis ceva ce il defineste
+        -:   17:
+        -:   18:    // asa ca specificam doar prototipurile functiilor ce se vor ocupa de validare
+        -:   19:public:
+        -:   20:    // aceste functii se vor ocupa de validarea obiectului & a parametrilor obiectului
+        -:   21:    // ne intereseaza valoarea de adevar a validarii, deci tipul va fi bool
+        -:   22:
+        -:   23:    /*
+        -:   24:        @pre: const Car& refera un obiect de tip Car
+        -:   25:        @post: true or false, daca nr. de inmatriculare este valid
+        -:   26:
+        -:   27:        @exception: numarul de inmatriculare nu reprezinta un numar valid din Romania
+        -:   28:
+        -:   29:        Exemplu: CJ18CEV sau B777CCC -> 7 caractere: 2 litere - 2 cifre - 3 litere
+        -:   30:                  exceptie Bucuresti -> 6/7 caractere: 1 litera -> 2/3 cifre - 3 litere
+        -:   31:    */
+        -:   32:
+        -:   33:    static bool validateRegNumber(const Car &);
+        -:   34:
+        -:   35:
+        -:   36:    /*
+        -:   37:        @pre: const Car& refera un obiect de tip Car
+        -:   38:        @post: true or false, daca producator este valid
+        -:   39:
+        -:   40:        @exception: producatorul reprezinta un string care nu incepe cu majuscula
+        -:   41:                    si care contine alte caractere pe langa litere
+        -:   42:    */
+        -:   43:
+        -:   44:    static bool validateProducer(const Car &);
+        -:   45:
+        -:   46:    /*
+        -:   47:        @pre: const Car& refera un obiect de tip Car
+        -:   48:        @post: true or false, daca modelul este valid
+        -:   49:        @exception: daca modelul este vid
+        -:   50:    */
+        -:   51:
+        -:   52:    static bool validateModel(const Car &);
+        -:   53:
+        -:   54:    /*
+        -:   55:        @pre: const Car& refera un obiect de tip Car
+        -:   56:        @post: true or false, daca tipul este valid
+        -:   57:        @exception: daca tipul este vid
+        -:   58:    */
+        -:   59:
+        -:   60:    static bool validateType(const Car &);
+        -:   61:
+        -:   62:    /*
+        -:   63:        @pre: const Car& refera un obiect de tip Car
+        -:   64:              const Repository& refera repository-ul de masini
+        -:   65:        @post: true or false, daca masina este valida
+        -:   66:
+        -:   67:        @exception: nu are parametrii valizi sau exista deja in lista
+        -:   68:    */
+        -:   69:
+        -:   70:    static bool validateCar(const Car &, const Repository &) ;
+        -:   71:};
+        -:   72:

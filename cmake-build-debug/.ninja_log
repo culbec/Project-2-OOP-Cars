@@ -1,0 +1,17 @@
+# ninja log v5
+1	461	1682623898078436615	CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o	b3b15493c0b195a2
+0	514	1682623898130435729	CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o	ec817af04b5ffdae
+0	531	1682623898146435457	CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o	278d8a2f0ad392ab
+0	536	1682623898154435320	CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o	d4efd9173f1441d1
+1	569	1682623898186434775	CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o	8ed8748f5c365927
+1	625	1682623898242433821	CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o	632a8a582de260ae
+0	661	1682623898278433207	CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o	c6925e6e8b4a1338
+661	718	1682623898334432253	Project_2_OOP_Cars	c7b89d6da54d4324
+1	423	1682624743444754915	CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o	b3b15493c0b195a2
+1	423	1682624743444754915	CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o	ec817af04b5ffdae
+0	428	1682624743452754926	CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o	278d8a2f0ad392ab
+0	439	1682624743460754936	CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o	d4efd9173f1441d1
+2	493	1682624743516755011	CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o	8ed8748f5c365927
+1	549	1682624743572755084	CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o	632a8a582de260ae
+1	550	1682624743572755084	CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o	c6925e6e8b4a1338
+550	649	1682624743672755216	Project_2_OOP_Cars	c7b89d6da54d4324

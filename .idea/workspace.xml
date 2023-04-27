@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="Project_2_OOP_Cars" targetName="Project_2_OOP_Cars" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Debug-Coverage" ENABLED="true" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DCMAKE_CXX_FLAGS=--coverage -DCMAKE_C_FLAGS=--coverage" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e83854e1-b6a5-4420-acc2-6f1c7c53be7a" name="Changes" comment="Lab 7 commit">
+      <change afterPath="$PROJECT_DIR$/.idea/Project-2-OOP-Cars.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Headers/Repository.h" beforeDir="false" afterPath="$PROJECT_DIR$/Headers/Repository.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Headers/Service.h" beforeDir="false" afterPath="$PROJECT_DIR$/Headers/Service.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Headers/Validator.h" beforeDir="false" afterPath="$PROJECT_DIR$/Headers/Validator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Car.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Car.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Repository.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Repository.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Service.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Service.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Validator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Validator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/tests.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug-Coverage" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="UML Object" />
+        <option value="Work Breakdown Structure" />
+        <option value="Salt Wireframe" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="1.1" />
+  </component>
+  <component name="ProjectId" id="2OMXGuBblui12svnu8fm0NCoIzQ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultPlantUmlFileTemplate": "Salt Wireframe",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "Lab__7",
+    "last_opened_file_path": "/home/culbec/OOP/Project-2-OOP-Cars",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "structure.view.defaults.are.configured": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Project_2_OOP_Cars" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Project_2_OOP_Cars" TARGET_NAME="Project_2_OOP_Cars" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project_2_OOP_Cars" RUN_TARGET_NAME="Project_2_OOP_Cars">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e83854e1-b6a5-4420-acc2-6f1c7c53be7a" name="Changes" comment="" />
+      <created>1681371331747</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681371331747</updated>
+      <workItem from="1681371332881" duration="189000" />
+      <workItem from="1681819038535" duration="1623000" />
+      <workItem from="1681821067902" duration="15427000" />
+      <workItem from="1681904236741" duration="2208000" />
+      <workItem from="1682016835585" duration="5094000" />
+      <workItem from="1682151543026" duration="35000" />
+      <workItem from="1682151588326" duration="677000" />
+      <workItem from="1682360474931" duration="13000" />
+      <workItem from="1682414811669" duration="6000" />
+      <workItem from="1682414830531" duration="571000" />
+      <workItem from="1682415411256" duration="137000" />
+      <workItem from="1682502078532" duration="3742000" />
+      <workItem from="1682620984377" duration="64000" />
+      <workItem from="1682621234249" duration="27000" />
+      <workItem from="1682621275561" duration="99000" />
+      <workItem from="1682621413349" duration="10000" />
+      <workItem from="1682623084141" duration="702000" />
+      <workItem from="1682623852433" duration="1115000" />
+    </task>
+    <task id="LOCAL-00001" summary="Lab 7 commit">
+      <created>1682623587861</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682623587861</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Lab 7 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lab 7 commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Sources/UI.cpp</url>
+          <line>200</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Sources/tests.cpp</url>
+          <line>345</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="../../../OOP/Project-2-OOP-Cars/cmake-build-debug-coverage" NAME="Project_2_OOP_Cars Coverage Results" MODIFIED="1681841254625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="gcov/llvm" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="../../../OOP/Project-2-OOP-Cars/cmake-build-debug-coverage" NAME="Project_2_OOP_Cars Coverage Results" MODIFIED="1682624916212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="gcov/llvm" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

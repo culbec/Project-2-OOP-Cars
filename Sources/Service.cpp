@@ -1,6 +1,6 @@
 #include "../Headers/Service.h"
 
-Service::Service() noexcept: carRepository(Repository()), carValidator(Validator()) {}
+Service::Service() noexcept: carRepository(Repository()) {}
 
 //const Repository& Service::getRepository() const { return this->carRepository; }
 
@@ -9,8 +9,7 @@ const carList &Service::getCars() const { return this->carRepository.getCars(); 
 bool Service::addCarService(const string &regNumber, const string &producer, const string &model, const string &type) {
     Car carToAdd(regNumber, producer, model, type); // initializing the car to add
 
-    this->carValidator.validateCar(carToAdd,
-                                   this->carRepository); // may have an exception, but it is handled by the repository
+    Validator::validateCar(carToAdd, this->carRepository); // may have an exception, but it is handled by the repository
 
     // daca e cu succes, adaugam masina
     this->carRepository.addCar(carToAdd);
@@ -25,17 +24,17 @@ Car Service::modifyCarService(const string &regNumber, const string &newProducer
     string validationErrors;
 
     try {
-        this->carValidator.validateProducer(carModified); // exception handled by the validator
+        Validator::validateProducer(carModified); // exception handled by the validator
     }
     catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
 
     try {
-        this->carValidator.validateModel(carModified); // exception handled by the validator
+        Validator::validateModel(carModified); // exception handled by the validator
     }
     catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
 
     try {
-        this->carValidator.validateType(carModified); // exception handled by the validator
+        Validator::validateType(carModified); // exception handled by the validator
     }
     catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
 
@@ -62,39 +61,15 @@ Car Service::findCarService(const string &regNumberToFind) {
     return this->carRepository.getCars().at(foundPosition);
 }
 
-//carList Service::filterByProducer(const string& producer, bool(*compareMethod)(const Car&, const string&)) const{
-//	carList filteredCars; // initializam o lista vida
-//
-//	// iteram prin lista
-//	for (auto iter = this->carRepository.getCars().begin(); iter != this->carRepository.getCars().end(); iter++)
-//		if (compareMethod(*iter, producer))
-//			filteredCars.push_back(*iter); // adaugam masina in lista filtrata daca e ok
-//	
-//	// daca lista filtrata e goala, aruncam exceptie
-//	if (filteredCars.size() == 0)
-//		throw ServiceException("Nu exista masini cu producatorul dat!");
-//	
-//	// altfel, returnam lista de masini filtrata
-//	return filteredCars;
-//}
-//
-//carList Service::filterByType(const string& type) const {
-//	carList filtered Cars; // initializam o lista vida
-//}
-
 carList Service::filter(const string &whatFilter, bool(*compareMethod)(const Car &, const string &)) const {
     carList filteredCars; // initializam o lista vida
 
     // iteram prin lista
     const carList &currentCarList = this->carRepository.getCars();
 
-    for (auto &car: currentCarList)
+    for (const auto &car: currentCarList)
         if (compareMethod(car, whatFilter))
             filteredCars.push_back(car);
-
-//	for (auto iter = currentCarList.begin(); iter != currentCarList.end(); iter++)
-//		if (compareMethod(*iter, whatFilter))
-//			filteredCars.push_back(*iter); // adaugam masina in lista
 
     // aruncam exceptie daca lista e goala
     if (filteredCars.empty())

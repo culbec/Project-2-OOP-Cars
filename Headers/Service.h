@@ -2,7 +2,7 @@
 
 #include "Validator.h"
 
-class ServiceException {
+class ServiceException : std::exception {
 private:
     string errorMessage;
 public:
@@ -12,14 +12,8 @@ public:
 };
 
 class Service {
-    // declaram clasele Repository si Validator ca friend
-    friend class Repository;
-
-    friend class Validator;
-
 private:
     // fiecare instanta de tip Service va contine un repository propriu si un validator propriu
-    Validator carValidator;
     Repository carRepository;
 
 public:
@@ -72,24 +66,7 @@ public:
 
     Car findCarService(const string &);
 
-
-    ///*
-    //	Functie de filtrare dupa producator
-    //	@pre: se primeste un parametru de tip string, care reprezinta producatorul masinii dupa care se filtreaza
-    //	@post: lista de masini cu producatorul dat
-    //	@exception: nu exista masini cu producatorul dat
-    //*/
-
-    //carList filterByProducer (const string&) const;
-
-    ///*
-    //	Functie de filtrare dupa tip
-    //	@pre: se primeste un paremetru de tip string, care reprezinta tipul masinii dupa care se filtreaza
-    //	@post: lista de masini cu tipul dat
-    //	@exception: nu exista masini cu tipul dat
-    //*/
-
-    //carList filterByType(const string&, bool(*) const;
+    // functie generala de filtrare
 
     carList filter(const string &, bool(*compareMethod)(const Car &, const string &)) const;
 
@@ -100,5 +77,8 @@ public:
     static bool compareByType(const Car &car, const string &type) {
         return car.getType() == type;
     }
+
+    // functii de sortare
+
 
 };

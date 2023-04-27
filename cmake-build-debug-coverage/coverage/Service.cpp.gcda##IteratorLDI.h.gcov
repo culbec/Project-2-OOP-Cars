@@ -1,0 +1,71 @@
+        -:    0:Source:/home/culbec/OOP/Project-2-OOP-Cars/Headers/IteratorLDI.h
+        -:    0:Graph:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.gcno
+        -:    0:Data:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#pragma once
+        -:    2:
+        -:    3:#include "LDI.h"
+        -:    4:
+        -:    5:template<typename TElem>
+        -:    6:class Node;
+        -:    7:
+        -:    8:template<typename TElem>
+        -:    9:class LDI;
+        -:   10:
+        -:   11:template<typename TElem>
+        -:   12:class IteratorLDI {
+        -:   13:private:
+        -:   14:    // referinta peste container-ul pe care o sa il iteram
+        -:   15:    const LDI<TElem> &list;
+        -:   16:
+        -:   17:    // referinta peste elementul curent din lista
+        -:   18:    Node<TElem> *current;
+        -:   19:
+        -:   20:public:
+        -:   21:    // constructor implicit
+function _ZN11IteratorLDII3CarEC2ERK3LDIIS0_E called 0 returned 0% blocks executed 0%
+    #####:   22:    explicit IteratorLDI(const LDI<TElem> &ldi) : list(ldi), current(list.prim) {}
+        -:   23:
+        -:   24:    // constructor cu specificare de pozitie
+function _ZN11IteratorLDII3CarEC2ERK3LDIIS0_EP4NodeIS0_E called 0 returned 0% blocks executed 0%
+    #####:   25:    IteratorLDI(const LDI<TElem> &ldi, Node<TElem> *pos) : list(ldi), current(pos) {}
+        -:   26:
+        -:   27:    Node<TElem> *getCurrent() { return this->current; }
+        -:   28:
+        -:   29:    IteratorLDI<TElem> operator+(const int &size) {
+        -:   30:        for (int i = 0; i < size; i++)
+        -:   31:            this->current = this->current->getNext();
+        -:   32:        return *this;
+        -:   33:    }
+        -:   34:
+        -:   35:    IteratorLDI<TElem> operator-(const int &size) {
+        -:   36:        for (int i = 0; i < size; i++)
+        -:   37:            this->current = this->current->getPrev();
+        -:   38:        return *this;
+        -:   39:    }
+        -:   40:
+        -:   41:    bool operator<=(const IteratorLDI<TElem> &iter) {
+        -:   42:        return this->current != iter.current->getNext();
+        -:   43:    }
+        -:   44:
+        -:   45:    bool operator<(const IteratorLDI<TElem> &iter) {
+        -:   46:        return this->current != iter.current;
+        -:   47:    }
+        -:   48:
+        -:   49:    // pt. ++iter -> increment, dupa efectueaza operatia
+function _ZN11IteratorLDII3CarEppEv called 0 returned 0% blocks executed 0%
+    #####:   50:    void operator++() { this->current = this->current->getNext(); }
+    %%%%%:   50-block  0
+call    0 never executed
+        -:   51:
+function _ZN11IteratorLDII3CarEdeEv called 0 returned 0% blocks executed 0%
+    #####:   52:    TElem operator*() { return this->current->getData(); }
+    %%%%%:   52-block  0
+call    0 never executed
+        -:   53:
+function _ZN11IteratorLDII3CarEneERKS1_ called 0 returned 0% blocks executed 0%
+    #####:   54:    bool operator!=(const IteratorLDI<TElem> &iter) {
+    #####:   55:        return this->current != iter.current;
+    %%%%%:   55-block  0
+        -:   56:    }
+        -:   57:};

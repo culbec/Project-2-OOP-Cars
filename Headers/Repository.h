@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Car.h"
+#include "LDI.h"
 #include <utility>
 #include <vector>
 #include <exception>
@@ -10,10 +11,10 @@ using std::vector;
 using std::exception;
 using std::remove;
 
-typedef vector<Car> carList;
+typedef LDI<Car> carList;
 
 // declaram o exceptie custom pentru repository:
-class RepositoryException {
+class RepositoryException : std::exception {
 private:
     string errorMessage;
 public:
@@ -84,6 +85,6 @@ public:
         @pre: true
         @post: lista de masini este copiata
     */
-    carList copyList() const;
+    static carList copyList(const carList &);
 };
 

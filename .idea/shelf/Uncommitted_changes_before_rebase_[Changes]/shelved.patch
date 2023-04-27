@@ -1,0 +1,1400 @@
+Index: Sources/Service.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"../Headers/Service.h\"\n\nService::Service() noexcept: carRepository(Repository()), carValidator(Validator()) {}\n\n//const Repository& Service::getRepository() const { return this->carRepository; }\n\nconst carList &Service::getCars() const { return this->carRepository.getCars(); }\n\nbool Service::addCarService(const string &regNumber, const string &producer, const string &model, const string &type) {\n    Car carToAdd(regNumber, producer, model, type); // initializing the car to add\n\n    this->carValidator.validateCar(carToAdd,\n                                   this->carRepository); // may have an exception, but it is handled by the repository\n\n    // daca e cu succes, adaugam masina\n    this->carRepository.addCar(carToAdd);\n    return true;\n}\n\nCar Service::modifyCarService(const string &regNumber, const string &newProducer, const string &newModel,\n                              const string &newType) {\n    Car carModified(regNumber, newProducer, newModel, newType); // initializing the modified car\n\n    // salvam erorile de la validari\n    string validationErrors;\n\n    try {\n        this->carValidator.validateProducer(carModified); // exception handled by the validator\n    }\n    catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }\n\n    try {\n        this->carValidator.validateModel(carModified); // exception handled by the validator\n    }\n    catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }\n\n    try {\n        this->carValidator.validateType(carModified); // exception handled by the validator\n    }\n    catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }\n\n    if (!validationErrors.empty())\n        throw ServiceException(validationErrors);\n\n    // daca e cu succes, modificam masina\n    Car oldCar = this->carRepository.modifyCar(carModified); // exception handled by the repository\n    return oldCar;\n}\n\nCar Service::deleteCarService(const string &regNumberToDelete) {\n    // returnam direct rezultatul stergerii\n    // daca exista exceptie, va fi gestionata de repo\n    return this->carRepository.deleteCar(regNumberToDelete);\n}\n\nCar Service::findCarService(const string &regNumberToFind) {\n    // cautam masina prin intermediul repo\n    // si returnam masina de pe pozitia gasita\n\n    const unsigned int foundPosition = this->carRepository.findCar(regNumberToFind);\n\n    return this->carRepository.getCars().at(foundPosition);\n}\n\n//carList Service::filterByProducer(const string& producer, bool(*compareMethod)(const Car&, const string&)) const{\n//\tcarList filteredCars; // initializam o lista vida\n//\n//\t// iteram prin lista\n//\tfor (auto iter = this->carRepository.getCars().begin(); iter != this->carRepository.getCars().end(); iter++)\n//\t\tif (compareMethod(*iter, producer))\n//\t\t\tfilteredCars.push_back(*iter); // adaugam masina in lista filtrata daca e ok\n//\t\n//\t// daca lista filtrata e goala, aruncam exceptie\n//\tif (filteredCars.size() == 0)\n//\t\tthrow ServiceException(\"Nu exista masini cu producatorul dat!\");\n//\t\n//\t// altfel, returnam lista de masini filtrata\n//\treturn filteredCars;\n//}\n//\n//carList Service::filterByType(const string& type) const {\n//\tcarList filtered Cars; // initializam o lista vida\n//}\n\ncarList Service::filter(const string &whatFilter, bool(*compareMethod)(const Car &, const string &)) const {\n    carList filteredCars; // initializam o lista vida\n\n    // iteram prin lista\n    const carList &currentCarList = this->carRepository.getCars();\n\n    for (auto &car: currentCarList)\n        if (compareMethod(car, whatFilter))\n            filteredCars.push_back(car);\n\n//\tfor (auto iter = currentCarList.begin(); iter != currentCarList.end(); iter++)\n//\t\tif (compareMethod(*iter, whatFilter))\n//\t\t\tfilteredCars.push_back(*iter); // adaugam masina in lista\n\n    // aruncam exceptie daca lista e goala\n    if (filteredCars.empty())\n        throw ServiceException(\"Nu s-au gasit masini cu parametrul specificat!\\n\");\n\n    // altfel, returnam lista\n    return filteredCars;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Sources/Service.cpp b/Sources/Service.cpp
+--- a/Sources/Service.cpp	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Sources/Service.cpp	(date 1682623325165)
+@@ -1,16 +1,14 @@
+ #include "../Headers/Service.h"
+ 
+-Service::Service() noexcept: carRepository(Repository()), carValidator(Validator()) {}
+-
+-//const Repository& Service::getRepository() const { return this->carRepository; }
++Service::Service() noexcept: carRepository(Repository()) {}
+ 
+ const carList &Service::getCars() const { return this->carRepository.getCars(); }
+ 
+ bool Service::addCarService(const string &regNumber, const string &producer, const string &model, const string &type) {
+     Car carToAdd(regNumber, producer, model, type); // initializing the car to add
+ 
+-    this->carValidator.validateCar(carToAdd,
+-                                   this->carRepository); // may have an exception, but it is handled by the repository
++    Validator::validateCar(carToAdd,
++                           this->carRepository); // may have an exception, but it is handled by the repository
+ 
+     // daca e cu succes, adaugam masina
+     this->carRepository.addCar(carToAdd);
+@@ -25,17 +23,17 @@
+     string validationErrors;
+ 
+     try {
+-        this->carValidator.validateProducer(carModified); // exception handled by the validator
++        Validator::validateProducer(carModified); // exception handled by the validator
+     }
+     catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
+ 
+     try {
+-        this->carValidator.validateModel(carModified); // exception handled by the validator
++        Validator::validateModel(carModified); // exception handled by the validator
+     }
+     catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
+ 
+     try {
+-        this->carValidator.validateType(carModified); // exception handled by the validator
++        Validator::validateType(carModified); // exception handled by the validator
+     }
+     catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
+ 
+@@ -62,44 +60,50 @@
+     return this->carRepository.getCars().at(foundPosition);
+ }
+ 
+-//carList Service::filterByProducer(const string& producer, bool(*compareMethod)(const Car&, const string&)) const{
+-//	carList filteredCars; // initializam o lista vida
+-//
+-//	// iteram prin lista
+-//	for (auto iter = this->carRepository.getCars().begin(); iter != this->carRepository.getCars().end(); iter++)
+-//		if (compareMethod(*iter, producer))
+-//			filteredCars.push_back(*iter); // adaugam masina in lista filtrata daca e ok
+-//	
+-//	// daca lista filtrata e goala, aruncam exceptie
+-//	if (filteredCars.size() == 0)
+-//		throw ServiceException("Nu exista masini cu producatorul dat!");
+-//	
+-//	// altfel, returnam lista de masini filtrata
+-//	return filteredCars;
+-//}
+-//
+-//carList Service::filterByType(const string& type) const {
+-//	carList filtered Cars; // initializam o lista vida
+-//}
+-
+ carList Service::filter(const string &whatFilter, bool(*compareMethod)(const Car &, const string &)) const {
+     carList filteredCars; // initializam o lista vida
+ 
+     // iteram prin lista
+     const carList &currentCarList = this->carRepository.getCars();
+ 
+-    for (auto &car: currentCarList)
++    for (const auto &car: currentCarList)
+         if (compareMethod(car, whatFilter))
+             filteredCars.push_back(car);
+ 
+-//	for (auto iter = currentCarList.begin(); iter != currentCarList.end(); iter++)
+-//		if (compareMethod(*iter, whatFilter))
+-//			filteredCars.push_back(*iter); // adaugam masina in lista
+-
+     // aruncam exceptie daca lista e goala
+     if (filteredCars.empty())
+         throw ServiceException("Nu s-au gasit masini cu parametrul specificat!\n");
+ 
+     // altfel, returnam lista
+     return filteredCars;
++}
++
++carList Service::generalSort(const carList &cars, bool(*compareMethod)(const Car &, const Car &)) {
++    carList toSort = Repository::copyList(cars);
++
++    for (unsigned int i = 0; i < toSort.size() - 1; i++)
++        for (unsigned int j = i + 1; j < toSort.size(); j++)
++            if (compareMethod(toSort.at(i), toSort.at(j)))
++                toSort.swap(i, j);
++    return toSort;
++}
++
++carList Service::sortByRegNumber(const carList &cars) {
++    return generalSort(cars, [](const Car &thisCar, const Car &otherCar) {
++        return thisCar.getRegNumber() > otherCar.getRegNumber();
++    });
++}
++
++carList Service::sortByType(const carList &cars) {
++    return generalSort(cars, [](const Car &thisCar, const Car &otherCar) {
++        return thisCar.getType() > otherCar.getType();
++    });
++}
++
++carList Service::sortByProducerAndModel(const carList &cars) {
++    return generalSort(cars, [](const Car &thisCar, const Car &otherCar) {
++        if (thisCar.getProducer() == otherCar.getProducer())
++            return thisCar.getModel() > otherCar.getModel();
++        return thisCar.getProducer() > otherCar.getProducer();
++    });
+ }
+\ No newline at end of file
+Index: Sources/tests.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"../Headers/Car.h\"\n#include \"../Headers/Service.h\"\n#include \"../Headers/tests.h\"\n\nvoid domainTests() {\n    // initializam o noua masina\n    Car someCar(\"CJ81VSL\", \"Audi\", \"Q8\", \"SUV\");\n\n    // testing getters\n    assert(someCar.getRegNumber() == \"CJ81VSL\");\n    assert(someCar.getProducer() == \"Audi\");\n    assert(someCar.getModel() == \"Q8\");\n    assert(someCar.getType() == \"SUV\");\n\n    // testing the copy constructor\n    Car copyCar(someCar);\n    assert(copyCar == someCar);\n\n    // testing setters\n    string oldProducer = someCar.getProducer();\n    someCar.setProducer(\"BMW\");\n    assert(someCar.getProducer() == \"BMW\");\n\n    string oldModel = someCar.getModel();\n    someCar.setModel(\"Q7\");\n    assert(someCar.getModel() == \"Q7\");\n\n    string oldType = someCar.getType();\n    someCar.setType(\"Sedan\");\n    assert(someCar.getType() == \"Sedan\");\n\n    // setting back the old values;\n    someCar.setProducer(oldProducer);\n    assert(someCar.getProducer() == oldProducer);\n\n    someCar.setModel(oldModel);\n    assert(someCar.getModel() == oldModel);\n\n    someCar.setType(oldType);\n    assert(someCar.getType() == oldType);\n\n    // suprascriem obiectul curent\n    someCar = Car(\"VS12CAR\", \"Mercedes\", \"Vito\", \"Truck\");\n    assert(someCar.getRegNumber() == \"VS12CAR\");\n    assert(someCar.getProducer() == \"Mercedes\");\n    assert(someCar.getModel() == \"Vito\");\n    assert(someCar.getType() == \"Truck\");\n}\n\nvoid repositoryTests() {\n    // creating some cars\n    Car car1(\"VS48TUD\", \"VW\", \"Tiguan\", \"SUV\");\n    Car car2(\"VS06GOD\", \"VW\", \"Passat\", \"Combi\");\n    Car car3(\"CJ14SAL\", \"Skoda\", \"Fabia\", \"Hatch\");\n    Car car4(\"BH04SUD\", \"Renault\", \"Kadjar\", \"SUV\");\n    Car car5(\"B777BOS\", \"Dacia\", \"Logan\", \"Sedan\");\n\n    // initializing a repo\n    Repository carRepository;\n\n    // adding some cars\n    carRepository.addCar(car1);\n    assert(carRepository.getSize() == 1);\n\n    carRepository.addCar(car2);\n    assert(carRepository.getSize() == 2);\n\n    // finding the cars\n    assert(carRepository.findCar(\"VS48TUD\") == 0);\n    assert(carRepository.findCar(\"VS06GOD\") == 1);\n\n    // testing the exception\n    try {\n        carRepository.findCar(\"VS06GOT\");\n        assert(false);\n    }\n    catch (const RepositoryException &) {\n        assert(true);\n    }\n\n    // modifying a car and deleting one\n    Car newCar(\"VS48TUD\", \"Volkswagen\", \"Touareg\", \"2016\");\n    Car modifiedCar = carRepository.modifyCar(newCar);\n    assert(modifiedCar == car1);\n\n    assert(carRepository.getCars().at(0) == newCar);\n\n    Car deletedCar = carRepository.deleteCar(\"VS06GOD\");\n    assert(deletedCar == car2);\n    assert(carRepository.getSize() == 1);\n\n    // trying to modify and delete cars that are not in the list\n    try {\n        Car badCar(\"VS48TUT\", \"Audi\", \"Q8\", \"SUV\");\n        carRepository.modifyCar(badCar);\n        assert(false);\n    }\n    catch (RepositoryException &rE) {\n        assert(!rE.getMessage().empty());\n    }\n\n    try {\n        carRepository.deleteCar(\"VS48TUT\");\n        assert(false);\n    }\n    catch (const RepositoryException &) {\n        assert(true);\n    }\n\n    // testing the copy list function\n    carList carCopyList = carRepository.copyList();\n\n    assert(carCopyList.size() == carRepository.getSize());\n\n    // adding the other cars\n    carRepository.addCar(car3);\n    assert(carRepository.getSize() == 2);\n\n    carRepository.addCar(car4);\n    carRepository.addCar(car5);\n    assert(carRepository.getSize() == 4);\n}\n\nvoid validatorTests() {\n    // initializam un repo si un validator\n    Repository carRepo;\n    Validator carValid;\n\n    // initializam cateva masini\n    Car car1(\"CJ81VSL\", \"Volkswagen\", \"Touareg\", \"SUV\");\n    Car car2(\"B23ZZZ\", \"Skoda\", \"Fabia\", \"Combi\");\n    Car car3(\"BH71CLZ\", \"Peugeot\", \"508\", \"Sedan\");\n\n    // initializam si cateva masini cu parametrii gresiti\n    Car badCarRegNumber1(\"CJ8VSL\", \"Citroen\", \"C4\", \"Combi\");\n    Car badCarRegNumber2(\"B100CZ\", \"Seat\", \"Ibiza\", \"Hatch\");\n    Car badCarRegNumber3(\"B01CE\", \"Aston Marti\", \"Spider\", \"Sport\");\n    Car badCarRegNumber4(\"\", \"What\", \"The\", \"Sport+\");\n    Car badCarRegNumber5(\"B1031ZX\", \"Volvo\", \"XC90\", \"SUV\");\n    Car badCarRegNumber6(\"B103ZY2\", \"Volvo\", \"C90\", \"SUV\");\n    Car badCarRegNumber7(\"B103ZX1\", \"Volvo\", \"XC60\", \"SUV\");\n    Car badCarRegNumber8(\"B101BZ\", \"Skoda\", \"Superb\", \"Sedan\");\n    Car badCarRegNumber9(\"B10B1Y\", \"Seat\", \"Toledo\", \"Hatch\");\n    Car badCarRegNumber10(\"B10BA_\", \"Skoda\", \"Octavia\", \"Combi\");\n    Car badCarRegNumber11(\"B1AXZC\", \"Skoda\", \"Fabia\", \"201\");\n    Car badCarRegNumber12(\"B_13JJZ\", \"Hyundai\", \"i30\", \"Hatch\");\n    Car badCarRegNumber13(\"CJ#3KZS\", \"Kia\", \"xCeed\", \"Hatch\");\n\n    Car badCarProducer1(\"CJ81VSE\", \"\", \"Golf\", \"Plus\");\n    Car badCarProducer2(\"VS08LXX\", \"volvo\", \"xda\", \"plus\");\n    Car badCarProducer3(\"VS11LZX\", \"Volv0)\", \"xkz\", \"hatch\");\n\n    Car badCarModel(\"CL88SEL\", \"Volk\", \"\", \"Hatch\");\n\n    Car badCarType(\"CJ11VLS\", \"Skoda\", \"Fabia\", \"\");\n\n    Car badCar1(\"CJ\", \"volk\", \"Type R\", \"Combi\");\n    Car badCar2(\"B001KSS\", \"\", \"wow\", \"sport+\");\n    Car badCar3(\"\", \"\", \"\", \"\");\n\n    // validam masini\n\n    assert(Validator::validateRegNumber(car1) == true);\n    carRepo.addCar(car1);\n\n    assert(Validator::validateModel(car2) == true);\n    carRepo.addCar(car2);\n\n    assert(carValid.validateCar(car3, carRepo) == true);\n    carRepo.addCar(car3);\n\n    assert(Validator::validateType(car3) == true);\n\n    // verificam exceptia daca vrem sa adaugam un element deja adaugat\n\n    try {\n        carValid.validateCar(car1, carRepo);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    // verificam exceptia pentru toate cazurile de numar invalid\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber1);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber2);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber3);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber4);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber5);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber6);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        carValid.validateRegNumber(badCarRegNumber7);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber8);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber9);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber10);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber11);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber12);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateRegNumber(badCarRegNumber13);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    // testam exceptia pentru producator invalid\n    try {\n        Validator::validateProducer(badCarProducer1);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateProducer(badCarProducer2);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        Validator::validateProducer(badCarProducer3);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    // testam exceptia pentru model\n    try {\n        Validator::validateModel(badCarModel);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    // testam exceptia pentru tip\n    try {\n        Validator::validateType(badCarType);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    // testam si exceptii multiple\n    try {\n        carValid.validateCar(badCar1, carRepo);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        carValid.validateCar(badCar2, carRepo);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    try {\n        carValid.validateCar(badCar3, carRepo);\n        assert(false);\n    }\n    catch (const ValidatorException &) { assert(true); }\n}\n\nvoid serviceTests() {\n    // initializam un service\n    Service carService;\n\n    //assert(carService.carRepository.getSize() == 0);\n\n    // adaugam cateva masini in service si verificam ca functioneaza adaugarea\n    // vom adauga si cateva masini pentru a testa exceptiile\n\n    assert(carService.addCarService(\"CJ81VSL\", \"Audi\", \"Q7\", \"SUV\") == true);\n\n    assert(carService.addCarService(\"VS15PES\", \"Mercedes\", \"Vito\", \"Utilitara\") == true);\n\n    // verificam si exceptii pentru adaugare\n    try {\n        assert(carService.addCarService(\"\", \"Mitsubishi\", \"LX\", \"Truck\") == true);\n    }\n    catch (const ValidatorException &) { assert(true); }\n\n    // modificam o masina care exista\n    Car unmodifiedCar = carService.modifyCarService(\"CJ81VSL\", \"Audi\", \"RS6\", \"Sport+\");\n    Car wasModified = Car(carService.getCars().at(0));\n\n    assert(unmodifiedCar == wasModified);\n\n    assert(unmodifiedCar.getProducer() == wasModified.getProducer());\n\n    assert(unmodifiedCar.getModel() == \"Q7\");\n    assert(wasModified.getModel() == \"RS6\");\n\n    assert(unmodifiedCar.getType() == \"SUV\");\n    assert(wasModified.getType() == \"Sport+\");\n\n    // verificam exceptia daca vrem sa modificam o masina cu niste parametrii invalizi\n    try {\n        carService.modifyCarService(\"VS15PES\", \"\", \"\", \"\");\n        assert(false);\n    }\n    catch (ServiceException &sE) { assert(!sE.getMessage().empty()); }\n\n    // verificam exceptia daca vrem sa modificam o masina care nu exista\n    try {\n        carService.modifyCarService(\"B100CZL\", \"Audi\", \"Q9\", \"Driver\");\n        assert(false);\n    }\n    catch (const RepositoryException &) { assert(true); }\n\n    // stergem o masina\n    Car deletedCar = carService.deleteCarService(\"CJ81VSL\");\n    assert(deletedCar.getProducer() == \"Audi\");\n    assert(deletedCar.getModel() == \"RS6\");\n    assert(deletedCar.getType() == \"Sport+\");\n\n    // incercam sa stergem si o masina care nu exista\n    try {\n        carService.deleteCarService(\"B100CZL\");\n        assert(false);\n    }\n    catch (const RepositoryException &) { assert(true); }\n\n    // mai adaugam masini pentru a folosi cautarea si filtrarea\n    assert(carService.addCarService(\"BV67LZZ\", \"Mercedes\", \"CLA\", \"Sport+\"));\n    assert(carService.addCarService(\"CV16LYZ\", \"Mercedes\", \"CLS\", \"Truck\"));\n    assert(carService.addCarService(\"CT01ZIL\", \"Skoda\", \"Fabia\", \"Combi\"));\n\n    // cautam dupa numarul de inmatriculare\n    assert(carService.findCarService(\"BV67LZZ\").getModel() == \"CLA\");\n    assert(carService.findCarService(\"CV16LYZ\").getProducer() == \"Mercedes\");\n\n    try {\n        carService.findCarService(\"VS45WED\");\n        assert(false);\n    }\n    catch (const RepositoryException &) { assert(true); }\n\n    // filtram dupa producator / tip\n    carList filterProducer = carService.filter(\"Mercedes\", Service::compareByProducer);\n    assert(filterProducer.size() == 3);\n\n    filterProducer = carService.filter(\"Skoda\", Service::compareByProducer);\n    assert(filterProducer.size() == 1);\n\n    // filtram si dupa un producator care nu exista\n\n    try {\n        carService.filter(\"Peugeot\", Service::compareByProducer);\n        assert(false);\n    }\n    catch (const ServiceException &) { assert(true); }\n\n    carList filterType = carService.filter(\"Sport+\", Service::compareByType);\n    assert(filterType.size() == 1);\n\n    filterType = carService.filter(\"Combi\", Service::compareByType);\n    assert(filterType.size() == 1);\n\n    // filtram si dupa un tip care nu exista\n    try {\n        carService.filter(\"Sport\", Service::compareByType);\n        assert(false);\n    }\n    catch (const ServiceException &) { assert(true); }\n\n}\n\nvoid runTests() {\n    domainTests();\n    repositoryTests();\n    validatorTests();\n    serviceTests();\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Sources/tests.cpp b/Sources/tests.cpp
+--- a/Sources/tests.cpp	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Sources/tests.cpp	(date 1682621361151)
+@@ -62,9 +62,19 @@
+     carRepository.addCar(car1);
+     assert(carRepository.getSize() == 1);
+ 
++    // testing deletes
++    carRepository.deleteCar("VS48TUD");
++    carRepository.addCar(car1);
++
+     carRepository.addCar(car2);
+     assert(carRepository.getSize() == 2);
+ 
++    // testing deletes
++    carRepository.addCar(car3);
++    carRepository.deleteCar("VS06GOD");
++    carRepository.addCar(car2);
++    carRepository.deleteCar("CJ14SAL");
++
+     // finding the cars
+     assert(carRepository.findCar("VS48TUD") == 0);
+     assert(carRepository.findCar("VS06GOD") == 1);
+@@ -108,7 +118,7 @@
+     }
+ 
+     // testing the copy list function
+-    carList carCopyList = carRepository.copyList();
++    carList carCopyList = Repository::copyList(carRepository.getCars());
+ 
+     assert(carCopyList.size() == carRepository.getSize());
+ 
+@@ -124,7 +134,6 @@
+ void validatorTests() {
+     // initializam un repo si un validator
+     Repository carRepo;
+-    Validator carValid;
+ 
+     // initializam cateva masini
+     Car car1("CJ81VSL", "Volkswagen", "Touareg", "SUV");
+@@ -166,7 +175,7 @@
+     assert(Validator::validateModel(car2) == true);
+     carRepo.addCar(car2);
+ 
+-    assert(carValid.validateCar(car3, carRepo) == true);
++    assert(Validator::validateCar(car3, carRepo) == true);
+     carRepo.addCar(car3);
+ 
+     assert(Validator::validateType(car3) == true);
+@@ -174,7 +183,7 @@
+     // verificam exceptia daca vrem sa adaugam un element deja adaugat
+ 
+     try {
+-        carValid.validateCar(car1, carRepo);
++        Validator::validateCar(car1, carRepo);
+         assert(false);
+     }
+     catch (const ValidatorException &) { assert(true); }
+@@ -218,7 +227,7 @@
+     catch (const ValidatorException &) { assert(true); }
+ 
+     try {
+-        carValid.validateRegNumber(badCarRegNumber7);
++        Validator::validateRegNumber(badCarRegNumber7);
+         assert(false);
+     }
+     catch (const ValidatorException &) { assert(true); }
+@@ -294,19 +303,19 @@
+ 
+     // testam si exceptii multiple
+     try {
+-        carValid.validateCar(badCar1, carRepo);
++        Validator::validateCar(badCar1, carRepo);
+         assert(false);
+     }
+     catch (const ValidatorException &) { assert(true); }
+ 
+     try {
+-        carValid.validateCar(badCar2, carRepo);
++        Validator::validateCar(badCar2, carRepo);
+         assert(false);
+     }
+     catch (const ValidatorException &) { assert(true); }
+ 
+     try {
+-        carValid.validateCar(badCar3, carRepo);
++        Validator::validateCar(badCar3, carRepo);
+         assert(false);
+     }
+     catch (const ValidatorException &) { assert(true); }
+@@ -417,9 +426,51 @@
+ 
+ }
+ 
++void sortTests() {
++    // initializam un service
++    Service carService;
++
++    // adaugam cateva masini
++    carService.addCarService("CJ88LLL", "Volkswagen", "Tiguan", "SUV");
++    carService.addCarService("CT81LMA", "Skoda", "Octavia", "Break");
++    carService.addCarService("VS73JKI", "Seat", "Ibiza", "Sport");
++
++    assert(carService.getCars().size() == 3);
++
++    // testam sortarea pentru numar de inmatriculare
++    carList sortedByRegNumber = Service::sortByRegNumber(carService.getCars());
++
++    assert(sortedByRegNumber.size() == 3);
++
++    assert(carService.getCars().at(0).getRegNumber() == "CJ88LLL");
++    assert(carService.getCars().at(2).getProducer() == "Seat");
++
++    // testam sortarea pentru tip
++    carList sortedByType = Service::sortByType(carService.getCars());
++
++    assert(sortedByType.size() == 3);
++
++    assert(sortedByType.at(0).getType() == "Break");
++    assert(sortedByType.at(1).getType() == "SUV");
++
++    // testam sortarea pentru producator + model
++    carService.addCarService("VS89LQD", "Seat", "Altea", "Break");
++
++    carList sortedByProducerAndModel = Service::sortByProducerAndModel(carService.getCars());
++
++    assert(sortedByProducerAndModel.size() == 4);
++
++    assert(sortedByProducerAndModel.at(0).getProducer() == "Seat");
++    assert(sortedByProducerAndModel.at(0).getModel() == "Altea");
++    assert(sortedByProducerAndModel.at(1).getModel() == "Ibiza");
++}
++
+ void runTests() {
+     domainTests();
+     repositoryTests();
+     validatorTests();
+     serviceTests();
++
++    // separate sort tests
++    sortTests();
+ }
+\ No newline at end of file
+Index: main.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <iostream>\n#include \"Headers/UI.h\"\n#include \"Headers/tests.h\"\n\nint main() {\n    //runTests();\n    std::cout << \"Tests ok!\\n\\n\";\n\n    UI ui;\n    ui.uiRun();\n\n    return 0;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.cpp b/main.cpp
+--- a/main.cpp	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/main.cpp	(date 1682151974978)
+@@ -3,11 +3,11 @@
+ #include "Headers/tests.h"
+ 
+ int main() {
+-    //runTests();
++    runTests();
+     std::cout << "Tests ok!\n\n";
+ 
+     UI ui;
+-    ui.uiRun();
++    //ui.uiRun();
+ 
+     return 0;
+ }
+\ No newline at end of file
+Index: Sources/Repository.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"../Headers/Repository.h\"\n\nRepository::Repository() noexcept = default;\n\nconst carList &Repository::getCars() const { return this->cars; }\n\nsize_t Repository::getSize() const noexcept { return this->cars.size(); }\n\nunsigned int Repository::findCar(const string &regNumberToFind) const {\n    for (auto i = 0; i < this->cars.size(); i++)\n        if (this->cars.at(i).getRegNumber() == regNumberToFind)\n            return i;\n    throw RepositoryException(\"Masina nu exista in lista!\\n\");\n}\n\nvoid Repository::addCar(const Car &carToAdd) {\n    this->cars.push_back(carToAdd);\n}\n\nCar Repository::deleteCar(const string &regNumberOfCarToDelete) {\n    try {\n        const size_t positionToDelete = findCar(regNumberOfCarToDelete);\n\n        auto iter = this->cars.begin();\n        for (auto i = 0; i < positionToDelete; i++)\n            iter++;\n\n        Car deletedCar(*iter);\n        this->cars.erase(iter);\n\n        return deletedCar;\n    }\n    catch (const RepositoryException &) {\n        throw RepositoryException(\"Nu se poate sterge deoarece nu exista masina in lista!\\n\");\n    }\n}\n\nCar Repository::modifyCar(const Car &newCar) {\n    try {\n        const size_t positionToModify = findCar(newCar.getRegNumber());\n\n        auto iter = this->cars.begin();\n        for (auto i = 0; i < positionToModify; i++) iter++;\n\n        Car modifiedCar(*iter);\n        *iter = Car(newCar.getRegNumber(), newCar.getProducer(), newCar.getModel(), newCar.getType());\n\n        return modifiedCar;\n    }\n    catch (const RepositoryException &) {\n        throw RepositoryException(\"Nu se poate modifica deoarece nu exista masina in lista!\\n\");\n    }\n}\n\ncarList Repository::copyList() const {\n    carList copyList;\n\n    for (auto &car: this->cars) {\n        const Car &copyCar(car);\n        copyList.push_back(copyCar);\n    }\n\n//\tfor(auto iter = this->cars.begin(); iter != this->cars.end(); iter++) {\n//\t\tCar copyCar(*iter);\n//\t\tcopyList.push_back(copyCar);\n//\t}\n\n    return copyList;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Sources/Repository.cpp b/Sources/Repository.cpp
+--- a/Sources/Repository.cpp	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Sources/Repository.cpp	(date 1682623325161)
+@@ -1,7 +1,5 @@
+ #include "../Headers/Repository.h"
+ 
+-Repository::Repository() noexcept = default;
+-
+ const carList &Repository::getCars() const { return this->cars; }
+ 
+ size_t Repository::getSize() const noexcept { return this->cars.size(); }
+@@ -23,10 +21,10 @@
+ 
+         auto iter = this->cars.begin();
+         for (auto i = 0; i < positionToDelete; i++)
+-            iter++;
++            ++iter;
+ 
+         Car deletedCar(*iter);
+-        this->cars.erase(iter);
++        this->cars.erase(iter.getCurrent());
+ 
+         return deletedCar;
+     }
+@@ -40,10 +38,11 @@
+         const size_t positionToModify = findCar(newCar.getRegNumber());
+ 
+         auto iter = this->cars.begin();
+-        for (auto i = 0; i < positionToModify; i++) iter++;
++        for (auto i = 0; i < positionToModify; i++) ++iter;
+ 
+         Car modifiedCar(*iter);
+-        *iter = Car(newCar.getRegNumber(), newCar.getProducer(), newCar.getModel(), newCar.getType());
++        iter.getCurrent()->setData(
++                Car(newCar.getRegNumber(), newCar.getProducer(), newCar.getModel(), newCar.getType()));
+ 
+         return modifiedCar;
+     }
+@@ -52,18 +51,12 @@
+     }
+ }
+ 
+-carList Repository::copyList() const {
++carList Repository::copyList(const carList &carsToCopy) {
+     carList copyList;
+ 
+-    for (auto &car: this->cars) {
+-        const Car &copyCar(car);
++    for (auto iter = carsToCopy.begin(); iter != carsToCopy.end(); ++iter) {
++        Car copyCar(iter.getCurrent()->getData());
+         copyList.push_back(copyCar);
+     }
+-
+-//	for(auto iter = this->cars.begin(); iter != this->cars.end(); iter++) {
+-//		Car copyCar(*iter);
+-//		copyList.push_back(copyCar);
+-//	}
+-
+     return copyList;
+ }
+\ No newline at end of file
+Index: Sources/Validator.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"../Headers/Validator.h\"\n\nbool Validator::validateRegNumber(const Car &car) {\n    string errors; // vom pastra toate erorile\n\n    string regNumber = car.getRegNumber(); // retinem numarul de inmatriculare\n\n    // verificam daca nr. de inmatriculare este string-ul vid\n    if (regNumber.empty())\n        throw ValidatorException(\"Nr. de inmatriculare nu poate fi vid!\"); // aruncam direct exceptie\n\n    // verificam daca nr. de inmatriculare se incadreaza ca lungime intre 6 si 7\n    if (regNumber.size() < 6 || regNumber.size() > 7)\n        throw ValidatorException(\n                \"Nr. de inmatriculare trebuie sa fie de forma: \\n Exemplu: CJ12CEVA, pentru toate judetele inafara de Bucuresti\\n Exemplu: B76XZY sau B777ZZZ pentru judetul Bucuresti.\\n\");\n\n    // acum putem valida numarul de inmatriculare\n    if (regNumber.at(0) == 'B' && !(regNumber.at(1) >= 'A' && regNumber.at(1) <= 'Z')) {\n        if (regNumber.size() == 7) {\n            if ((regNumber.at(1) >= '1' && regNumber.at(1) <= '9') &&\n                (regNumber.at(2) >= '0' && regNumber.at(2) <= '9') &&\n                (regNumber.at(3) >= '0' && regNumber.at(3) <= '9')) { //numar de genul B132XYZ\n                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors +\n                                                                                  \"Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\\n\";\n                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors +\n                                                                                       \"Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\\n\";\n                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z')) errors = errors +\n                                                                                       \"Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\\n\";\n            } else\n                errors = errors + \"'B' trebuie sa fie urmat de 3 cifre!\\n\";\n        } else {\n            // numar de genul B10YCZ\n            if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z')) errors = errors +\n                                                                              \"'B' trebuie sa fie urmat de 2 cifre si 3 litere!\\n\";\n            else if ((regNumber.at(1) >= '0' && regNumber.at(1) <= '9') &&\n                     (regNumber.at(2) >= '0' && regNumber.at(2) <= '9')) { // avem numar de genul B100XYZ\n                // numar de genul B10_YZ\n                if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z')) errors = errors +\n                                                                                  \"Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\\n\";\n                    // numar de genul B10X_Z\n                else if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors +\n                                                                                       \"Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\\n\";\n                    // numar de genul B10XY_\n                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors +\n                                                                                       \"Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\\n\";\n            } else errors = errors + \"'B' trebuie sa fie urmat de 2 cifre si 3 litere!\\n\";\n        }\n    } else {\n        if (regNumber.size() != 7)\n            errors = errors + \"Numarul de inmatriculare trebuie sa fie de forma: CJ77ZZZ!\\n\";\n        else {\n            if ((regNumber.at(2) >= '0' && regNumber.at(2) <= '9') &&\n                (regNumber.at(3) >= '0' && regNumber.at(3) <= '9')) {\n                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors +\n                                                                                  \"Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\\n\";\n                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors +\n                                                                                       \"Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\\n\";\n                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z')) errors = errors +\n                                                                                       \"Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\\n\";\n            } else errors = errors + \"Judetul trebuie sa fie urmat de 2 cifre!\\n\";\n        }\n    }\n    if (!errors.empty())\n        throw ValidatorException(errors);\n    return true;\n}\n\nbool Validator::validateProducer(const Car &car) {\n    string producer = car.getProducer(); // salvam producatorul\n\n    if (producer.empty())\n        throw ValidatorException(\"Producatorul nu poate fi vid!\\n\");\n\n    string errors; // aici salvam erorile\n\n    if (producer.at(0) < 'A' || producer.at(0) > 'Z')\n        errors += \"Producatorul trebuie sa inceapa cu majuscula!\\n\";\n\n    for (unsigned int i = 1; i < producer.size(); i++)\n        if (!(producer.at(i) >= 'a' && producer.at(i) <= 'z')) {\n            errors += \"Producatorul trebuie sa contina doar litere!\\n\";\n            break;\n        }\n    if (!errors.empty())\n        throw ValidatorException(errors);\n\n    return true;\n}\n\nbool Validator::validateModel(const Car &car) {\n    string model = car.getModel(); // aici salvam modelul masinii\n\n    if (model.empty())\n        throw ValidatorException(\"Modelul nu poate sa fie vid!\\n\");\n\n    return true;\n}\n\nbool Validator::validateType(const Car &car) {\n    string type = car.getType(); // aici salvam tipul masinii;\n\n    if (type.empty())\n        throw ValidatorException(\"Tipul nu poate sa fie nul!\\n\");\n    return true;\n}\n\nbool Validator::validateCar(const Car &car, const Repository &carRepo) const {\n    string errors; // aici salvam erorile\n\n    try {\n        validateRegNumber(car);\n    }\n    catch (ValidatorException validatorException) {\n        errors += validatorException.getMessage();\n    }\n\n    try {\n        validateProducer(car);\n    }\n    catch (ValidatorException validatorException) {\n        errors += validatorException.getMessage();\n    }\n\n    try {\n        validateModel(car);\n    }\n    catch (ValidatorException validatorException) {\n        errors += validatorException.getMessage();\n    }\n\n    try {\n        carRepo.findCar(car.getRegNumber());\n        errors += \"Masina exista deja in lista!\\n\";\n    }\n    catch (RepositoryException repositoryException) {}\n\n    if (!errors.empty())\n        throw ValidatorException(errors);\n    return true;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Sources/Validator.cpp b/Sources/Validator.cpp
+--- a/Sources/Validator.cpp	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Sources/Validator.cpp	(date 1682623325137)
+@@ -20,29 +20,36 @@
+             if ((regNumber.at(1) >= '1' && regNumber.at(1) <= '9') &&
+                 (regNumber.at(2) >= '0' && regNumber.at(2) <= '9') &&
+                 (regNumber.at(3) >= '0' && regNumber.at(3) <= '9')) { //numar de genul B132XYZ
+-                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors +
+-                                                                                  "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
+-                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors +
+-                                                                                       "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
+-                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z')) errors = errors +
+-                                                                                       "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
++                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z'))
++                    errors = errors +
++                             "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
++                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z'))
++                    errors = errors +
++                             "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
++                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z'))
++                    errors = errors +
++                             "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
+             } else
+                 errors = errors + "'B' trebuie sa fie urmat de 3 cifre!\n";
+         } else {
+             // numar de genul B10YCZ
+-            if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z')) errors = errors +
+-                                                                              "'B' trebuie sa fie urmat de 2 cifre si 3 litere!\n";
++            if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z'))
++                errors = errors +
++                         "'B' trebuie sa fie urmat de 2 cifre si 3 litere!\n";
+             else if ((regNumber.at(1) >= '0' && regNumber.at(1) <= '9') &&
+                      (regNumber.at(2) >= '0' && regNumber.at(2) <= '9')) { // avem numar de genul B100XYZ
+                 // numar de genul B10_YZ
+-                if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z')) errors = errors +
+-                                                                                  "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
++                if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z'))
++                    errors = errors +
++                             "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
+                     // numar de genul B10X_Z
+-                else if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors +
+-                                                                                       "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
++                else if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z'))
++                    errors = errors +
++                             "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
+                     // numar de genul B10XY_
+-                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors +
+-                                                                                       "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
++                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z'))
++                    errors = errors +
++                             "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
+             } else errors = errors + "'B' trebuie sa fie urmat de 2 cifre si 3 litere!\n";
+         }
+     } else {
+@@ -51,12 +58,15 @@
+         else {
+             if ((regNumber.at(2) >= '0' && regNumber.at(2) <= '9') &&
+                 (regNumber.at(3) >= '0' && regNumber.at(3) <= '9')) {
+-                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors +
+-                                                                                  "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
+-                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors +
+-                                                                                       "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
+-                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z')) errors = errors +
+-                                                                                       "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
++                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z'))
++                    errors = errors +
++                             "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
++                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z'))
++                    errors = errors +
++                             "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
++                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z'))
++                    errors = errors +
++                             "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
+             } else errors = errors + "Judetul trebuie sa fie urmat de 2 cifre!\n";
+         }
+     }
+@@ -77,7 +87,7 @@
+         errors += "Producatorul trebuie sa inceapa cu majuscula!\n";
+ 
+     for (unsigned int i = 1; i < producer.size(); i++)
+-        if (!(producer.at(i) >= 'a' && producer.at(i) <= 'z')) {
++        if (!(producer.at(i) >= 'a' && producer.at(i) <= 'z') && !(producer.at(i) >= 'A' && producer.at(i) <= 'Z')) {
+             errors += "Producatorul trebuie sa contina doar litere!\n";
+             break;
+         }
+@@ -104,27 +114,27 @@
+     return true;
+ }
+ 
+-bool Validator::validateCar(const Car &car, const Repository &carRepo) const {
++bool Validator::validateCar(const Car &car, const Repository &carRepo) {
+     string errors; // aici salvam erorile
+ 
+     try {
+         validateRegNumber(car);
+     }
+-    catch (ValidatorException validatorException) {
++    catch (ValidatorException &validatorException) {
+         errors += validatorException.getMessage();
+     }
+ 
+     try {
+         validateProducer(car);
+     }
+-    catch (ValidatorException validatorException) {
++    catch (ValidatorException &validatorException) {
+         errors += validatorException.getMessage();
+     }
+ 
+     try {
+         validateModel(car);
+     }
+-    catch (ValidatorException validatorException) {
++    catch (ValidatorException &validatorException) {
+         errors += validatorException.getMessage();
+     }
+ 
+@@ -132,7 +142,7 @@
+         carRepo.findCar(car.getRegNumber());
+         errors += "Masina exista deja in lista!\n";
+     }
+-    catch (RepositoryException repositoryException) {}
++    catch (RepositoryException &repositoryException) {}
+ 
+     if (!errors.empty())
+         throw ValidatorException(errors);
+Index: Headers/Repository.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#pragma once\n\n#include \"Car.h\"\n#include <utility>\n#include <vector>\n#include <exception>\n#include <algorithm>\n\nusing std::vector;\nusing std::exception;\nusing std::remove;\n\ntypedef vector<Car> carList;\n\n// declaram o exceptie custom pentru repository:\nclass RepositoryException {\nprivate:\n    string errorMessage;\npublic:\n    explicit RepositoryException(string message) : errorMessage(std::move(message)) {}\n\n    string getMessage() { return this->errorMessage; }\n};\n\nclass Repository {\n    friend class Car;\n\nprivate:\n    carList cars; // lista de masini\npublic:\n    Repository() noexcept;\n\n    /*\n        Returneaza lista de masini a repository-ului\n        @pre: true\n        @post: lista de masini a repo-ului\n    */\n    const carList &getCars() const;\n\n    /*\n        Size-ul listei de masini\n        @pre: true\n        @post: size-ul listei de masini\n    */\n    size_t getSize() const noexcept;\n\n    /*\n        Cauta o masina dupa un anumit id si ii returneaza pozitia.\n        @pre: string -> numar de inmatriculare\n        @post: pozitia masinii\n        @exception: masina nu exista in lista\n    */\n\n    unsigned int findCar(const string &) const;\n\n    /*\n        Adauga o masina la lista de masini\n        @pre: Car -> obiect de tip Car valid\n        @post: obiectul de tip Car adaugat la lista de masini\n    */\n    void addCar(const Car &);\n\n    /*\n        Sterge o masina din lista de masini\n        @pre: string -> numar de inmatriculare\n        @post: masina stearsa\n        @exception: nu exista masina in lista\n    */\n    Car deleteCar(const string &);\n\n    /*\n        Modifica o masina din lista de masini\n        @pre: string -> numar de inmatriculare\n              string -> producator\n              string -> model\n              string -> tip\n        @post: masina modificata\n        @exception: nu exista masina in lista\n    */\n    Car modifyCar(const Car &);\n\n    /*\n        Functie de copiere (deep copy)\n        @pre: true\n        @post: lista de masini este copiata\n    */\n    carList copyList() const;\n};\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Headers/Repository.h b/Headers/Repository.h
+--- a/Headers/Repository.h	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Headers/Repository.h	(date 1682623325157)
+@@ -1,6 +1,7 @@
+ #pragma once
+ 
+ #include "Car.h"
++#include "LDI.h"
+ #include <utility>
+ #include <vector>
+ #include <exception>
+@@ -10,16 +11,16 @@
+ using std::exception;
+ using std::remove;
+ 
+-typedef vector<Car> carList;
++typedef LDI<Car> carList;
+ 
+ // declaram o exceptie custom pentru repository:
+-class RepositoryException {
++class RepositoryException : std::exception {
+ private:
+     string errorMessage;
+ public:
+     explicit RepositoryException(string message) : errorMessage(std::move(message)) {}
+ 
+-    string getMessage() { return this->errorMessage; }
++    string getMessage() const { return this->errorMessage; }
+ };
+ 
+ class Repository {
+@@ -28,7 +29,7 @@
+ private:
+     carList cars; // lista de masini
+ public:
+-    Repository() noexcept;
++    Repository() noexcept = default;
+ 
+     /*
+         Returneaza lista de masini a repository-ului
+@@ -84,6 +85,6 @@
+         @pre: true
+         @post: lista de masini este copiata
+     */
+-    carList copyList() const;
++    static carList copyList(const carList &);
+ };
+ 
+Index: Sources/UI.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"../Headers/UI.h\"\n\nusing std::cout;\nusing std::cin;\n\nUI::UI() noexcept: carService(Service()) {}\n\nvoid UI::uiCommands() {\n    cout << \"\\nComenzile sunt: \";\n    cout << \"help, show_cars, add_car, delete_car, modify_car, find_car, filter_producer, filter_type, exit.\\n\";\n}\n\nvoid UI::uiShowCars() const {\n    //carList cars = this->carService.getRepository().getCars();\n\n    if (this->carService.getCars().empty()) {\n        cout << \"\\nNu exista masini in lista!\\n\";\n        return;\n    }\n\n    cout << \"\\nLista de masini este: \\n\\n\";\n\n    for (const auto &car: this->carService.getCars())\n        cout << car.getRegNumber() << \" | \" << car.getProducer() << \" | \" << car.getModel() << \" | \" << car.getType()\n             << std::endl;\n}\n\nvoid UI::uiAddCar() {\n    string regNumber, producer, model, type;\n\n    cout << \"Nr. de inmatriculare: \";\n    cin >> regNumber;\n    cout << \"Producator: \";\n    cin >> producer;\n    cout << \"Model: \";\n    cin >> model;\n    cout << \"Tip: \";\n    cin >> type;\n\n    try {\n        this->carService.addCarService(regNumber, producer, model, type);\n        cout << \"\\nMasina adaugata cu succes!\\n\";\n    }\n    catch (RepositoryException &rE) { cout << rE.getMessage(); }\n    catch (ValidatorException &vE) { cout << vE.getMessage(); }\n}\n\nvoid UI::uiDeleteCar() {\n    string regNumber;\n\n    cout << \"\\nMasinile disponibile pentru stergere sunt urmatoarele: \\n\";\n\n    this->uiShowCars();\n\n    cout << \"\\nIntroduceti numarul de inmatriculare al masinii pe care vreti sa o stergeti: \";\n    cin >> regNumber;\n\n    try {\n        const Car &deletedCar = this->carService.deleteCarService(regNumber);\n\n        cout << \"\\nS-a sters cu succes masina: \";\n        cout << deletedCar.getRegNumber() << \" | \" << deletedCar.getProducer() << \" | \" << deletedCar.getModel()\n             << \" | \" << deletedCar.getType() << std::endl;\n    }\n    catch (RepositoryException &rE) { cout << rE.getMessage(); }\n}\n\nvoid UI::uiModifyCar() {\n    string regNumber;\n    string newProducer, newModel, newType;\n\n    cout << \"Masinile disponibile pentru modificare sunt: \\n\";\n\n    this->uiShowCars();\n\n    cout << \"\\nIntroduceti numarul de inmatriculare al masinii pe care doriti sa o modificati: \";\n    cin >> regNumber;\n\n    cout << \"Producator nou: \";\n    cin >> newProducer;\n    cout << \"Model nou: \";\n    cin >> newModel;\n    cout << \"Tip nou: \";\n    cin >> newType;\n\n    try {\n        Car modifiedCar = this->carService.modifyCarService(regNumber, newProducer, newModel, newType);\n\n        cout << \"\\nS-a modificat cu succes masina: \";\n        cout << modifiedCar.getRegNumber() << \" | \" << modifiedCar.getProducer() << \" | \" << modifiedCar.getModel()\n             << \" | \" << modifiedCar.getType() << std::endl;\n    }\n    catch (RepositoryException &rE) { cout << rE.getMessage(); }\n    catch (ServiceException &sE) { cout << sE.getMessage(); }\n}\n\nvoid UI::uiFindCar() {\n    string regNumber;\n\n    cout << \"Introduceti numarul de inmatriculare al masinii pe care o cautati: \";\n    cin >> regNumber;\n\n    try {\n        Car foundCar = this->carService.findCarService(regNumber);\n\n        cout << \"\\nMasina este: \";\n        cout << foundCar.getRegNumber() << \" | \" << foundCar.getProducer() << \" | \" << foundCar.getModel() << \" | \"\n             << foundCar.getType() << std::endl;\n    }\n    catch (RepositoryException &rE) { cout << rE.getMessage(); }\n}\n\nvoid UI::uiFilterByProducer() const {\n    string producer;\n\n    cout << \"Introduceti producatorul dupa care vreti sa filtrati: \";\n    cin >> producer;\n\n    try {\n        const carList &filteredCars = this->carService.filter(producer, Service::compareByProducer);\n\n        cout << \"\\nLista de masini filtrata dupa producatorul \" << producer << \" este:\\n\";\n        for (const auto &car: filteredCars)\n            cout << car.getRegNumber() << \" | \" << car.getProducer() << \" | \" << car.getModel() << \" | \"\n                 << car.getType() << std::endl;\n    }\n    catch (ServiceException &sE) { cout << sE.getMessage(); }\n}\n\nvoid UI::uiFilterByType() const {\n    string type;\n\n    cout << \"Introduceti tipul dupa care vreti sa filtrati: \";\n    cin >> type;\n\n    try {\n        const carList &filteredCars = this->carService.filter(type, Service::compareByType);\n\n        cout << \"\\nLista de masini filtrata dupa tipul \" << type << \" este:\\n\";\n        for (const auto &car: filteredCars)\n            cout << car.getRegNumber() << \" | \" << car.getProducer() << \" | \" << car.getModel() << \" | \"\n                 << car.getType() << std::endl;\n    }\n    catch (ServiceException &sE) { cout << sE.getMessage(); }\n}\n\nvoid UI::uiRun() {\n    string option;\n    while (true) {\n        this->uiCommands();\n        cout << \"Introduceti optiunea: \";\n        cin >> option;\n        if (option == \"help\")\n            continue;\n        else if (option == \"show_cars\")\n            this->uiShowCars();\n        else if (option == \"add_car\")\n            this->uiAddCar();\n        else if (option == \"delete_car\")\n            this->uiDeleteCar();\n        else if (option == \"modify_car\")\n            this->uiModifyCar();\n        else if (option == \"find_car\")\n            this->uiFindCar();\n        else if (option == \"filter_producer\")\n            this->uiFilterByProducer();\n        else if (option == \"filter_type\")\n            this->uiFilterByType();\n        else if (option == \"exit\") {\n            cout << \"Leaving...\";\n            return;\n        } else\n            cout << \"Optiune invalida.\\n\";\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Sources/UI.cpp b/Sources/UI.cpp
+--- a/Sources/UI.cpp	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Sources/UI.cpp	(date 1682623325165)
+@@ -7,12 +7,11 @@
+ 
+ void UI::uiCommands() {
+     cout << "\nComenzile sunt: ";
+-    cout << "help, show_cars, add_car, delete_car, modify_car, find_car, filter_producer, filter_type, exit.\n";
++    cout << "help, show_cars, add_car, delete_car, modify_car, "
++            "find_car, filter_producer, filter_type, sort_reg_number, sort_type, sort_producer_model, exit.\n";
+ }
+ 
+ void UI::uiShowCars() const {
+-    //carList cars = this->carService.getRepository().getCars();
+-
+     if (this->carService.getCars().empty()) {
+         cout << "\nNu exista masini in lista!\n";
+         return;
+@@ -144,6 +143,48 @@
+     catch (ServiceException &sE) { cout << sE.getMessage(); }
+ }
+ 
++void UI::uiSortRegNumber() const {
++    if (this->carService.getCars().empty()) {
++        cout << "Nu exista masini in lista!\n";
++        return;
++    }
++
++    carList sorted = Service::sortByRegNumber(this->carService.getCars());
++
++    cout << "\nLista de masini sortata dupa numarul de inmatriculare este:\n";
++    for (const auto &car: sorted)
++        cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
++             << car.getType() << std::endl;
++}
++
++void UI::uiSortType() const {
++    if (this->carService.getCars().empty()) {
++        cout << "Nu exista masini in lista!\n";
++        return;
++    }
++
++    carList sorted = Service::sortByType(this->carService.getCars());
++
++    cout << "\nLista de masini sortata dupa tip este:\n";
++    for (const auto &car: sorted)
++        cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
++             << car.getType() << std::endl;
++}
++
++void UI::uiSortProducerModel() const {
++    if (this->carService.getCars().empty()) {
++        cout << "Nu exista masini in lista!\n";
++        return;
++    }
++
++    carList sorted = Service::sortByProducerAndModel(this->carService.getCars());
++
++    cout << "\nLista de masini sortata dupa producator si model este:\n";
++    for (const auto &car: sorted)
++        cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
++             << car.getType() << std::endl;
++}
++
+ void UI::uiRun() {
+     string option;
+     while (true) {
+@@ -166,6 +207,12 @@
+             this->uiFilterByProducer();
+         else if (option == "filter_type")
+             this->uiFilterByType();
++        else if (option == "sort_reg_number")
++            this->uiSortRegNumber();
++        else if (option == "sort_type")
++            this->uiSortType();
++        else if (option == "sort_producer_model")
++            this->uiSortProducerModel();
+         else if (option == "exit") {
+             cout << "Leaving...";
+             return;
+Index: Headers/Car.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#pragma once\n\n#include <string>\n\nusing std::string;\n\nclass Car {\nprivate:\n    // O masina contine un ID unic - nr. inmatriculare\n    // pe de alta parte, contine un model si un tip\n    string regNumber, producer, model, type;\npublic:\n    // constructor explicit, instantiaza un obiect cu anumite atribute\n    /*\n        @pre: atributele trebuie sa fie de tip string\n        @post: se creeaza obiectul cu atributele specificate\n    */\n    Car(string, string, string, string);\n\n    // copy constructor\n    Car(const Car &other);\n\n    // gettere peste atributele obiectului\n    string getRegNumber() const;\n\n    string getProducer() const;\n\n    string getModel() const;\n\n    string getType() const;\n\n    // settere peste atributele obiectului, atribute ce pot fi modificate\n    // am ales arbitrar ca acestea sa fie producatorul, modelul si tipul\n    /*\n        @pre: atributele trebuie sa fie de tip string, fiind de asemenea o referinta\n        @post: obiectul isi modifica atributele specificate\n    */\n    void setRegNumber(const string &);\n\n    void setProducer(const string &);\n\n    void setModel(const string &);\n\n    void setType(const string &);\n\n    // overriding operators\n    bool operator==(const Car &otherCar) const {\n        return this->getRegNumber() == otherCar.getRegNumber();\n    }\n};\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Headers/Car.h b/Headers/Car.h
+--- a/Headers/Car.h	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Headers/Car.h	(date 1682504881421)
+@@ -18,7 +18,7 @@
+     Car(string, string, string, string);
+ 
+     // copy constructor
+-    Car(const Car &other);
++    Car(const Car &);
+ 
+     // gettere peste atributele obiectului
+     string getRegNumber() const;
+Index: Headers/UI.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#pragma once\n\n#include <iostream>\n#include \"../Headers/Service.h\"\n\nclass UI {\nprivate:\n    // UI-ul contine un service pentru masini\n    Service carService;\npublic:\n    // constructorul implicit al UI-ului\n    UI() noexcept;\n\n    // afiseaza comenzile disponibile\n    static void uiCommands();\n\n    /*\n        Functie de afisare a masinilor\n        @pre: true\n        @post: lista de masini\n        @eroare: nu exista masini in lista\n    */\n    void uiShowCars() const;\n\n    /*\n        Functie de adaugare a unei masini\n        @pre: true\n        @post: masina adaugata\n        @eroare: nu se poate adauga masina din cazurile de validitate\n    */\n    void uiAddCar();\n\n    /*\n        Functie de stergere a unei masini\n        @pre: true\n        @post: masina stearsa\n        @eroare: nu se poate sterge masina, daca nu exista\n    */\n    void uiDeleteCar();\n\n    /*\n        Functie de cautare a unei masini dupa nr. de inmatriculare\n        @pre: true\n        @post: masina cautata\n        @eroare: masina nu exista\n    */\n\n    void uiFindCar();\n\n    /*\n        Functie de modificare a unei masini\n        @pre: true\n        @post: masina modificata\n        @eroare: nu se poate modifica masina, daca nu exista sau parametrii sunt invalizi\n    */\n    void uiModifyCar();\n\n    /*\n        Functie de filtrare a masinilor dupa producator\n        @pre: true\n        @post: lista de masini filtrate\n        @eroare: lista filtrata este goala\n    */\n    void uiFilterByProducer() const;\n\n    /*\n        Functie de filtrare a masinilor dupa tip\n        @pre: true\n        @post: lista de masini filtrate\n        @eroare: lista filtrata este goala\n    */\n    void uiFilterByType() const;\n\n\n    // rulare pentru UI\n    void uiRun();\n};\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Headers/UI.h b/Headers/UI.h
+--- a/Headers/UI.h	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Headers/UI.h	(date 1682021516648)
+@@ -71,6 +71,19 @@
+     */
+     void uiFilterByType() const;
+ 
++    /*
++     *  Functiile de sortare
++     *  @pre: true
++     *  @post: listele sortate in functie de optiune
++     *  @eroare: lista este goala
++     */
++
++    void uiSortRegNumber() const;
++
++    void uiSortType() const;
++
++    void uiSortProducerModel() const;
++
+ 
+     // rulare pentru UI
+     void uiRun();
+Index: Sources/Car.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <utility>\n#include <iostream>\n\n#include \"../Headers/Car.h\"\n\nCar::Car(string regNumberC, string producerC, string modelC, string typeC) {\n    this->regNumber = std::move(regNumberC); // placeholder pt ID, e acelasi lucru\n    this->producer = std::move(producerC);\n    this->model = std::move(modelC);\n    this->type = std::move(typeC);\n}\n\nCar::Car(const Car &other) {\n    std::cout << \"Copy constructor called!\\n\";\n\n    this->setRegNumber(other.getRegNumber());\n    this->setProducer(other.getProducer());\n    this->setModel(other.getModel());\n    this->setType(other.getType());\n}\n\nstring Car::getRegNumber() const { return this->regNumber; }\n\nstring Car::getProducer() const { return this->producer; }\n\nstring Car::getModel() const { return this->model; }\n\nstring Car::getType() const { return this->type; }\n\nvoid Car::setRegNumber(const string &newRegNumber) { this->regNumber = newRegNumber; }\n\nvoid Car::setProducer(const string &newProducer) { this->producer = newProducer; }\n\nvoid Car::setModel(const string &newModel) { this->model = newModel; }\n\nvoid Car::setType(const string &newType) { this->type = newType; }\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Sources/Car.cpp b/Sources/Car.cpp
+--- a/Sources/Car.cpp	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Sources/Car.cpp	(date 1682152117101)
+@@ -1,5 +1,4 @@
+ #include <utility>
+-#include <iostream>
+ 
+ #include "../Headers/Car.h"
+ 
+@@ -11,7 +10,7 @@
+ }
+ 
+ Car::Car(const Car &other) {
+-    std::cout << "Copy constructor called!\n";
++    //std::cout << "Copy constructor called!\n";
+ 
+     this->setRegNumber(other.getRegNumber());
+     this->setProducer(other.getProducer());
+Index: Headers/Validator.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#pragma once\n\n#include \"Repository.h\"\n\nclass ValidatorException {\nprivate:\n    string errorMessage;\npublic:\n    explicit ValidatorException(string message) : errorMessage{std::move(message)} {}\n\n    string getMessage() { return this->errorMessage; }\n};\n\nclass Validator {\n    // nu vom avea o reprezentare privata, deoarece validatorul nu va contine\n    // propriu-zis ceva ce il defineste\n\n    // asa ca specificam doar prototipurile functiilor ce se vor ocupa de validare\npublic:\n    // aceste functii se vor ocupa de validarea obiectului & a parametrilor obiectului\n    // ne intereseaza valoarea de adevar a validarii, deci tipul va fi bool\n\n    /*\n        @pre: const Car& refera un obiect de tip Car\n        @post: true or false, daca nr. de inmatriculare este valid\n\n        @exception: numarul de inmatriculare nu reprezinta un numar valid din Romania\n\n        Exemplu: CJ18CEV sau B777CCC -> 7 caractere: 2 litere - 2 cifre - 3 litere\n                  exceptie Bucuresti -> 6/7 caractere: 1 litera -> 2/3 cifre - 3 litere\n    */\n\n    static bool validateRegNumber(const Car &);\n\n\n    /*\n        @pre: const Car& refera un obiect de tip Car\n        @post: true or false, daca producator este valid\n\n        @exception: producatorul reprezinta un string care nu incepe cu majuscula\n                    si care contine alte caractere pe langa litere\n    */\n\n    static bool validateProducer(const Car &);\n\n    /*\n        @pre: const Car& refera un obiect de tip Car\n        @post: true or false, daca modelul este valid\n        @exception: daca modelul este vid\n    */\n\n    static bool validateModel(const Car &);\n\n    /*\n        @pre: const Car& refera un obiect de tip Car\n        @post: true or false, daca tipul este valid\n        @exception: daca tipul este vid\n    */\n\n    static bool validateType(const Car &);\n\n    /*\n        @pre: const Car& refera un obiect de tip Car\n              const Repository& refera repository-ul de masini\n        @post: true or false, daca masina este valida\n\n        @exception: nu are parametrii valizi sau exista deja in lista\n    */\n\n    bool validateCar(const Car &, const Repository &) const;\n};\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Headers/Validator.h b/Headers/Validator.h
+--- a/Headers/Validator.h	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Headers/Validator.h	(date 1682623325149)
+@@ -2,7 +2,7 @@
+ 
+ #include "Repository.h"
+ 
+-class ValidatorException {
++class ValidatorException : std::exception {
+ private:
+     string errorMessage;
+ public:
+@@ -67,6 +67,6 @@
+         @exception: nu are parametrii valizi sau exista deja in lista
+     */
+ 
+-    bool validateCar(const Car &, const Repository &) const;
++    static bool validateCar(const Car &, const Repository &);
+ };
+ 
+Index: Headers/Service.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#pragma once\n\n#include \"Validator.h\"\n\nclass ServiceException {\nprivate:\n    string errorMessage;\npublic:\n    explicit ServiceException(string message) : errorMessage(std::move(message)) {}\n\n    string getMessage() { return this->errorMessage; }\n};\n\nclass Service {\n    // declaram clasele Repository si Validator ca friend\n    friend class Repository;\n\n    friend class Validator;\n\nprivate:\n    // fiecare instanta de tip Service va contine un repository propriu si un validator propriu\n    Validator carValidator;\n    Repository carRepository;\n\npublic:\n    // definim un constructor implicit\n    Service() noexcept;\n\n    // functie care returneaza repo-ul service-ului\n    //const Repository& getRepository() const;\n\n    const carList &getCars() const;\n\n    //// functie care returneaza validatorul service-ului\n    //Validator getValidator() const;\n\n    /*\n        Se adauga o masina in lista de masini.\n        @pre: se primesc 4 parametrii de tip string, ce reprezinta parametrii masinii de adaugat\n        @post: masina se adauga\n        @exception: masina invalida sau deja exista in lista.\n    */\n\n    bool addCarService(const string &, const string &, const string &, const string &);\n\n    /*\n        Se modifica o masina din lista de masini\n        @pre: se primesc 4 parametrii, de tip string, ce reprezinta:\n              - numarul de inmatriculare al masinii de modificat;\n              - parametrii ce masinii ce vor fi modificati;\n        @post: masina cu parametrii specificati se modifica;\n        @exception: masina invalida sau nu exista masina in lista;\n    */\n\n    Car modifyCarService(const string &, const string &, const string &, const string &);\n\n    /*\n        Se sterge o masina din lista de masini\n        @pre: se primeste un parametru, de tip string, ce reprezinta numarul de inmatriculare al masinii de sters\n        @post: se sterge masina\n        @exception: nu exista masina in lista\n    */\n\n    Car deleteCarService(const string &);\n\n    /*\n        Cautare masina dupa numar de inmatriculare.\n        @pre: parametru de tip string, ce reprezinta numarul masinii de inmatriculare al masinii de gasit\n        @post: masina cu numarul de inmatriculare\n        @exception: nu exista masina in lista\n    */\n\n    Car findCarService(const string &);\n\n\n    ///*\n    //\tFunctie de filtrare dupa producator\n    //\t@pre: se primeste un parametru de tip string, care reprezinta producatorul masinii dupa care se filtreaza\n    //\t@post: lista de masini cu producatorul dat\n    //\t@exception: nu exista masini cu producatorul dat\n    //*/\n\n    //carList filterByProducer (const string&) const;\n\n    ///*\n    //\tFunctie de filtrare dupa tip\n    //\t@pre: se primeste un paremetru de tip string, care reprezinta tipul masinii dupa care se filtreaza\n    //\t@post: lista de masini cu tipul dat\n    //\t@exception: nu exista masini cu tipul dat\n    //*/\n\n    //carList filterByType(const string&, bool(*) const;\n\n    carList filter(const string &, bool(*compareMethod)(const Car &, const string &)) const;\n\n    static bool compareByProducer(const Car &car, const string &producer) {\n        return car.getProducer() == producer;\n    }\n\n    static bool compareByType(const Car &car, const string &type) {\n        return car.getType() == type;\n    }\n\n};
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Headers/Service.h b/Headers/Service.h
+--- a/Headers/Service.h	(revision 4cd2ac802963a574426b5cd75da5d2202264ab1a)
++++ b/Headers/Service.h	(date 1682623325145)
+@@ -2,7 +2,7 @@
+ 
+ #include "Validator.h"
+ 
+-class ServiceException {
++class ServiceException : std::exception {
+ private:
+     string errorMessage;
+ public:
+@@ -12,14 +12,8 @@
+ };
+ 
+ class Service {
+-    // declaram clasele Repository si Validator ca friend
+-    friend class Repository;
+-
+-    friend class Validator;
+-
+ private:
+-    // fiecare instanta de tip Service va contine un repository propriu si un validator propriu
+-    Validator carValidator;
++    // fiecare instanta de tip Service va contine un repository propriu
+     Repository carRepository;
+ 
+ public:
+@@ -43,54 +37,42 @@
+ 
+     bool addCarService(const string &, const string &, const string &, const string &);
+ 
+-    /*
+-        Se modifica o masina din lista de masini
+-        @pre: se primesc 4 parametrii, de tip string, ce reprezinta:
++    /**
++        @brief Se modifica o masina din lista de masini
++        @pre se primesc 4 parametrii, de tip string, ce reprezinta:
+               - numarul de inmatriculare al masinii de modificat;
+               - parametrii ce masinii ce vor fi modificati;
+-        @post: masina cu parametrii specificati se modifica;
+-        @exception: masina invalida sau nu exista masina in lista;
++        @post masina cu parametrii specificati se modifica;
++        @exception masina invalida sau nu exista masina in lista;
+     */
+ 
+     Car modifyCarService(const string &, const string &, const string &, const string &);
+ 
+-    /*
+-        Se sterge o masina din lista de masini
+-        @pre: se primeste un parametru, de tip string, ce reprezinta numarul de inmatriculare al masinii de sters
+-        @post: se sterge masina
+-        @exception: nu exista masina in lista
++    /**
++        @brief Se sterge o masina din lista de masini
++        @pre se primeste un parametru, de tip string, ce reprezinta numarul de inmatriculare al masinii de sters
++        @post se sterge masina
++        @exception nu exista masina in lista
+     */
+ 
+     Car deleteCarService(const string &);
+ 
+-    /*
+-        Cautare masina dupa numar de inmatriculare.
+-        @pre: parametru de tip string, ce reprezinta numarul masinii de inmatriculare al masinii de gasit
+-        @post: masina cu numarul de inmatriculare
+-        @exception: nu exista masina in lista
++    /**
++        @brief Cautare masina dupa numar de inmatriculare.
++        @pre parametru de tip string, ce reprezinta numarul masinii de inmatriculare al masinii de gasit
++        @post masina cu numarul de inmatriculare
++        @exception nu exista masina in lista
+     */
+ 
+     Car findCarService(const string &);
+ 
+ 
+-    ///*
+-    //	Functie de filtrare dupa producator
+-    //	@pre: se primeste un parametru de tip string, care reprezinta producatorul masinii dupa care se filtreaza
+-    //	@post: lista de masini cu producatorul dat
+-    //	@exception: nu exista masini cu producatorul dat
+-    //*/
+-
+-    //carList filterByProducer (const string&) const;
+-
+-    ///*
+-    //	Functie de filtrare dupa tip
+-    //	@pre: se primeste un paremetru de tip string, care reprezinta tipul masinii dupa care se filtreaza
+-    //	@post: lista de masini cu tipul dat
+-    //	@exception: nu exista masini cu tipul dat
+-    //*/
+-
+-    //carList filterByType(const string&, bool(*) const;
+-
++    /**
++     * @brief Filtreaza o masina in functie de
++     * @param compareMethod functie de comparare
++     * @return lista de masini filtrata in functie de parametru specificat
++     * @exceptions daca lista de masini filtrata este goala
++     */
+     carList filter(const string &, bool(*compareMethod)(const Car &, const string &)) const;
+ 
+     static bool compareByProducer(const Car &car, const string &producer) {
+@@ -101,4 +83,21 @@
+         return car.getType() == type;
+     }
+ 
++    /**
++     * @brief Functie generala de sortare
++     * @param compareMethod Functie de comparare a doua elemente
++     * @return Lista sortata
++     */
++    static carList generalSort(const carList &, bool(*compareMethod)(const Car &, const Car &));
++
++    /**
++     * @brief Functii de sortare in functie de parametrii doriti
++     * @return Lista sortata in functi de parametrii doriti
++     */
++    static carList sortByRegNumber(const carList &);
++
++    static carList sortByType(const carList &);
++
++    static carList sortByProducerAndModel(const carList &);
++
+ };
+\ No newline at end of file
+Index: Headers/LDI.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Headers/LDI.h b/Headers/LDI.h
+new file mode 100644
+--- /dev/null	(date 1682623325153)
++++ b/Headers/LDI.h	(date 1682623325153)
+@@ -0,0 +1,250 @@
++#pragma once
++
++#include "IteratorLDI.h"
++#include <string>
++
++using std::string;
++
++template<typename TElem>
++class IteratorLDI;
++
++// LDI - clasa parametrizata
++
++template<typename TElem>
++class Node {
++private:
++    // referinta catre precedentul & urmatorul nod
++    Node<TElem> *prev;
++    Node<TElem> *next;
++    // informatia importanta
++    TElem data;
++public:
++    /*
++     * Node constructor
++     * @pre: true
++     * @post: se creeaza un nod
++     */
++    Node(TElem data, Node *prev, Node *next) : data{data}, prev{prev}, next{next} {}
++
++    // getters & setters
++    TElem getData() const { return this->data; }
++
++    void setData(const TElem &elem) { this->data = elem; }
++
++    Node *getPrev() const { return this->prev; }
++
++    void setPrev(Node *prevS) {
++        this->prev = prevS;
++    }
++
++    Node<TElem> *getNext() const { return this->next; }
++
++    void setNext(Node *nextS) {
++        this->next = nextS;
++    }
++};
++
++template<typename TElem>
++class LDI {
++    friend class IteratorLDI<TElem>;
++
++private:
++    // clasa pentru nod -> elementul central din lista inlantuita
++
++    // interfata contine o referinta catre primul nod
++    Node<TElem> *prim;
++    // interfata contine o referinta catre ultimul nod
++    Node<TElem> *ultim;
++
++    // si dimensiunea sa
++    unsigned int sizeLDI;
++
++public:
++    // constructor
++    LDI<TElem>() : prim{nullptr}, ultim{nullptr}, sizeLDI{0} {}
++
++    // constructor de copiere
++    LDI<TElem>(const LDI<TElem> &other) : prim{nullptr}, ultim{nullptr}, sizeLDI{0} {
++        Node<TElem> *refOther = other.prim; // parcurgem lista pentru a adauga noile elemente
++
++        while (refOther != nullptr) {
++            this->add(refOther->getData());
++
++            refOther = refOther->getNext();
++        }
++    }
++
++    // constructor de copiere (assignment)
++    LDI<TElem> &operator=(const LDI<TElem> &other) {
++        if (this == &other) // s-a facut L = L
++            return *this;
++
++        // distrugem instanta curenta
++        this->deleteNodes(this->prim);
++        this->prim = nullptr;
++        this->ultim = nullptr;
++
++        Node<TElem> *refOther = other.prim; // parcurgem lista pentru a adauga noile elemente
++
++        while (refOther != nullptr) {
++            this->add(refOther->getData()); // adaugam elementul
++
++            refOther = refOther->getNext(); // iteram in continuare
++        }
++        this->sizeLDI = other.sizeLDI; // actualizam lungimea
++
++        return *this; // returnam lista
++    }
++
++    // move constructor - fura datele de la other si il marcheaza pentru distrugere
++    LDI<TElem>(LDI<TElem> &&other) noexcept: prim{other.prim}, ultim{other.ultim}, sizeLDI{other.sizeLDI} {
++        // dealocam datele de la sursa de unde am mutat informatiile
++        other.prim = nullptr;
++        other.ultim = nullptr;
++        other.sizeLDI = 0;
++    }
++
++    // move constructor (assignment) - distruge instanta curenta, fura datele de la other si il marcheaza
++    //                                 pentru distrugere
++    LDI<TElem> &operator=(LDI<TElem> &&other) noexcept {
++        if (this == &other) // s-a facut L = L
++            return *this;
++
++        // stergem instanta curenta
++        this->deleteNodes(this->prim);
++
++        // 'furam' datele
++        this->prim = other.prim;
++        this->ultim = other.ultim;
++        this->sizeLDI = other.sizeLDI;
++
++        // il pregatim pe other pentru distrugere
++        other.prim = nullptr;
++        other.ultim = nullptr;
++        other.sizeLDI = 0;
++
++        return *this;
++    }
++
++    /**
++     * @brief push_back pentru LDI
++     * @pre true
++     * @post se adauga elementul in lista inlantuita
++     */
++
++    void push_back(const TElem &elem) {
++        // instantiem un nod nou
++        auto *nod = new Node<TElem>(elem, nullptr, nullptr);
++
++        // lista este goala
++        if (this->prim == nullptr) {
++            this->prim = nod;
++            this->ultim = nod;
++        }
++            // lista nu este goala
++        else {
++            nod->setPrev(this->ultim);
++            this->ultim->setNext(nod);
++            this->ultim = nod;
++        }
++        // incrementam dimensiunea
++        this->sizeLDI++;
++    }
++
++    // functie ce returneaza dimensiunea listei
++    unsigned int size() const { return this->sizeLDI; }
++
++    // functie pentru verificarea listei vide
++    bool empty() const { return this->sizeLDI == 0; }
++
++    /**
++     * @brief Functia 'at' -> returneaza un element de pe o anumita pozitie
++     * @param poz Pozitia elementului care va fi sters
++     * @pre: poz -> pozitie valida din lista inlantuita
++     * @post: elementul de pe pozitia poz sau
++     */
++    TElem at(unsigned int poz) const {
++        // pastram o referinta catre primul element
++        auto *ref = this->prim;
++
++        // iteram pana cand gasim elementul
++        for (unsigned int i = 0; i < poz; i++)
++            ref = ref->getNext();
++
++        // returnam elementul
++        return ref->getData();
++    }
++
++    /**
++     * @brief Functia 'erase' -> sterge un element de pe o anumita pozitie
++     * @pre refElem -> referinta catre elementul de sters
++     * @post elementul se va sterge din lista
++     */
++
++    void erase(Node<TElem> *refElem) {
++        if (this->sizeLDI == 1) {
++            delete refElem;
++            this->prim = nullptr;
++            this->ultim = nullptr;
++            this->sizeLDI--;
++        } else if (refElem == this->prim) {
++            this->prim = refElem->getNext();
++            this->prim->setPrev(nullptr);
++            delete refElem;
++            this->sizeLDI--;
++        }
++            // verificam daca se sterge ultimul element
++        else if (refElem == this->ultim) {
++            this->ultim = refElem->getPrev();
++            this->ultim->setNext(nullptr);
++            delete refElem;
++            this->sizeLDI--;
++        }
++            // se sterge un element oarecare din lista
++        else {
++            refElem->getPrev()->setNext(refElem->getNext());
++            refElem->getNext()->setPrev(refElem->getPrev());
++            delete refElem;
++            this->sizeLDI--;
++        }
++    }
++
++    void swap(const unsigned int &thisPos, const unsigned int &otherPos) {
++        // parcurgem lista pana la prima pozitie
++        Node<TElem> *refThis = this->prim;
++
++        for (unsigned int i = 0; i < thisPos; i++)
++            refThis = refThis->getNext();
++
++        // parcurgem lista pana la a doua pozitie
++        Node<TElem> *refOther = this->prim;
++
++        for (unsigned int i = 0; i < otherPos; i++)
++            refOther = refOther->getNext();
++
++        // swap intre elemente
++        TElem temp = refThis->getData();
++        refThis->setData(refOther->getData());
++        refOther->setData(temp);
++    }
++
++    /**
++     * @brief Functia 'begin' / end -> returneaza un iterator peste primul / ultimul element din lista
++     * @pre: true
++     * @post: referinta catre primul / ultimul element din lista
++     */
++    IteratorLDI<TElem> begin() const { return IteratorLDI<TElem>(*this); }
++
++    IteratorLDI<TElem> end() const { return IteratorLDI<TElem>(*this, this->ultim->getNext()); }
++
++    // functie de delete a listei inlantuite
++    void deleteNodes(Node<TElem> *ref) {
++        if (ref == ultim)
++            return;
++        deleteNodes(ref->getNext());
++        delete ref;
++    }
++
++    // destructor
++    ~LDI() { this->deleteNodes(this->prim); }
++};
+\ No newline at end of file
+Index: Headers/IteratorLDI.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Headers/IteratorLDI.h b/Headers/IteratorLDI.h
+new file mode 100644
+--- /dev/null	(date 1682505710484)
++++ b/Headers/IteratorLDI.h	(date 1682505710484)
+@@ -0,0 +1,57 @@
++#pragma once
++
++#include "LDI.h"
++
++template<typename TElem>
++class Node;
++
++template<typename TElem>
++class LDI;
++
++template<typename TElem>
++class IteratorLDI {
++private:
++    // referinta peste container-ul pe care o sa il iteram
++    const LDI<TElem> &list;
++
++    // referinta peste elementul curent din lista
++    Node<TElem> *current;
++
++public:
++    // constructor implicit
++    explicit IteratorLDI(const LDI<TElem> &ldi) : list(ldi), current(list.prim) {}
++
++    // constructor cu specificare de pozitie
++    IteratorLDI(const LDI<TElem> &ldi, Node<TElem> *pos) : list(ldi), current(pos) {}
++
++    Node<TElem> *getCurrent() { return this->current; }
++
++    IteratorLDI<TElem> operator+(const int &size) {
++        for (int i = 0; i < size; i++)
++            this->current = this->current->getNext();
++        return *this;
++    }
++
++    IteratorLDI<TElem> operator-(const int &size) {
++        for (int i = 0; i < size; i++)
++            this->current = this->current->getPrev();
++        return *this;
++    }
++
++    bool operator<=(const IteratorLDI<TElem> &iter) {
++        return this->current != iter.current->getNext();
++    }
++
++    bool operator<(const IteratorLDI<TElem> &iter) {
++        return this->current != iter.current;
++    }
++
++    // pt. ++iter -> increment, dupa efectueaza operatia
++    void operator++() { this->current = this->current->getNext(); }
++
++    TElem operator*() { return this->current->getData(); }
++
++    bool operator!=(const IteratorLDI<TElem> &iter) {
++        return this->current != iter.current;
++    }
++};
+\ No newline at end of file
+Index: Dependencies.puml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Dependencies.puml b/Dependencies.puml
+new file mode 100644
+--- /dev/null	(date 1682505779276)
++++ b/Dependencies.puml	(date 1682505779276)
+@@ -0,0 +1,180 @@
++@startuml
++
++abstract class std::exception
++
++class Node {
++    {field}-prev: *Node<TElem>
++    {field}-next: *Node<TElem>
++    {field}-data: TElem
++
++    {method}+Node(TElem, Node *, Node *)
++
++    {method}+getData(): TElem
++    {method}+getPrev(): *Node<TElem>
++    {method}+getNext(): *Node<TElem>
++
++    {method}+setData(const TElem&): void
++    {method}+setPrev(Node *): void
++    {method}+setNext(Node *): void
++}
++
++class LDI {
++    {field}-prim: *Node<TElem>
++    {field}-ultim: *Node<TElem>
++    {field}-sizeLDI: unsigned int
++
++    {method}+LDI<TElem>()
++
++    {method}+push_back(const TElem &): void
++    {method}+size() const: unsigned int
++    {method}+empty() const: bool
++    {method}+at(unsigned int): TElem
++    {method}+erase(Node<TElem> *): void
++    {method}+begin() const: IteratorLDI<TElem>
++    {method}+end() const: IteratorLDI<TElem>
++
++    {method}+deleteNode(Node<TElem> *ref): void
++    {method}+\~LDI
++}
++
++LDI <-- Node
++LDI <-- IteratorLDI
++
++class IteratorLDI {
++    {field}-list: const LDI<TElem>&
++    {field}-current: Node<TElem>*
++
++    {method}+IteratorLDI(const LDI<TElem> &)
++    {method}+IteratorLDI(const LDI<TElem> &, Node<TElem> *)
++
++    {method}+getCurrent(): Node<TElem>*
++}
++
++class Car {
++    {field}-regNumber: string
++    {field}-producer: string
++    {field}-model: string
++    {field}-type: string
++
++    {method}+Car(string, string, string, string)
++    {method}+Car(const Car &)
++
++    {method}+getRegNumber(): string
++    {method}+getProducer(): string
++    {method}+getModel(): string
++    {method}+getType(): string
++
++    {method}+setRegNumber(const string &): void
++    {method}+setProducer(const string &): void
++    {method}+setModel(const string &): void
++    {method}+setType(const string &): void
++}
++
++class Service {
++    {field}-carRepository: Repository
++
++    {method}+Service()
++
++    {method}+const carList &getCars() const
++    {method}+addCarService(const string &, const string &, const string &, const string &): bool
++    {method}+modifyCarService(const string &, const string &, const string &, const string &): Car
++    {method}+deleteCarService(const string &): Car
++    {method}+findCarService(const string &): Car
++
++    {method}+filter(const string &, bool(*compareMethod)(const Car&, const string &)) const: carList
++
++    {static}{method}+compareByProducer(const Car &, const string &): bool
++    {static}{method}+compareByType(const Car &, const string &): bool
++
++    {static}{method}+generalSort(const carList&, bool(*compareMethod)(const Car &, const Car &): carList
++    {static}{method}+sortByRegNumber(const carList&): carList
++    {static}{method}+sortByType(const carList&): carList
++    {static}{method}+sortByProducerAndModel(const carList&): carList
++}
++
++class ServiceException {
++    {field}-errorMessage: string
++
++    {method}+explicit ServiceException(string)
++    {method}+getMessage(): string
++}
++
++Service <-- ServiceException
++ServiceException <|-- std::exception : < inherits
++
++class Repository {
++    {field}-cars: carList
++
++    {method}+Repository() noexcept
++
++    {method}+getCars() const: const carList&
++    {method}+getSize() const noexcept: size_t
++
++    {method}+findCar(const string &) const: unsigned int
++    {method}+addCar(const Car &): void
++    {method}+deleteCar(const Car &): Car
++    {method}+modifyCar(const Car &): Car
++
++    {static}{method}+copyList(const carList&): carList
++}
++
++class RepositoryException {
++    {field}-errorMessage: string
++
++    {method}+explicit RepositoryException(string)
++    {method}+getMessage(): string
++}
++
++Repository <-- RepositoryException
++RepositoryException <|-- std::exception : < inherits
++
++class Validator {
++    {static}{method}+validateRegNumber(const Car &): bool
++    {static}{method}+validateProducer(const Car &): bool
++    {static}{method}+validateModel(const Car &): bool
++    {static}{method}+validateType(const Car &): bool
++    {static}{method}+validateCar(const Car &, const Repository &): bool
++}
++
++class ValidatorException {
++    {field}-errorMessage: string
++
++    {method}+explicit ValidatorException(string)
++    {method}+getMessage(): string
++}
++
++Validator <-- ValidatorException
++ValidatorException <|-- std::exception: < inherits
++
++class UI {
++    {field}-carService: Service
++
++    {method}+UI() noexcept
++
++    {static}{method}+uiCommands(): void
++
++    {method}+uiShowCars() const: void
++    {method}+uiAddCar(): void
++    {method}+uiDeleteCar(): void
++    {method}+uiFindCar(): void
++    {method}+uiModifyCar(): void
++
++    {method}+uiFilterByProducer() const: void
++    {method}+uiFilterByType() const: void
++
++    {method}+uiSortRegNumber() const: void
++    {method}+uiSortType() const: void
++    {method}+uiSortProducerModel() const: void
++
++    {method}+uiRun(): void
++}
++
++Repository <-- Car
++Repository <-- LDI
++
++Service <-- Repository
++Service <-- Validator
++
++UI <-- Service
++
++@enduml

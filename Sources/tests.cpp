@@ -62,8 +62,19 @@ void repositoryTests() {
     carRepository.addCar(car1);
     assert(carRepository.getSize() == 1);
 
+    // for deleting a first item coverage
+    carRepository.deleteCar("VS48TUD");
+    carRepository.addCar(car1);
+
     carRepository.addCar(car2);
     assert(carRepository.getSize() == 2);
+
+    // for deleting any other car, except for the last one coverage
+    carRepository.addCar(car3);
+    carRepository.deleteCar("VS06GOD");
+    carRepository.deleteCar("CJ14SAL");
+    carRepository.addCar(car2);
+
 
     // finding the cars
     assert(carRepository.findCar("VS48TUD") == 0);
@@ -108,7 +119,7 @@ void repositoryTests() {
     }
 
     // testing the copy list function
-    carList carCopyList = carRepository.copyList();
+    carList carCopyList = Repository::copyList(carRepository.getCars());
 
     assert(carCopyList.size() == carRepository.getSize());
 
@@ -218,7 +229,7 @@ void validatorTests() {
     catch (const ValidatorException &) { assert(true); }
 
     try {
-        carValid.validateRegNumber(badCarRegNumber7);
+        Validator::validateRegNumber(badCarRegNumber7);
         assert(false);
     }
     catch (const ValidatorException &) { assert(true); }

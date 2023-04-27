@@ -23,10 +23,10 @@ Car Repository::deleteCar(const string &regNumberOfCarToDelete) {
 
         auto iter = this->cars.begin();
         for (auto i = 0; i < positionToDelete; i++)
-            iter++;
+            ++iter;
 
         Car deletedCar(*iter);
-        this->cars.erase(iter);
+        this->cars.erase(iter.getCurrent());
 
         return deletedCar;
     }
@@ -40,10 +40,10 @@ Car Repository::modifyCar(const Car &newCar) {
         const size_t positionToModify = findCar(newCar.getRegNumber());
 
         auto iter = this->cars.begin();
-        for (auto i = 0; i < positionToModify; i++) iter++;
+        for (auto i = 0; i < positionToModify; i++) ++iter;
 
         Car modifiedCar(*iter);
-        *iter = Car(newCar.getRegNumber(), newCar.getProducer(), newCar.getModel(), newCar.getType());
+        iter.getCurrent()->setData(Car(newCar.getRegNumber(), newCar.getProducer(), newCar.getModel(), newCar.getType()));
 
         return modifiedCar;
     }
@@ -52,10 +52,10 @@ Car Repository::modifyCar(const Car &newCar) {
     }
 }
 
-carList Repository::copyList() const {
+carList Repository::copyList(const carList &list) {
     carList copyList;
 
-    for (auto &car: this->cars) {
+    for (const auto &car: list) {
         const Car &copyCar(car);
         copyList.push_back(copyCar);
     }
