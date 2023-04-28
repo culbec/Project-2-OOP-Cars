@@ -1,0 +1,54 @@
+        -:    0:Source:/home/culbec/OOP/Project-2-OOP-Cars/Headers/Spalatorie.h
+        -:    0:Graph:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.gcno
+        -:    0:Data:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#pragma once
+        -:    2:
+        -:    3:#include "Car.h"
+        -:    4:#include <vector>
+        -:    5:#include <algorithm>
+        -:    6:#include <random>
+        -:    7:#include <chrono>
+        -:    8:
+        -:    9:using std::vector;
+        -:   10:
+        -:   11:class WashingList {
+        -:   12:private:
+        -:   13:    // lista de masini ce trebuie spalate
+        -:   14:    vector<Car> toWash;
+        -:   15:public:
+        -:   16:    // constructor implicit
+function _ZN11WashingListC2Ev called 3 returned 100% blocks executed 100%
+        3:   17:    WashingList() noexcept = default;
+        3:   17-block  0
+call    0 returned 3
+        -:   18:
+        -:   19:    /**
+        -:   20:     * @brief Lungimea listei masinilor de spalat
+        -:   21:     * @pre true
+        -:   22:     * @post true
+        -:   23:     * @return lungimea listei masinilor de spalat
+        -:   24:     */
+        -:   25:    size_t washSize() const;
+        -:   26:
+        -:   27:    /**
+        -:   28:     * @brief Adaugare masina in lista de spalare
+        -:   29:     * @pre true
+        -:   30:     * @post Se adauga o masina in lista de spalare
+        -:   31:     */
+        -:   32:     void addToWash(const Car&);
+        -:   33:
+        -:   34:    /**
+        -:   35:     * @brief Goleste lista de masini
+        -:   36:     * @pre Exista masini in lista
+        -:   37:     * @post Lista de masini se goleste
+        -:   38:     */
+        -:   39:     void clearWash();
+        -:   40:
+        -:   41:     /**
+        -:   42:      * @brief Generate a random list
+        -:   43:      * @pre   Exista masini in lista ; numberToGenerate = [0, size(totalCars)]
+        -:   44:      * @post  Se genereaza o lista random cu masini de spalat
+        -:   45:      */
+        -:   46:    static vector<Car> generateRandom(unsigned int, vector<Car>&);
+        -:   47:};

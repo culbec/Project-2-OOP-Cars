@@ -1,0 +1,646 @@
+        -:    0:Source:/home/culbec/OOP/Project-2-OOP-Cars/Sources/Service.cpp
+        -:    0:Graph:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.gcno
+        -:    0:Data:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "../Headers/Service.h"
+        -:    2:
+function _ZNK7Service7getCarsEv called 11 returned 100% blocks executed 100%
+       11:    3:const carList &Service::getCars() const { return this->carRepository.getCars(); }
+       11:    3-block  0
+call    0 returned 11
+        -:    4:
+function _ZN7Service13addCarServiceERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_S7_S7_ called 10 returned 90% blocks executed 59%
+       10:    5:bool Service::addCarService(const string &regNumber, const string &producer, const string &model, const string &type) {
+       10:    6:    Car carToAdd(regNumber, producer, model, type); // initializing the car to add
+       10:    6-block  0
+call    0 returned 10
+branch  1 taken 10 (fallthrough)
+branch  2 taken 0 (throw)
+       10:    6-block  1
+call    3 returned 10
+branch  4 taken 10 (fallthrough)
+branch  5 taken 0 (throw)
+       10:    6-block  2
+call    6 returned 10
+branch  7 taken 10 (fallthrough)
+branch  8 taken 0 (throw)
+       10:    6-block  3
+call    9 returned 10
+branch 10 taken 10 (fallthrough)
+branch 11 taken 0 (throw)
+       10:    6-block  4
+call   12 returned 10
+branch 13 taken 10 (fallthrough)
+branch 14 taken 0 (throw)
+       10:    6-block  5
+call   15 returned 10
+call   16 returned 10
+call   17 returned 10
+call   18 returned 10
+    $$$$$:    6-block  6
+call   19 never executed
+    $$$$$:    6-block  7
+    $$$$$:    6-block  8
+call   20 never executed
+    $$$$$:    6-block  9
+    $$$$$:    6-block 10
+call   21 never executed
+    $$$$$:    6-block 11
+    $$$$$:    6-block 12
+call   22 never executed
+    $$$$$:    6-block 13
+        -:    7:
+       10:    8:    Validator::validateCar(carToAdd,
+       10:    9:                           this->carRepository); // may have an exception, but it is handled by the repository
+call    0 returned 10
+branch  1 taken 9 (fallthrough)
+branch  2 taken 1 (throw)
+        -:   10:
+        -:   11:    // daca e cu succes, adaugam masina
+        9:   12:    this->carRepository.addCar(carToAdd);
+        9:   12-block  0
+call    0 returned 9
+branch  1 taken 9 (fallthrough)
+branch  2 taken 0 (throw)
+        9:   13:    return true;
+        9:   13-block  0
+       10:   14:}
+        9:   14-block  0
+call    0 returned 9
+        1:   14-block  1
+call    1 returned 1
+        -:   15:
+function _ZN7Service16modifyCarServiceERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_S7_S7_ called 3 returned 33% blocks executed 60%
+        3:   16:Car Service::modifyCarService(const string &regNumber, const string &newProducer, const string &newModel,
+        -:   17:                              const string &newType) {
+        3:   18:    Car carModified(regNumber, newProducer, newModel, newType); // initializing the modified car
+        3:   18-block  0
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+        3:   18-block  1
+call    3 returned 3
+branch  4 taken 3 (fallthrough)
+branch  5 taken 0 (throw)
+        3:   18-block  2
+call    6 returned 3
+branch  7 taken 3 (fallthrough)
+branch  8 taken 0 (throw)
+        3:   18-block  3
+call    9 returned 3
+branch 10 taken 3 (fallthrough)
+branch 11 taken 0 (throw)
+        3:   18-block  4
+call   12 returned 3
+branch 13 taken 3 (fallthrough)
+branch 14 taken 0 (throw)
+        3:   18-block  5
+call   15 returned 3
+call   16 returned 3
+call   17 returned 3
+call   18 returned 3
+    $$$$$:   18-block  6
+call   19 never executed
+    $$$$$:   18-block  7
+    $$$$$:   18-block  8
+call   20 never executed
+    $$$$$:   18-block  9
+    $$$$$:   18-block 10
+call   21 never executed
+    $$$$$:   18-block 11
+    $$$$$:   18-block 12
+call   22 never executed
+    $$$$$:   18-block 13
+        -:   19:
+        -:   20:    // salvam erorile de la validari
+        3:   21:    string validationErrors;
+call    0 returned 3
+        -:   22:
+        -:   23:    try {
+        3:   24:        Validator::validateProducer(carModified); // exception handled by the validator
+call    0 returned 3
+branch  1 taken 2 (fallthrough)
+branch  2 taken 1 (throw)
+        -:   25:    }
+        1:   26:    catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
+        1:   26-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        1:   26-block  1
+call    2 returned 1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   26-block  2
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0 (throw)
+        1:   26-block  3
+call    9 returned 1
+call   10 returned 1
+branch 11 taken 1 (fallthrough)
+branch 12 taken 0 (throw)
+    $$$$$:   26-block  4
+call   13 never executed
+    $$$$$:   26-block  5
+    $$$$$:   26-block  6
+call   14 never executed
+        -:   27:
+        -:   28:    try {
+        3:   29:        Validator::validateModel(carModified); // exception handled by the validator
+        3:   29-block  0
+call    0 returned 3
+branch  1 taken 2 (fallthrough)
+branch  2 taken 1 (throw)
+        -:   30:    }
+        1:   31:    catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
+        1:   31-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        1:   31-block  1
+call    2 returned 1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   31-block  2
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0 (throw)
+        1:   31-block  3
+call    9 returned 1
+call   10 returned 1
+branch 11 taken 1 (fallthrough)
+branch 12 taken 0 (throw)
+    $$$$$:   31-block  4
+call   13 never executed
+    $$$$$:   31-block  5
+    $$$$$:   31-block  6
+call   14 never executed
+        -:   32:
+        -:   33:    try {
+        3:   34:        Validator::validateType(carModified); // exception handled by the validator
+        3:   34-block  0
+call    0 returned 3
+branch  1 taken 2 (fallthrough)
+branch  2 taken 1 (throw)
+        -:   35:    }
+        1:   36:    catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
+        1:   36-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        1:   36-block  1
+call    2 returned 1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   36-block  2
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0 (throw)
+        1:   36-block  3
+call    9 returned 1
+call   10 returned 1
+branch 11 taken 1 (fallthrough)
+branch 12 taken 0 (throw)
+    $$$$$:   36-block  4
+call   13 never executed
+    $$$$$:   36-block  5
+    $$$$$:   36-block  6
+call   14 never executed
+        -:   37:
+        3:   38:    if (!validationErrors.empty())
+        3:   38-block  0
+call    0 returned 3
+branch  1 taken 1 (fallthrough)
+branch  2 taken 2
+        1:   39:        throw ServiceException(validationErrors);
+        1:   39-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:   39-block  1
+call    4 returned 1
+call    5 returned 1
+call    6 returned 1
+    $$$$$:   39-block  2
+    $$$$$:   39-block  3
+call    7 never executed
+        -:   40:
+        -:   41:    // daca e cu succes, modificam masina
+        2:   42:    Car oldCar = this->carRepository.modifyCar(carModified); // exception handled by the repository
+        2:   42-block  0
+call    0 returned 2
+branch  1 taken 1 (fallthrough)
+branch  2 taken 1 (throw)
+        2:   43:    return oldCar;
+        1:   43-block  0
+        1:   43-block  1
+        5:   44:}
+        1:   44-block  0
+call    0 returned 1
+call    1 returned 1
+        2:   44-block  1
+call    2 returned 2
+        2:   44-block  2
+call    3 returned 2
+        -:   45:
+function _ZN7Service16deleteCarServiceERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 2 returned 50% blocks executed 100%
+        2:   46:Car Service::deleteCarService(const string &regNumberToDelete) {
+        -:   47:    // returnam direct rezultatul stergerii
+        -:   48:    // daca exista exceptie, va fi gestionata de repo
+        2:   49:    return this->carRepository.deleteCar(regNumberToDelete);
+        2:   49-block  0
+call    0 returned 1
+        -:   50:}
+        -:   51:
+function _ZN7Service14findCarServiceERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 3 returned 67% blocks executed 100%
+        3:   52:Car Service::findCarService(const string &regNumberToFind) {
+        -:   53:    // cautam masina prin intermediul repo
+        -:   54:    // si returnam masina de pe pozitia gasita
+        -:   55:
+        3:   56:    const unsigned int foundPosition = this->carRepository.findCar(regNumberToFind);
+        3:   56-block  0
+call    0 returned 2
+        -:   57:
+        2:   58:    return this->carRepository.getCars().at(foundPosition);
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+        -:   59:}
+        -:   60:
+function _ZNK7Service6filterERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPFbRK3CarS7_E called 6 returned 67% blocks executed 77%
+        6:   61:carList Service::filter(const string &whatFilter, bool(*compareMethod)(const Car &, const string &)) const {
+        6:   62:    carList filteredCars; // initializam o lista vida
+        6:   62-block  0
+call    0 returned 6
+        -:   63:
+        -:   64:    // iteram prin lista
+        6:   65:    const carList &currentCarList = this->carRepository.getCars();
+call    0 returned 6
+branch  1 taken 6 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   66:
+       30:   67:    for (auto &car: currentCarList)
+        6:   67-block  0
+call    0 returned 6
+call    1 returned 6
+       24:   67-block  1
+call    2 returned 24
+       24:   67-block  2
+call    3 returned 24
+       30:   67-block  3
+call    4 returned 30
+branch  5 taken 24
+branch  6 taken 6 (fallthrough)
+       24:   68:        if (compareMethod(car, whatFilter))
+call    0 returned 24
+branch  1 taken 24 (fallthrough)
+branch  2 taken 0 (throw)
+       24:   68-block  0
+branch  3 taken 6 (fallthrough)
+branch  4 taken 18
+        6:   69:            filteredCars.push_back(car);
+        6:   69-block  0
+call    0 returned 6
+branch  1 taken 6 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   70:
+        -:   71:    // aruncam exceptie daca lista e goala
+        6:   72:    if (filteredCars.empty())
+        6:   72-block  0
+call    0 returned 6
+branch  1 taken 2 (fallthrough)
+branch  2 taken 4
+        2:   73:        throw ServiceException("Nu s-au gasit masini cu parametrul specificat!\n");
+        2:   73-block  0
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+branch  3 taken 2 (fallthrough)
+branch  4 taken 0 (throw)
+        2:   73-block  1
+call    5 returned 2
+call    6 returned 2
+call    7 returned 2
+call    8 returned 2
+    $$$$$:   73-block  2
+call    9 never executed
+    $$$$$:   73-block  3
+    $$$$$:   73-block  4
+    $$$$$:   73-block  5
+call   10 never executed
+        -:   74:
+        -:   75:    // altfel, returnam lista
+        4:   76:    return filteredCars;
+        4:   76-block  0
+        4:   76-block  1
+        2:   77:}
+        2:   77-block  0
+call    0 returned 2
+        -:   78:
+        -:   79:/*carList Service::generalSort(carList list, bool (*compareMethod)(const Car &, const Car &)) {
+        -:   80:    for(auto i = 0; i < list.size() - 1; i++)
+        -:   81:        for(auto j = i + 1; j < list.size(); j++)
+        -:   82:            if(compareMethod(list.at(i), list.at(j)))
+        -:   83:                list.swap(i, j);
+        -:   84:    return list;
+        -:   85:}*/
+        -:   86:
+function _ZN7Service13sortRegNumberERKSt6vectorI3CarSaIS1_EE called 1 returned 100% blocks executed 88%
+        1:   87:carList Service::sortRegNumber(const carList &list) {
+        -:   88:    /*return Service::generalSort(Repository::copyList(list), [](const Car &car1, const Car &car2) {
+        -:   89:        return car1.getRegNumber() > car2.getRegNumber();
+        -:   90:    });*/
+        1:   91:    carList toSort = Repository::copyList(list);
+        1:   91-block  0
+call    0 returned 1
+        -:   92:
+function _ZZN7Service13sortRegNumberERKSt6vectorI3CarSaIS1_EEENKUlRKS1_S7_E_clES7_S7_ called 6 returned 100% blocks executed 73%
+        1:   93:    sort(toSort.begin(), toSort.end(), [](const Car &car1, const Car &car2) {
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0 (throw)
+        6:   94:        return car1.getRegNumber() < car2.getRegNumber();
+        6:   94-block  0
+call    0 returned 6
+branch  1 taken 6 (fallthrough)
+branch  2 taken 0 (throw)
+        6:   94-block  1
+call    3 returned 6
+branch  4 taken 6 (fallthrough)
+branch  5 taken 0 (throw)
+        6:   94-block  2
+call    6 returned 6
+call    7 returned 6
+call    8 returned 6
+        6:   94-block  3
+    $$$$$:   94-block  4
+    $$$$$:   94-block  5
+call    9 never executed
+        -:   95:    });
+        -:   96:
+        1:   97:    return toSort;
+        1:   97-block  0
+        1:   97-block  1
+    =====:   98:}
+    $$$$$:   98-block  0
+call    0 never executed
+        -:   99:
+function _ZN7Service8sortTypeERKSt6vectorI3CarSaIS1_EE called 1 returned 100% blocks executed 88%
+        1:  100:carList Service::sortType(const carList &list) {
+        -:  101:    /*return Service::generalSort(Repository::copyList(list), [](const Car &car1, const Car &car2) {
+        -:  102:        return car1.getType() > car2.getType();
+        -:  103:    });*/
+        1:  104:    carList toSort = Repository::copyList(list);
+        1:  104-block  0
+call    0 returned 1
+        -:  105:
+function _ZZN7Service8sortTypeERKSt6vectorI3CarSaIS1_EEENKUlRKS1_S7_E_clES7_S7_ called 5 returned 100% blocks executed 73%
+        1:  106:    sort(toSort.begin(), toSort.end(), [](const Car &car1, const Car &car2) {
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0 (throw)
+        5:  107:        return car1.getType() < car2.getType();
+        5:  107-block  0
+call    0 returned 5
+branch  1 taken 5 (fallthrough)
+branch  2 taken 0 (throw)
+        5:  107-block  1
+call    3 returned 5
+branch  4 taken 5 (fallthrough)
+branch  5 taken 0 (throw)
+        5:  107-block  2
+call    6 returned 5
+call    7 returned 5
+call    8 returned 5
+        5:  107-block  3
+    $$$$$:  107-block  4
+    $$$$$:  107-block  5
+call    9 never executed
+        -:  108:    });
+        -:  109:
+        1:  110:    return toSort;
+        1:  110-block  0
+        1:  110-block  1
+    =====:  111:}
+    $$$$$:  111-block  0
+call    0 never executed
+        -:  112:
+function _ZN7Service17sortProducerModelERKSt6vectorI3CarSaIS1_EE called 1 returned 100% blocks executed 88%
+        1:  113:carList Service::sortProducerModel(const carList &list) {
+        -:  114:    /*return Service::generalSort(Repository::copyList(list), [](const Car &car1, const Car &car2) {
+        -:  115:        if (car1.getProducer() == car2.getProducer())
+        -:  116:            return car1.getModel() > car2.getModel();
+        -:  117:        return car1.getProducer() > car2.getProducer();
+        -:  118:    });*/
+        1:  119:    carList toSort = Repository::copyList(list);
+        1:  119-block  0
+call    0 returned 1
+        -:  120:
+function _ZZN7Service17sortProducerModelERKSt6vectorI3CarSaIS1_EEENKUlRKS1_S7_E_clES7_S7_ called 3 returned 100% blocks executed 65%
+        1:  121:    sort(toSort.begin(), toSort.end(), [](const Car &car1, const Car &car2) {
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0 (throw)
+        3:  122:        if (car1.getProducer() == car2.getProducer())
+        3:  122-block  0
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+        3:  122-block  1
+call    3 returned 3
+branch  4 taken 3 (fallthrough)
+branch  5 taken 0 (throw)
+        3:  122-block  2
+call    6 returned 3
+call    7 returned 3
+call    8 returned 3
+branch  9 taken 1 (fallthrough)
+branch 10 taken 2
+    $$$$$:  122-block  3
+    $$$$$:  122-block  4
+call   11 never executed
+    $$$$$:  122-block  5
+call   12 never executed
+        1:  123:            return car1.getModel() < car2.getModel();
+        1:  123-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  123-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  123-block  2
+call    6 returned 1
+call    7 returned 1
+call    8 returned 1
+    $$$$$:  123-block  3
+    $$$$$:  123-block  4
+call    9 never executed
+    $$$$$:  123-block  5
+call   10 never executed
+        2:  124:        return car1.getProducer() < car2.getProducer();
+        2:  124-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:  124-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
+branch  5 taken 0 (throw)
+        2:  124-block  2
+call    6 returned 2
+call    7 returned 2
+call    8 returned 2
+    $$$$$:  124-block  3
+    $$$$$:  124-block  4
+call    9 never executed
+        -:  125:    });
+        -:  126:
+        1:  127:    return toSort;
+        1:  127-block  0
+        1:  127-block  1
+    =====:  128:}
+    $$$$$:  128-block  0
+call    0 never executed
+        -:  129:
+function _ZNK7Service14getWashingListEv called 2 returned 100% blocks executed 100%
+        2:  130:WashingList Service::getWashingList() const {
+        2:  131:    return this->washingList;
+        2:  131-block  0
+call    0 returned 2
+        -:  132:}
+        -:  133:
+function _ZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 2 returned 50% blocks executed 69%
+        2:  134:void Service::addToWashingList(const std::string &regNumber) {
+function _ZZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEENKUlRK3CarE_clESA_ called 8 returned 100% blocks executed 100%
+        2:  135:    auto found = std::find_if(this->getCars().begin(), this->getCars().end(), [regNumber](const Car &car) {
+        2:  135-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:  135-block  1
+call    3 returned 2
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
+branch  6 taken 0 (throw)
+        2:  135-block  2
+call    7 returned 2
+call    8 returned 2
+branch  9 taken 2 (fallthrough)
+branch 10 taken 0 (throw)
+        2:  135-block  3
+call   11 returned 2
+    $$$$$:  135-block  4
+call   12 never executed
+    $$$$$:  135-block  5
+        8:  136:        return car.getRegNumber() == regNumber;
+        8:  136-block  0
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
+branch  2 taken 0 (throw)
+        8:  136-block  1
+call    3 returned 8
+call    4 returned 8
+        8:  136-block  2
+        -:  137:    });
+        -:  138:
+        2:  139:    if (found == this->getCars().end())
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:  139-block  0
+call    3 returned 2
+call    4 returned 2
+branch  5 taken 1 (fallthrough)
+branch  6 taken 1
+    $$$$$:  139-block  1
+        1:  140:        throw ServiceException("Nu exista masina cu numarul de inmatriculare!\n");
+        1:  140-block  0
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0 (throw)
+        1:  140-block  1
+call    5 returned 1
+call    6 returned 1
+call    7 returned 1
+call    8 returned 1
+    $$$$$:  140-block  2
+call    9 never executed
+    $$$$$:  140-block  3
+    $$$$$:  140-block  4
+    $$$$$:  140-block  5
+call   10 never executed
+        -:  141:
+        1:  142:    this->washingList.addToWash(*found);
+        1:  142-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        3:  143:}
+        2:  143-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  143-block  1
+        -:  144:
+function _ZN7Service16clearWashingListEv called 1 returned 100% blocks executed 100%
+        1:  145:void Service::clearWashingList() {
+        1:  146:    this->washingList.clearWash();
+        1:  146-block  0
+call    0 returned 1
+        1:  147:}
+        -:  148:
+function _ZN7Service17randomWashingListEjRKSt6vectorI3CarSaIS1_EE called 1 returned 100% blocks executed 74%
+        1:  149:void Service::randomWashingList(unsigned int numberToGenerate, const vector<Car> &cars) {
+        1:  150:    vector<Car> toRandomize = Repository::copyList(cars);
+        1:  150-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        -:  151:
+        1:  152:    this->washingList.clearWash();
+        1:  152-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  153:    vector<Car> randomWash = WashingList::generateRandom(numberToGenerate, toRandomize);
+        1:  153-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        3:  154:    for(const auto& car: randomWash)
+        1:  154-block  0
+call    0 returned 1
+call    1 returned 1
+        2:  154-block  1
+call    2 returned 2
+        2:  154-block  2
+call    3 returned 2
+        3:  154-block  3
+call    4 returned 3
+branch  5 taken 2
+branch  6 taken 1 (fallthrough)
+        2:  155:        this->washingList.addToWash(car);
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  156:}
+        1:  156-block  0
+call    0 returned 1
+call    1 returned 1
+    $$$$$:  156-block  1
+call    2 never executed
+    $$$$$:  156-block  2
+call    3 never executed

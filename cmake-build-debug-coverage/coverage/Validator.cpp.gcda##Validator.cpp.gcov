@@ -1,0 +1,969 @@
+        -:    0:Source:/home/culbec/OOP/Project-2-OOP-Cars/Sources/Validator.cpp
+        -:    0:Graph:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.gcno
+        -:    0:Data:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "../Headers/Validator.h"
+        -:    2:
+function _ZN9Validator17validateRegNumberERK3Car called 29 returned 41% blocks executed 76%
+       29:    3:bool Validator::validateRegNumber(const Car &car) {
+       29:    4:    string errors; // vom pastra toate erorile
+       29:    4-block  0
+call    0 returned 29
+        -:    5:
+       29:    6:    string regNumber = car.getRegNumber(); // retinem numarul de inmatriculare
+call    0 returned 29
+branch  1 taken 29 (fallthrough)
+branch  2 taken 0 (throw)
+        -:    7:
+        -:    8:    // verificam daca nr. de inmatriculare este string-ul vid
+       29:    9:    if (regNumber.empty())
+       29:    9-block  0
+call    0 returned 29
+branch  1 taken 3 (fallthrough)
+branch  2 taken 26
+        3:   10:        throw ValidatorException("Nr. de inmatriculare nu poate fi vid!"); // aruncam direct exceptie
+        3:   10-block  0
+call    0 returned 3
+call    1 returned 3
+call    2 returned 3
+branch  3 taken 3 (fallthrough)
+branch  4 taken 0 (throw)
+        3:   10-block  1
+call    5 returned 3
+call    6 returned 3
+call    7 returned 3
+call    8 returned 3
+    $$$$$:   10-block  2
+call    9 never executed
+    $$$$$:   10-block  3
+    $$$$$:   10-block  4
+    $$$$$:   10-block  5
+call   10 never executed
+        -:   11:
+        -:   12:    // verificam daca nr. de inmatriculare se incadreaza ca lungime intre 6 si 7
+       26:   13:    if (regNumber.size() < 6 || regNumber.size() > 7)
+       26:   13-block  0
+call    0 returned 26
+branch  1 taken 24 (fallthrough)
+branch  2 taken 2
+       24:   13-block  1
+call    3 returned 24
+branch  4 taken 0 (fallthrough)
+branch  5 taken 24
+        2:   13-block  2
+       24:   13-block  3
+       26:   13-block  4
+branch  6 taken 2 (fallthrough)
+branch  7 taken 24
+        2:   14:        throw ValidatorException(
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
+branch  3 taken 0 (throw)
+        2:   14-block  0
+call    4 returned 2
+call    5 returned 2
+call    6 returned 2
+    $$$$$:   14-block  1
+call    7 never executed
+    $$$$$:   14-block  2
+    $$$$$:   14-block  3
+        4:   15:                "Nr. de inmatriculare trebuie sa fie de forma: \n Exemplu: CJ12CEVA, pentru toate judetele inafara de Bucuresti\n Exemplu: B76XZY sau B777ZZZ pentru judetul Bucuresti.\n");
+        2:   15-block  0
+call    0 returned 2
+call    1 returned 2
+    $$$$$:   15-block  1
+call    2 never executed
+        -:   16:
+        -:   17:    // acum putem valida numarul de inmatriculare
+       24:   18:    if (regNumber.at(0) == 'B' && !(regNumber.at(1) >= 'A' && regNumber.at(1) <= 'Z')) {
+       24:   18-block  0
+call    0 returned 24
+branch  1 taken 24 (fallthrough)
+branch  2 taken 0 (throw)
+       24:   18-block  1
+branch  3 taken 12 (fallthrough)
+branch  4 taken 12
+       12:   18-block  2
+call    5 returned 12
+branch  6 taken 12 (fallthrough)
+branch  7 taken 0 (throw)
+       12:   18-block  3
+branch  8 taken 3 (fallthrough)
+branch  9 taken 9
+        3:   18-block  4
+call   10 returned 3
+branch 11 taken 3 (fallthrough)
+branch 12 taken 0 (throw)
+        3:   18-block  5
+branch 13 taken 1 (fallthrough)
+branch 14 taken 2
+       10:   18-block  6
+       14:   18-block  7
+       24:   18-block  8
+branch 15 taken 10 (fallthrough)
+branch 16 taken 14
+       10:   19:        if (regNumber.size() == 7) {
+       10:   19-block  0
+call    0 returned 10
+branch  1 taken 5 (fallthrough)
+branch  2 taken 5
+        9:   20:            if ((regNumber.at(1) >= '1' && regNumber.at(1) <= '9') &&
+        5:   20-block  0
+call    0 returned 5
+branch  1 taken 5 (fallthrough)
+branch  2 taken 0 (throw)
+        4:   20-block  1
+call    3 returned 4
+branch  4 taken 4 (fallthrough)
+branch  5 taken 0 (throw)
+        4:   20-block  2
+branch  6 taken 3 (fallthrough)
+branch  7 taken 1
+       12:   21:                (regNumber.at(2) >= '0' && regNumber.at(2) <= '9') &&
+        5:   21-block  0
+branch  0 taken 4 (fallthrough)
+branch  1 taken 1
+        3:   21-block  1
+call    2 returned 3
+branch  3 taken 3 (fallthrough)
+branch  4 taken 0 (throw)
+        3:   21-block  2
+branch  5 taken 3 (fallthrough)
+branch  6 taken 0
+        3:   21-block  3
+call    7 returned 3
+branch  8 taken 3 (fallthrough)
+branch  9 taken 0 (throw)
+        3:   21-block  4
+branch 10 taken 3 (fallthrough)
+branch 11 taken 0
+        3:   21-block  5
+        2:   21-block  6
+        5:   21-block  7
+branch 12 taken 3 (fallthrough)
+branch 13 taken 2
+        3:   22:                (regNumber.at(3) >= '0' && regNumber.at(3) <= '9')) { //numar de genul B132XYZ
+        3:   22-block  0
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+        3:   22-block  1
+branch  3 taken 3 (fallthrough)
+branch  4 taken 0
+        3:   22-block  2
+call    5 returned 3
+branch  6 taken 3 (fallthrough)
+branch  7 taken 0 (throw)
+        3:   22-block  3
+branch  8 taken 3 (fallthrough)
+branch  9 taken 0
+        3:   23:                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors + "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
+        3:   23-block  0
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+        3:   23-block  1
+branch  3 taken 2 (fallthrough)
+branch  4 taken 1
+        2:   23-block  2
+call    5 returned 2
+branch  6 taken 2 (fallthrough)
+branch  7 taken 0 (throw)
+        2:   23-block  3
+branch  8 taken 0 (fallthrough)
+branch  9 taken 2
+        1:   23-block  4
+        2:   23-block  5
+        3:   23-block  6
+branch 10 taken 1 (fallthrough)
+branch 11 taken 2
+        1:   23-block  7
+call   12 returned 1
+branch 13 taken 1 (fallthrough)
+branch 14 taken 0 (throw)
+        1:   23-block  8
+call   15 returned 1
+call   16 returned 1
+    $$$$$:   23-block  9
+       2*:   24:                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors + "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
+        2:   24-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:   24-block  1
+branch  3 taken 2 (fallthrough)
+branch  4 taken 0
+        2:   24-block  2
+call    5 returned 2
+branch  6 taken 2 (fallthrough)
+branch  7 taken 0 (throw)
+        2:   24-block  3
+branch  8 taken 0 (fallthrough)
+branch  9 taken 2
+    %%%%%:   24-block  4
+        2:   24-block  5
+        2:   24-block  6
+branch 10 taken 0 (fallthrough)
+branch 11 taken 2
+    %%%%%:   24-block  7
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   24-block  8
+call   15 never executed
+call   16 never executed
+    $$$$$:   24-block  9
+       2*:   25:                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z')) errors = errors + "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
+        2:   25-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:   25-block  1
+branch  3 taken 0 (fallthrough)
+branch  4 taken 2
+    %%%%%:   25-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:   25-block  3
+branch  8 never executed
+branch  9 never executed
+        2:   25-block  4
+    %%%%%:   25-block  5
+        2:   25-block  6
+branch 10 taken 2 (fallthrough)
+branch 11 taken 0
+        2:   25-block  7
+call   12 returned 2
+branch 13 taken 2 (fallthrough)
+branch 14 taken 0 (throw)
+        2:   25-block  8
+call   15 returned 2
+call   16 returned 2
+    $$$$$:   25-block  9
+        -:   26:            } else
+        2:   27:                errors = errors + "'B' trebuie sa fie urmat de 3 cifre!\n";
+        2:   27-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:   27-block  1
+call    3 returned 2
+call    4 returned 2
+    $$$$$:   27-block  2
+        -:   28:        } else {
+        -:   29:            // numar de genul B10YCZ
+        5:   30:            if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z')) errors = errors + "'B' trebuie sa fie urmat de 2 cifre si 3 litere!\n";
+        5:   30-block  0
+call    0 returned 5
+branch  1 taken 5 (fallthrough)
+branch  2 taken 0 (throw)
+        5:   30-block  1
+branch  3 taken 3 (fallthrough)
+branch  4 taken 2
+        3:   30-block  2
+call    5 returned 3
+branch  6 taken 3 (fallthrough)
+branch  7 taken 0 (throw)
+        3:   30-block  3
+branch  8 taken 0 (fallthrough)
+branch  9 taken 3
+        2:   30-block  4
+        3:   30-block  5
+        5:   30-block  6
+branch 10 taken 2 (fallthrough)
+branch 11 taken 3
+        2:   30-block  7
+call   12 returned 2
+branch 13 taken 2 (fallthrough)
+branch 14 taken 0 (throw)
+        2:   30-block  8
+call   15 returned 2
+call   16 returned 2
+    $$$$$:   30-block  9
+        6:   31:            else if ((regNumber.at(1) >= '0' && regNumber.at(1) <= '9') &&
+        3:   31-block  0
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+        3:   31-block  1
+branch  3 taken 3 (fallthrough)
+branch  4 taken 0
+        3:   31-block  2
+call    5 returned 3
+branch  6 taken 3 (fallthrough)
+branch  7 taken 0 (throw)
+        3:   31-block  3
+branch  8 taken 3 (fallthrough)
+branch  9 taken 0
+        2:   31-block  4
+        1:   31-block  5
+        3:   31-block  6
+branch 10 taken 2 (fallthrough)
+branch 11 taken 1
+        3:   32:                     (regNumber.at(2) >= '0' && regNumber.at(2) <= '9')) { // avem numar de genul B100XYZ
+        3:   32-block  0
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+        3:   32-block  1
+branch  3 taken 3 (fallthrough)
+branch  4 taken 0
+        3:   32-block  2
+call    5 returned 3
+branch  6 taken 3 (fallthrough)
+branch  7 taken 0 (throw)
+        3:   32-block  3
+branch  8 taken 2 (fallthrough)
+branch  9 taken 1
+        -:   33:                // numar de genul B10_YZ
+       2*:   34:                if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z')) errors = errors + "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
+        2:   34-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:   34-block  1
+branch  3 taken 2 (fallthrough)
+branch  4 taken 0
+        2:   34-block  2
+call    5 returned 2
+branch  6 taken 2 (fallthrough)
+branch  7 taken 0 (throw)
+        2:   34-block  3
+branch  8 taken 0 (fallthrough)
+branch  9 taken 2
+    %%%%%:   34-block  4
+        2:   34-block  5
+        2:   34-block  6
+branch 10 taken 0 (fallthrough)
+branch 11 taken 2
+    %%%%%:   34-block  7
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   34-block  8
+call   15 never executed
+call   16 never executed
+    $$$$$:   34-block  9
+        -:   35:                    // numar de genul B10X_Z
+        2:   36:                else if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors + "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
+        2:   36-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:   36-block  1
+branch  3 taken 1 (fallthrough)
+branch  4 taken 1
+        1:   36-block  2
+call    5 returned 1
+branch  6 taken 1 (fallthrough)
+branch  7 taken 0 (throw)
+        1:   36-block  3
+branch  8 taken 0 (fallthrough)
+branch  9 taken 1
+        1:   36-block  4
+        1:   36-block  5
+        2:   36-block  6
+branch 10 taken 1 (fallthrough)
+branch 11 taken 1
+        1:   36-block  7
+call   12 returned 1
+branch 13 taken 1 (fallthrough)
+branch 14 taken 0 (throw)
+        1:   36-block  8
+call   15 returned 1
+call   16 returned 1
+    $$$$$:   36-block  9
+        -:   37:                    // numar de genul B10XY_
+       1*:   38:                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors + "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
+        1:   38-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   38-block  1
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0
+        1:   38-block  2
+call    5 returned 1
+branch  6 taken 1 (fallthrough)
+branch  7 taken 0 (throw)
+        1:   38-block  3
+branch  8 taken 1 (fallthrough)
+branch  9 taken 0
+        1:   38-block  4
+    %%%%%:   38-block  5
+        1:   38-block  6
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0
+        1:   38-block  7
+call   12 returned 1
+branch 13 taken 1 (fallthrough)
+branch 14 taken 0 (throw)
+        1:   38-block  8
+call   15 returned 1
+call   16 returned 1
+    $$$$$:   38-block  9
+        1:   39:            } else errors = errors + "'B' trebuie sa fie urmat de 2 cifre si 3 litere!\n";
+        1:   39-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   39-block  1
+call    3 returned 1
+call    4 returned 1
+    $$$$$:   39-block  2
+        -:   40:        }
+        -:   41:    } else {
+       14:   42:        if (regNumber.size() != 7)
+       14:   42-block  0
+call    0 returned 14
+branch  1 taken 1 (fallthrough)
+branch  2 taken 13
+        1:   43:            errors = errors + "Numarul de inmatriculare trebuie sa fie de forma: CJ77ZZZ!\n";
+        1:   43-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   43-block  1
+call    3 returned 1
+call    4 returned 1
+    $$$$$:   43-block  2
+        -:   44:        else {
+       25:   45:            if ((regNumber.at(2) >= '0' && regNumber.at(2) <= '9') &&
+       13:   45-block  0
+call    0 returned 13
+branch  1 taken 13 (fallthrough)
+branch  2 taken 0 (throw)
+       13:   45-block  1
+branch  3 taken 12 (fallthrough)
+branch  4 taken 1
+       12:   45-block  2
+call    5 returned 12
+branch  6 taken 12 (fallthrough)
+branch  7 taken 0 (throw)
+       12:   45-block  3
+branch  8 taken 12 (fallthrough)
+branch  9 taken 0
+       12:   45-block  4
+        1:   45-block  5
+       13:   45-block  6
+branch 10 taken 12 (fallthrough)
+branch 11 taken 1
+       12:   46:                (regNumber.at(3) >= '0' && regNumber.at(3) <= '9')) {
+       12:   46-block  0
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+       12:   46-block  1
+branch  3 taken 12 (fallthrough)
+branch  4 taken 0
+       12:   46-block  2
+call    5 returned 12
+branch  6 taken 12 (fallthrough)
+branch  7 taken 0 (throw)
+       12:   46-block  3
+branch  8 taken 12 (fallthrough)
+branch  9 taken 0
+      12*:   47:                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors + "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
+       12:   47-block  0
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+       12:   47-block  1
+branch  3 taken 12 (fallthrough)
+branch  4 taken 0
+       12:   47-block  2
+call    5 returned 12
+branch  6 taken 12 (fallthrough)
+branch  7 taken 0 (throw)
+       12:   47-block  3
+branch  8 taken 0 (fallthrough)
+branch  9 taken 12
+    %%%%%:   47-block  4
+       12:   47-block  5
+       12:   47-block  6
+branch 10 taken 0 (fallthrough)
+branch 11 taken 12
+    %%%%%:   47-block  7
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   47-block  8
+call   15 never executed
+call   16 never executed
+    $$$$$:   47-block  9
+      12*:   48:                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors + "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
+       12:   48-block  0
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+       12:   48-block  1
+branch  3 taken 12 (fallthrough)
+branch  4 taken 0
+       12:   48-block  2
+call    5 returned 12
+branch  6 taken 12 (fallthrough)
+branch  7 taken 0 (throw)
+       12:   48-block  3
+branch  8 taken 0 (fallthrough)
+branch  9 taken 12
+    %%%%%:   48-block  4
+       12:   48-block  5
+       12:   48-block  6
+branch 10 taken 0 (fallthrough)
+branch 11 taken 12
+    %%%%%:   48-block  7
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   48-block  8
+call   15 never executed
+call   16 never executed
+    $$$$$:   48-block  9
+      12*:   49:                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z')) errors = errors + "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
+       12:   49-block  0
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+       12:   49-block  1
+branch  3 taken 12 (fallthrough)
+branch  4 taken 0
+       12:   49-block  2
+call    5 returned 12
+branch  6 taken 12 (fallthrough)
+branch  7 taken 0 (throw)
+       12:   49-block  3
+branch  8 taken 0 (fallthrough)
+branch  9 taken 12
+    %%%%%:   49-block  4
+       12:   49-block  5
+       12:   49-block  6
+branch 10 taken 0 (fallthrough)
+branch 11 taken 12
+    %%%%%:   49-block  7
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   49-block  8
+call   15 never executed
+call   16 never executed
+    $$$$$:   49-block  9
+        1:   50:            } else errors = errors + "Judetul trebuie sa fie urmat de 2 cifre!\n";
+        1:   50-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   50-block  1
+call    3 returned 1
+call    4 returned 1
+    $$$$$:   50-block  2
+        -:   51:        }
+        -:   52:    }
+       24:   53:    if (!errors.empty())
+       24:   53-block  0
+call    0 returned 24
+branch  1 taken 12 (fallthrough)
+branch  2 taken 12
+       12:   54:        throw ValidatorException(errors);
+       12:   54-block  0
+call    0 returned 12
+call    1 returned 12
+branch  2 taken 12 (fallthrough)
+branch  3 taken 0 (throw)
+       12:   54-block  1
+call    4 returned 12
+call    5 returned 12
+call    6 returned 12
+    $$$$$:   54-block  2
+    $$$$$:   54-block  3
+call    7 never executed
+       12:   55:    return true;
+       12:   55-block  0
+       46:   56:}
+       12:   56-block  0
+call    0 returned 12
+call    1 returned 12
+       17:   56-block  1
+call    2 returned 17
+       17:   56-block  2
+call    3 returned 17
+        -:   57:
+function _ZN9Validator16validateProducerERK3Car called 21 returned 67% blocks executed 82%
+       21:   58:bool Validator::validateProducer(const Car &car) {
+       21:   59:    string producer = car.getProducer(); // salvam producatorul
+       21:   59-block  0
+call    0 returned 21
+branch  1 taken 21 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   60:
+       21:   61:    if (producer.empty())
+       21:   61-block  0
+call    0 returned 21
+branch  1 taken 4 (fallthrough)
+branch  2 taken 17
+        4:   62:        throw ValidatorException("Producatorul nu poate fi vid!\n");
+        4:   62-block  0
+call    0 returned 4
+call    1 returned 4
+call    2 returned 4
+branch  3 taken 4 (fallthrough)
+branch  4 taken 0 (throw)
+        4:   62-block  1
+call    5 returned 4
+call    6 returned 4
+call    7 returned 4
+call    8 returned 4
+    $$$$$:   62-block  2
+call    9 never executed
+    $$$$$:   62-block  3
+    $$$$$:   62-block  4
+    $$$$$:   62-block  5
+call   10 never executed
+        -:   63:
+       17:   64:    string errors; // aici salvam erorile
+       17:   64-block  0
+call    0 returned 17
+        -:   65:
+       17:   66:    if (producer.at(0) < 'A' || producer.at(0) > 'Z')
+call    0 returned 17
+branch  1 taken 17 (fallthrough)
+branch  2 taken 0 (throw)
+       17:   66-block  0
+branch  3 taken 17 (fallthrough)
+branch  4 taken 0
+       17:   66-block  1
+call    5 returned 17
+branch  6 taken 17 (fallthrough)
+branch  7 taken 0 (throw)
+       17:   66-block  2
+branch  8 taken 2 (fallthrough)
+branch  9 taken 15
+        2:   66-block  3
+       15:   66-block  4
+       17:   66-block  5
+branch 10 taken 2 (fallthrough)
+branch 11 taken 15
+        2:   67:        errors += "Producatorul trebuie sa inceapa cu majuscula!\n";
+        2:   67-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   68:
+      104:   69:    for (unsigned int i = 1; i < producer.size(); i++)
+       17:   69-block  0
+       87:   69-block  1
+      104:   69-block  2
+call    0 returned 104
+branch  1 taken 88
+branch  2 taken 16 (fallthrough)
+      88*:   70:        if (!(producer.at(i) >= 'a' && producer.at(i) <= 'z') && !(producer.at(i) >= 'A' && producer.at(i) <= 'Z')) {
+       88:   70-block  0
+call    0 returned 88
+branch  1 taken 88 (fallthrough)
+branch  2 taken 0 (throw)
+       88:   70-block  1
+branch  3 taken 87 (fallthrough)
+branch  4 taken 1
+       87:   70-block  2
+call    5 returned 87
+branch  6 taken 87 (fallthrough)
+branch  7 taken 0 (throw)
+       87:   70-block  3
+branch  8 taken 0 (fallthrough)
+branch  9 taken 87
+        1:   70-block  4
+call   10 returned 1
+branch 11 taken 1 (fallthrough)
+branch 12 taken 0 (throw)
+        1:   70-block  5
+branch 13 taken 0 (fallthrough)
+branch 14 taken 1
+    %%%%%:   70-block  6
+call   15 never executed
+branch 16 never executed
+branch 17 never executed
+    %%%%%:   70-block  7
+branch 18 never executed
+branch 19 never executed
+        1:   70-block  8
+       87:   70-block  9
+       88:   70-block 10
+branch 20 taken 1 (fallthrough)
+branch 21 taken 87
+        1:   71:            errors += "Producatorul trebuie sa contina doar litere!\n";
+        1:   71-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   72:            break;
+        1:   72-block  0
+        -:   73:        }
+       17:   74:    if (!errors.empty())
+       17:   74-block  0
+call    0 returned 17
+branch  1 taken 3 (fallthrough)
+branch  2 taken 14
+        3:   75:        throw ValidatorException(errors);
+        3:   75-block  0
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   75-block  1
+call    4 returned 3
+call    5 returned 3
+call    6 returned 3
+    $$$$$:   75-block  2
+    $$$$$:   75-block  3
+call    7 never executed
+        -:   76:
+       14:   77:    return true;
+       14:   77-block  0
+       24:   78:}
+       14:   78-block  0
+call    0 returned 14
+call    1 returned 14
+        3:   78-block  1
+call    2 returned 3
+        7:   78-block  2
+call    3 returned 7
+        -:   79:
+function _ZN9Validator13validateModelERK3Car called 20 returned 85% blocks executed 73%
+       20:   80:bool Validator::validateModel(const Car &car) {
+       20:   81:    string model = car.getModel(); // aici salvam modelul masinii
+       20:   81-block  0
+call    0 returned 20
+branch  1 taken 20 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   82:
+       20:   83:    if (model.empty())
+       20:   83-block  0
+call    0 returned 20
+branch  1 taken 3 (fallthrough)
+branch  2 taken 17
+        3:   84:        throw ValidatorException("Modelul nu poate sa fie vid!\n");
+        3:   84-block  0
+call    0 returned 3
+call    1 returned 3
+call    2 returned 3
+branch  3 taken 3 (fallthrough)
+branch  4 taken 0 (throw)
+        3:   84-block  1
+call    5 returned 3
+call    6 returned 3
+call    7 returned 3
+call    8 returned 3
+    $$$$$:   84-block  2
+call    9 never executed
+    $$$$$:   84-block  3
+    $$$$$:   84-block  4
+    $$$$$:   84-block  5
+call   10 never executed
+        -:   85:
+       17:   86:    return true;
+       17:   86-block  0
+       20:   87:}
+       17:   87-block  0
+call    0 returned 17
+        3:   87-block  1
+call    1 returned 3
+        -:   88:
+function _ZN9Validator12validateTypeERK3Car called 5 returned 60% blocks executed 73%
+        5:   89:bool Validator::validateType(const Car &car) {
+        5:   90:    string type = car.getType(); // aici salvam tipul masinii;
+        5:   90-block  0
+call    0 returned 5
+branch  1 taken 5 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   91:
+        5:   92:    if (type.empty())
+        5:   92-block  0
+call    0 returned 5
+branch  1 taken 2 (fallthrough)
+branch  2 taken 3
+        2:   93:        throw ValidatorException("Tipul nu poate sa fie nul!\n");
+        2:   93-block  0
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+branch  3 taken 2 (fallthrough)
+branch  4 taken 0 (throw)
+        2:   93-block  1
+call    5 returned 2
+call    6 returned 2
+call    7 returned 2
+call    8 returned 2
+    $$$$$:   93-block  2
+call    9 never executed
+    $$$$$:   93-block  3
+    $$$$$:   93-block  4
+    $$$$$:   93-block  5
+call   10 never executed
+        3:   94:    return true;
+        3:   94-block  0
+        5:   95:}
+        3:   95-block  0
+call    0 returned 3
+        2:   95-block  1
+call    1 returned 2
+        -:   96:
+function _ZN9Validator11validateCarERK3CarRK10Repository called 15 returned 67% blocks executed 67%
+       15:   97:bool Validator::validateCar(const Car &car, const Repository &carRepo) {
+       15:   98:    string errors; // aici salvam erorile
+       15:   98-block  0
+call    0 returned 15
+        -:   99:
+        -:  100:    try {
+       15:  101:        validateRegNumber(car);
+call    0 returned 15
+branch  1 taken 11 (fallthrough)
+branch  2 taken 4 (throw)
+        -:  102:    }
+        4:  103:    catch (ValidatorException &validatorException) {
+        4:  103-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 4
+        4:  103-block  1
+call    2 returned 4
+        4:  104:        errors += validatorException.getMessage();
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        4:  104-block  0
+call    3 returned 4
+branch  4 taken 4 (fallthrough)
+branch  5 taken 0 (throw)
+        4:  104-block  1
+call    6 returned 4
+    $$$$$:  104-block  2
+call    7 never executed
+    $$$$$:  104-block  3
+        4:  105:    }
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+    $$$$$:  105-block  0
+call    3 never executed
+        -:  106:
+        -:  107:    try {
+       15:  108:        validateProducer(car);
+       15:  108-block  0
+call    0 returned 15
+branch  1 taken 12 (fallthrough)
+branch  2 taken 3 (throw)
+        -:  109:    }
+        3:  110:    catch (ValidatorException &validatorException) {
+        3:  110-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 3
+        3:  110-block  1
+call    2 returned 3
+        3:  111:        errors += validatorException.getMessage();
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+        3:  111-block  0
+call    3 returned 3
+branch  4 taken 3 (fallthrough)
+branch  5 taken 0 (throw)
+        3:  111-block  1
+call    6 returned 3
+    $$$$$:  111-block  2
+call    7 never executed
+    $$$$$:  111-block  3
+        3:  112:    }
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+    $$$$$:  112-block  0
+call    3 never executed
+        -:  113:
+        -:  114:    try {
+       15:  115:        validateModel(car);
+       15:  115-block  0
+call    0 returned 15
+branch  1 taken 14 (fallthrough)
+branch  2 taken 1 (throw)
+        -:  116:    }
+        1:  117:    catch (ValidatorException &validatorException) {
+        1:  117-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        1:  117-block  1
+call    2 returned 1
+        1:  118:        errors += validatorException.getMessage();
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  118-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  118-block  1
+call    6 returned 1
+    $$$$$:  118-block  2
+call    7 never executed
+    $$$$$:  118-block  3
+        1:  119:    }
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+    $$$$$:  119-block  0
+call    3 never executed
+        -:  120:
+        -:  121:    try {
+       29:  122:        carRepo.findCar(car.getRegNumber());
+       15:  122-block  0
+call    0 returned 15
+branch  1 taken 15 (fallthrough)
+branch  2 taken 0 (throw)
+       15:  122-block  1
+call    3 returned 15
+branch  4 taken 1 (fallthrough)
+branch  5 taken 14 (throw)
+        1:  122-block  2
+call    6 returned 1
+       14:  122-block  3
+call    7 returned 14
+       14:  122-block  4
+        1:  123:        errors += "Masina exista deja in lista!\n";
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        -:  124:    }
+       14:  125:    catch (RepositoryException &repositoryException) {}
+       14:  125-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 14
+       14:  125-block  1
+call    2 returned 14
+call    3 returned 14
+branch  4 taken 14 (fallthrough)
+branch  5 taken 0 (throw)
+        -:  126:
+       15:  127:    if (!errors.empty())
+       15:  127-block  0
+call    0 returned 15
+branch  1 taken 5 (fallthrough)
+branch  2 taken 10
+        5:  128:        throw ValidatorException(errors);
+        5:  128-block  0
+call    0 returned 5
+call    1 returned 5
+branch  2 taken 5 (fallthrough)
+branch  3 taken 0 (throw)
+        5:  128-block  1
+call    4 returned 5
+call    5 returned 5
+call    6 returned 5
+    $$$$$:  128-block  2
+    $$$$$:  128-block  3
+call    7 never executed
+       10:  129:    return true;
+       10:  129-block  0
+       15:  130:}
+       10:  130-block  0
+call    0 returned 10
+        5:  130-block  1
+call    1 returned 5

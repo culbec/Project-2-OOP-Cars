@@ -1,0 +1,103 @@
+        -:    0:Source:/home/culbec/OOP/Project-2-OOP-Cars/Headers/Repository.h
+        -:    0:Graph:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.gcno
+        -:    0:Data:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#pragma once
+        -:    2:
+        -:    3:#include "Car.h"
+        -:    4:#include <utility>
+        -:    5:#include <vector>
+        -:    6:#include <exception>
+        -:    7:#include <algorithm>
+        -:    8:#include <iterator>
+        -:    9:
+        -:   10:using std::vector;
+        -:   11:using std::exception;
+        -:   12:using std::remove;
+        -:   13:using std::find_if;
+        -:   14:using std::copy;
+        -:   15:using std::back_inserter;
+        -:   16:using std::copy_if;
+        -:   17:
+        -:   18:typedef vector<Car> carList;
+        -:   19:
+        -:   20:// declaram o exceptie custom pentru repository:
+        -:   21:class RepositoryException:std::exception {
+        -:   22:private:
+        -:   23:    string errorMessage;
+        -:   24:public:
+function _ZN19RepositoryExceptionC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 24 returned 100% blocks executed 100%
+       24:   25:    explicit RepositoryException(string message) : errorMessage(std::move(message)) {}
+       24:   25-block  0
+call    0 returned 24
+call    1 returned 24
+call    2 returned 24
+        -:   26:
+        -:   27:    string getMessage() { return this->errorMessage; }
+        -:   28:};
+        -:   29:
+        -:   30:class Repository {
+        -:   31:    friend class Car;
+        -:   32:
+        -:   33:private:
+        -:   34:    carList cars; // lista de masini
+        -:   35:public:
+        -:   36:    Repository() noexcept = default;
+        -:   37:
+        -:   38:    /*
+        -:   39:        Returneaza lista de masini a repository-ului
+        -:   40:        @pre: true
+        -:   41:        @post: lista de masini a repo-ului
+        -:   42:    */
+        -:   43:    const carList &getCars() const;
+        -:   44:
+        -:   45:    /*
+        -:   46:        Size-ul listei de masini
+        -:   47:        @pre: true
+        -:   48:        @post: size-ul listei de masini
+        -:   49:    */
+        -:   50:    size_t getSize() const noexcept;
+        -:   51:
+        -:   52:    /*
+        -:   53:        Cauta o masina dupa un anumit id si ii returneaza pozitia.
+        -:   54:        @pre: string -> numar de inmatriculare
+        -:   55:        @post: pozitia masinii
+        -:   56:        @exception: masina nu exista in lista
+        -:   57:    */
+        -:   58:
+        -:   59:    unsigned int findCar(const string &) const;
+        -:   60:
+        -:   61:    /*
+        -:   62:        Adauga o masina la lista de masini
+        -:   63:        @pre: Car -> obiect de tip Car valid
+        -:   64:        @post: obiectul de tip Car adaugat la lista de masini
+        -:   65:    */
+        -:   66:    void addCar(const Car &);
+        -:   67:
+        -:   68:    /*
+        -:   69:        Sterge o masina din lista de masini
+        -:   70:        @pre: string -> numar de inmatriculare
+        -:   71:        @post: masina stearsa
+        -:   72:        @exception: nu exista masina in lista
+        -:   73:    */
+        -:   74:    Car deleteCar(const string &);
+        -:   75:
+        -:   76:    /*
+        -:   77:        Modifica o masina din lista de masini
+        -:   78:        @pre: string -> numar de inmatriculare
+        -:   79:              string -> producator
+        -:   80:              string -> model
+        -:   81:              string -> tip
+        -:   82:        @post: masina modificata
+        -:   83:        @exception: nu exista masina in lista
+        -:   84:    */
+        -:   85:    Car modifyCar(const Car &);
+        -:   86:
+        -:   87:    /*
+        -:   88:        Functie de copiere (deep copy)
+        -:   89:        @pre: true
+        -:   90:        @post: lista de masini este copiata
+        -:   91:    */
+        -:   92:    static carList copyList(const carList&) ;
+        -:   93:};
+        -:   94:

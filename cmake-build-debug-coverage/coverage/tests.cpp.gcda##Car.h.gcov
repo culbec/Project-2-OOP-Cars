@@ -1,0 +1,72 @@
+        -:    0:Source:/home/culbec/OOP/Project-2-OOP-Cars/Headers/Car.h
+        -:    0:Graph:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.gcno
+        -:    0:Data:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#pragma once
+        -:    2:
+        -:    3:#include <string>
+        -:    4:
+        -:    5:using std::string;
+        -:    6:
+        -:    7:class Car {
+        -:    8:private:
+        -:    9:    // O masina contine un ID unic - nr. inmatriculare
+        -:   10:    // pe de alta parte, contine un model si un tip
+        -:   11:    string regNumber, producer, model, type;
+        -:   12:public:
+        -:   13:    // constructor explicit, instantiaza un obiect cu anumite atribute
+        -:   14:    /*
+        -:   15:        @pre: atributele trebuie sa fie de tip string
+        -:   16:        @post: se creeaza obiectul cu atributele specificate
+        -:   17:    */
+        -:   18:    Car(string, string, string, string);
+        -:   19:
+        -:   20:    // copy constructor
+        -:   21:    Car(const Car &other);
+        -:   22:
+        -:   23:    // gettere peste atributele obiectului
+        -:   24:    string getRegNumber() const;
+        -:   25:
+        -:   26:    string getProducer() const;
+        -:   27:
+        -:   28:    string getModel() const;
+        -:   29:
+        -:   30:    string getType() const;
+        -:   31:
+        -:   32:    // settere peste atributele obiectului, atribute ce pot fi modificate
+        -:   33:    // am ales arbitrar ca acestea sa fie producatorul, modelul si tipul
+        -:   34:    /*
+        -:   35:        @pre: atributele trebuie sa fie de tip string, fiind de asemenea o referinta
+        -:   36:        @post: obiectul isi modifica atributele specificate
+        -:   37:    */
+        -:   38:    void setRegNumber(const string &);
+        -:   39:
+        -:   40:    void setProducer(const string &);
+        -:   41:
+        -:   42:    void setModel(const string &);
+        -:   43:
+        -:   44:    void setType(const string &);
+        -:   45:
+        -:   46:    // overriding operators
+function _ZNK3CareqERKS_ called 5 returned 100% blocks executed 73%
+        5:   47:    bool operator==(const Car &otherCar) const {
+        5:   48:        return this->getRegNumber() == otherCar.getRegNumber();
+        5:   48-block  0
+call    0 returned 5
+branch  1 taken 5 (fallthrough)
+branch  2 taken 0 (throw)
+        5:   48-block  1
+call    3 returned 5
+branch  4 taken 5 (fallthrough)
+branch  5 taken 0 (throw)
+        5:   48-block  2
+call    6 returned 5
+call    7 returned 5
+call    8 returned 5
+        5:   48-block  3
+    $$$$$:   48-block  4
+    $$$$$:   48-block  5
+call    9 never executed
+        -:   49:    }
+        -:   50:};
+        -:   51:

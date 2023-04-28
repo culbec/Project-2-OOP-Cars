@@ -1,0 +1,305 @@
+        -:    0:Source:/home/culbec/OOP/Project-2-OOP-Cars/Sources/Repository.cpp
+        -:    0:Graph:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.gcno
+        -:    0:Data:/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "../Headers/Repository.h"
+        -:    2:
+function _ZNK10Repository7getCarsEv called 21 returned 100% blocks executed 100%
+       21:    3:const carList &Repository::getCars() const { return this->cars; }
+       21:    3-block  0
+        -:    4:
+function _ZNK10Repository7getSizeEv called 6 returned 100% blocks executed 100%
+        6:    5:size_t Repository::getSize() const noexcept { return this->cars.size(); }
+        6:    5-block  0
+call    0 returned 6
+        -:    6:
+function _ZNK10Repository7findCarERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 29 returned 31% blocks executed 69%
+       29:    7:unsigned int Repository::findCar(const string &regNumberToFind) const {
+        -:    8:    /*for (auto i = 0; i < this->cars.size(); i++)
+        -:    9:        if (this->cars.at(i).getRegNumber() == regNumberToFind)
+        -:   10:            return i;*/
+function _ZZNK10Repository7findCarERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEENKUlRK3CarE_clESA_ called 51 returned 100% blocks executed 100%
+       29:   11:    auto found = std::find_if(this->cars.begin(), this->cars.end(), [regNumberToFind](const Car &car) {
+       29:   11-block  0
+call    0 returned 29
+call    1 returned 29
+call    2 returned 29
+branch  3 taken 29 (fallthrough)
+branch  4 taken 0 (throw)
+       29:   11-block  1
+call    5 returned 29
+    $$$$$:   11-block  2
+call    6 never executed
+    $$$$$:   11-block  3
+       51:   12:        return car.getRegNumber() == regNumberToFind;
+       51:   12-block  0
+call    0 returned 51
+branch  1 taken 51 (fallthrough)
+branch  2 taken 0 (throw)
+       51:   12-block  1
+call    3 returned 51
+call    4 returned 51
+       51:   12-block  2
+        -:   13:    });
+        -:   14:
+       29:   15:    if(found != this->cars.end())
+call    0 returned 29
+call    1 returned 29
+branch  2 taken 9 (fallthrough)
+branch  3 taken 20
+        9:   16:        return found - this->cars.begin();
+        9:   16-block  0
+call    0 returned 9
+call    1 returned 9
+        9:   16-block  1
+       20:   17:    throw RepositoryException("Masina nu exista in lista!\n");
+       20:   17-block  0
+call    0 returned 20
+call    1 returned 20
+call    2 returned 20
+branch  3 taken 20 (fallthrough)
+branch  4 taken 0 (throw)
+       20:   17-block  1
+call    5 returned 20
+call    6 returned 20
+call    7 returned 20
+call    8 returned 20
+    $$$$$:   17-block  2
+call    9 never executed
+    $$$$$:   17-block  3
+    $$$$$:   17-block  4
+    $$$$$:   17-block  5
+call   10 never executed
+       29:   18:}
+       29:   18-block  0
+call    0 returned 29
+branch  1 taken 29 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   19:
+function _ZN10Repository6addCarERK3Car called 17 returned 100% blocks executed 100%
+       17:   20:void Repository::addCar(const Car &carToAdd) {
+       17:   21:    this->cars.push_back(carToAdd);
+       17:   21-block  0
+call    0 returned 17
+       17:   22:}
+        -:   23:
+function _ZN10Repository9deleteCarERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 4 returned 50% blocks executed 71%
+        4:   24:Car Repository::deleteCar(const string &regNumberOfCarToDelete) {
+        -:   25:    try {
+        -:   26:        /*const size_t positionToDelete = findCar(regNumberOfCarToDelete);
+        -:   27:
+        -:   28:        auto iter = this->cars.begin();
+        -:   29:        for (auto i = 0; i < positionToDelete; i++)
+        -:   30:            iter++;
+        -:   31:
+        -:   32:        Car deletedCar(*iter);
+        -:   33:        this->cars.erase(iter);*/
+        -:   34:
+        4:   35:        auto position = this->cars.begin() + findCar(regNumberOfCarToDelete);
+        4:   35-block  0
+call    0 returned 4
+branch  1 taken 2 (fallthrough)
+branch  2 taken 2 (throw)
+        2:   35-block  1
+call    3 returned 2
+call    4 returned 2
+        -:   36:
+        2:   37:        Car deletedCar(*position);
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
+branch  3 taken 0 (throw)
+        2:   38:        this->cars.erase(position);
+        2:   38-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
+branch  3 taken 0 (throw)
+    $$$$$:   38-block  1
+        -:   39:
+        4:   40:        return deletedCar;
+        2:   40-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:   40-block  1
+        2:   41:    }
+        2:   41-block  0
+call    0 returned 2
+    $$$$$:   41-block  1
+call    1 never executed
+        2:   42:    catch (const RepositoryException &) {
+        2:   42-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 2
+        2:   42-block  1
+call    2 returned 2
+        2:   43:        throw RepositoryException("Nu se poate sterge deoarece nu exista masina in lista!\n");
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+branch  3 taken 2 (fallthrough)
+branch  4 taken 0 (throw)
+        2:   43-block  0
+call    5 returned 2
+call    6 returned 2
+call    7 returned 2
+call    8 returned 2
+    $$$$$:   43-block  1
+call    9 never executed
+    $$$$$:   43-block  2
+    $$$$$:   43-block  3
+    $$$$$:   43-block  4
+call   10 never executed
+        2:   44:    }
+        2:   44-block  0
+call    0 returned 2
+        -:   45:}
+        -:   46:
+function _ZN10Repository9modifyCarERK3Car called 4 returned 50% blocks executed 62%
+        4:   47:Car Repository::modifyCar(const Car &newCar) {
+        -:   48:    try {
+        -:   49:        /*const size_t positionToModify = findCar(newCar.getRegNumber());
+        -:   50:
+        -:   51:        auto iter = this->cars.begin();
+        -:   52:        for (auto i = 0; i < positionToModify; i++) iter++;
+        -:   53:
+        -:   54:        Car modifiedCar(*iter);
+        -:   55:        *iter = Car(newCar.getRegNumber(), newCar.getProducer(), newCar.getModel(), newCar.getType());*/
+        -:   56:
+        6:   57:        auto position = this->cars.begin() + findCar(newCar.getRegNumber());
+        4:   57-block  0
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        4:   57-block  1
+call    3 returned 4
+branch  4 taken 2 (fallthrough)
+branch  5 taken 2 (throw)
+        2:   57-block  2
+call    6 returned 2
+call    7 returned 2
+call    8 returned 2
+        2:   57-block  3
+call    9 returned 2
+        2:   57-block  4
+        -:   58:
+        2:   59:        Car modifiedCar(*position);
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
+branch  3 taken 0 (throw)
+        2:   60:        *position = Car(newCar.getRegNumber(), newCar.getProducer(), newCar.getModel(), newCar.getType());
+        2:   60-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:   60-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
+branch  5 taken 0 (throw)
+        2:   60-block  2
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
+branch  8 taken 0 (throw)
+        2:   60-block  3
+call    9 returned 2
+branch 10 taken 2 (fallthrough)
+branch 11 taken 0 (throw)
+        2:   60-block  4
+call   12 returned 2
+branch 13 taken 2 (fallthrough)
+branch 14 taken 0 (throw)
+        2:   60-block  5
+call   15 returned 2
+call   16 returned 2
+branch 17 taken 2 (fallthrough)
+branch 18 taken 0 (throw)
+        2:   60-block  6
+call   19 returned 2
+call   20 returned 2
+call   21 returned 2
+call   22 returned 2
+call   23 returned 2
+    $$$$$:   60-block  7
+call   24 never executed
+    $$$$$:   60-block  8
+call   25 never executed
+    $$$$$:   60-block  9
+    $$$$$:   60-block 10
+call   26 never executed
+    $$$$$:   60-block 11
+    $$$$$:   60-block 12
+call   27 never executed
+    $$$$$:   60-block 13
+    $$$$$:   60-block 14
+call   28 never executed
+    $$$$$:   60-block 15
+    $$$$$:   60-block 16
+        -:   61:
+        4:   62:        return modifiedCar;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0 (throw)
+        2:   62-block  0
+        2:   63:    }
+        2:   63-block  0
+call    0 returned 2
+    $$$$$:   63-block  1
+call    1 never executed
+        2:   64:    catch (const RepositoryException &) {
+        2:   64-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 2
+        2:   64-block  1
+call    2 returned 2
+        2:   65:        throw RepositoryException("Nu se poate modifica deoarece nu exista masina in lista!\n");
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+branch  3 taken 2 (fallthrough)
+branch  4 taken 0 (throw)
+        2:   65-block  0
+call    5 returned 2
+call    6 returned 2
+call    7 returned 2
+call    8 returned 2
+    $$$$$:   65-block  1
+call    9 never executed
+    $$$$$:   65-block  2
+    $$$$$:   65-block  3
+    $$$$$:   65-block  4
+call   10 never executed
+        2:   66:    }
+        2:   66-block  0
+call    0 returned 2
+        -:   67:}
+        -:   68:
+function _ZN10Repository8copyListERKSt6vectorI3CarSaIS1_EE called 6 returned 100% blocks executed 89%
+        6:   69:carList Repository::copyList(const carList &list) {
+        -:   70:    /*carList copyList;
+        -:   71:
+        -:   72:    for (auto &car: list) {
+        -:   73:        const Car &copyCar(car);
+        -:   74:        copyList.push_back(copyCar);
+        -:   75:    }*/
+        -:   76:
+        6:   77:    carList copyList;
+        6:   77-block  0
+call    0 returned 6
+        6:   78:    copy(list.begin(), list.end(), back_inserter(copyList));
+call    0 returned 6
+branch  1 taken 6 (fallthrough)
+branch  2 taken 0 (throw)
+        6:   78-block  0
+call    3 returned 6
+call    4 returned 6
+call    5 returned 6
+branch  6 taken 6 (fallthrough)
+branch  7 taken 0 (throw)
+        -:   79:
+        6:   80:    return copyList; }
+        6:   80-block  0
+        6:   80-block  1
+    $$$$$:   80-block  2
+call    0 never executed
