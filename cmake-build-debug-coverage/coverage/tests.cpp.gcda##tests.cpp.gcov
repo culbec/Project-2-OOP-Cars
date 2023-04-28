@@ -3113,7 +3113,7 @@ branch  5 taken 0 (throw)
         -:  305:
         -:  306:    // testam si exceptii multiple
         -:  307:    try {
-        1:  308:        carValid.validateCar(badCar1, carRepo);
+        1:  308:        Validator::validateCar(badCar1, carRepo);
         1:  308-block  0
 call    0 returned 1
 branch  1 taken 0 (fallthrough)
@@ -3133,7 +3133,7 @@ branch  4 taken 1 (fallthrough)
 branch  5 taken 0 (throw)
         -:  312:
         -:  313:    try {
-        1:  314:        carValid.validateCar(badCar2, carRepo);
+        1:  314:        Validator::validateCar(badCar2, carRepo);
         1:  314-block  0
 call    0 returned 1
 branch  1 taken 0 (fallthrough)

@@ -4,10 +4,10 @@
         -:    0:Runs:1
         -:    1:#include "../Headers/Service.h"
         -:    2:
-function _ZN7ServiceC2Ev called 3 returned 100% blocks executed 100%
-        3:    3:Service::Service() noexcept: carRepository(Repository()) {}
-        3:    3-block  0
-call    0 returned 3
+function _ZN7ServiceC2Ev called 2 returned 100% blocks executed 100%
+        2:    3:Service::Service() noexcept: carRepository(Repository()) {}
+        2:    3-block  0
+call    0 returned 2
         -:    4:
         -:    5://const Repository& Service::getRepository() const { return this->carRepository; }
         -:    6:

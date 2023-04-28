@@ -79,14 +79,14 @@ function _ZN4NodeI3CarE7setNextEPS1_ called 29 returned 100% blocks executed 100
         -:   60:    unsigned int sizeLDI;
         -:   61:
         -:   62:    // functie de delete a listei inlantuite
-function _ZN3LDII3CarE11deleteNodesEP4NodeIS0_E called 42 returned 100% blocks executed 100%
-       42:   63:    void deleteNodes(Node<TElem> *ref) {
-       42:   64:        if (ref == ultim)
-       42:   64-block  0
-branch  0 taken 20 (fallthrough)
+function _ZN3LDII3CarE11deleteNodesEP4NodeIS0_E called 41 returned 100% blocks executed 100%
+       41:   63:    void deleteNodes(Node<TElem> *ref) {
+       41:   64:        if (ref == ultim)
+       41:   64-block  0
+branch  0 taken 19 (fallthrough)
 branch  1 taken 22
-       20:   65:            return;
-       20:   65-block  0
+       19:   65:            return;
+       19:   65-block  0
        22:   66:        deleteNodes(ref->getNext());
        22:   66-block  0
 call    0 returned 22
@@ -101,8 +101,8 @@ call    3 returned 22
         -:   69:
         -:   70:public:
         -:   71:    // constructor
-function _ZN3LDII3CarEC2Ev called 15 returned 100% blocks executed 100%
-       15:   72:    LDI<TElem>() : prim{nullptr}, ultim{nullptr}, sizeLDI{0} {}
+function _ZN3LDII3CarEC2Ev called 14 returned 100% blocks executed 100%
+       14:   72:    LDI<TElem>() : prim{nullptr}, ultim{nullptr}, sizeLDI{0} {}
         -:   73:
         -:   74:    // constructor de copiere
         -:   75:    LDI<TElem>(const LDI<TElem> &other) : prim{nullptr}, ultim{nullptr}, sizeLDI{0} {
@@ -385,8 +385,8 @@ call    0 returned 10
 call    1 returned 10
         -:  260:
         -:  261:    // destructor
-function _ZN3LDII3CarED2Ev called 18 returned 100% blocks executed 100%
-       18:  262:    ~LDI() { this->deleteNodes(this->prim); }
-       18:  262-block  0
-call    0 returned 18
+function _ZN3LDII3CarED2Ev called 17 returned 100% blocks executed 100%
+       17:  262:    ~LDI() { this->deleteNodes(this->prim); }
+       17:  262-block  0
+call    0 returned 17
         -:  263:};
