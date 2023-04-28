@@ -79,6 +79,13 @@ public:
 
     void uiSortProducerModel() const;
 
+    // functiile pentru washing list
+    void uiAddToWash();
+
+    void uiClearWash();
+
+    void uiGenerateRandomWash();
+
     // rulare pentru UI
     void uiRun();
 };

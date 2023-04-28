@@ -5,10 +5,15 @@
 #include <vector>
 #include <exception>
 #include <algorithm>
+#include <iterator>
 
 using std::vector;
 using std::exception;
 using std::remove;
+using std::find_if;
+using std::copy;
+using std::back_inserter;
+using std::copy_if;
 
 typedef vector<Car> carList;
 

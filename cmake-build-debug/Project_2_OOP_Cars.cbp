@@ -93,6 +93,9 @@
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Service.h">
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Spalatorie.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/UI.h">
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>
@@ -109,6 +112,9 @@
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/Service.cpp">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/Spalatorie.cpp">
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/UI.cpp">

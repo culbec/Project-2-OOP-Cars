@@ -18,4 +18,4 @@ add_executable(Project_2_OOP_Cars
         Sources/tests.cpp
         Sources/UI.cpp
         Sources/Validator.cpp
-        main.cpp)
+        main.cpp Headers/Spalatorie.h Sources/Spalatorie.cpp)

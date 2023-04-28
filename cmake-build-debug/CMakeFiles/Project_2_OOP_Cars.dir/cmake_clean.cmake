@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o.d"
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o"
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o.d"
+  "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Spalatorie.cpp.o"
+  "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Spalatorie.cpp.o.d"
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o"
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o.d"
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o"

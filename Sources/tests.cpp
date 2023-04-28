@@ -1,6 +1,7 @@
 #include "../Headers/Car.h"
 #include "../Headers/Service.h"
 #include "../Headers/tests.h"
+#include "../Headers/Spalatorie.h"
 
 void domainTests() {
     // initializam o noua masina
@@ -415,6 +416,19 @@ void serviceTests() {
     }
     catch (const ServiceException &) { assert(true); }
 
+    // washing list tests in service
+    assert(carService.getWashingList().washSize() == 0);
+    try {
+        carService.addToWashingList("TM09JOL");
+        assert(false);
+    }
+    catch (ServiceException &) { assert(true); }
+
+    carService.addToWashingList("CT01ZIL");
+    carService.clearWashingList();
+
+    carService.randomWashingList(2, carService.getCars());
+    assert(carService.getWashingList().washSize() == 2);
 }
 
 void sortTests() {
@@ -439,6 +453,35 @@ void sortTests() {
     assert(sortedProducerModel.at(1).getProducer() == "Seat" && sortedProducerModel.at(1).getModel() == "Ibiza");
 }
 
+void washingListTests() {
+    WashingList washingList;
+    vector<Car> cars;
+
+    Car car1("VS48TUD", "Volkswagen", "Tiguan", "SUV");
+    Car car2("VS75SEP", "Skoda", "Fabia", "Hatch");
+    Car car3("CJ99LOL", "Seat", "Ibiza", "Sport");
+
+    cars.push_back(car1);
+    cars.push_back(car2);
+    cars.push_back(car3);
+
+    assert(cars.size() == 3);
+
+    washingList.addToWash(car1);
+    assert(washingList.washSize() == 1);
+    washingList.addToWash(car2);
+    assert(washingList.washSize() == 2);
+    washingList.addToWash(car3);
+    assert(washingList.washSize() == 3);
+
+    washingList.clearWash();
+    assert(washingList.washSize() == 0);
+
+    vector<Car> copyList = Repository::copyList(cars);
+    vector<Car> randomList = WashingList::generateRandom(2, copyList);
+    assert(randomList.size() == 2);
+}
+
 void runTests() {
     domainTests();
     repositoryTests();
@@ -446,4 +489,5 @@ void runTests() {
     serviceTests();
 
     sortTests();
+    washingListTests();
 }

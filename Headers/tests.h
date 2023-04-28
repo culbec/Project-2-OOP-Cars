@@ -20,3 +20,6 @@ void serviceTests();
 
 // run sort tests
 void sortTests();
+
+// run washing list tests
+void washingListTests();

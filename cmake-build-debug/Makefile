@@ -201,6 +201,30 @@ Sources/Service.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2_OOP_Cars.dir/build.make CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.s
 .PHONY : Sources/Service.cpp.s
 
+Sources/Spalatorie.o: Sources/Spalatorie.cpp.o
+.PHONY : Sources/Spalatorie.o
+
+# target to build an object file
+Sources/Spalatorie.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2_OOP_Cars.dir/build.make CMakeFiles/Project_2_OOP_Cars.dir/Sources/Spalatorie.cpp.o
+.PHONY : Sources/Spalatorie.cpp.o
+
+Sources/Spalatorie.i: Sources/Spalatorie.cpp.i
+.PHONY : Sources/Spalatorie.i
+
+# target to preprocess a source file
+Sources/Spalatorie.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2_OOP_Cars.dir/build.make CMakeFiles/Project_2_OOP_Cars.dir/Sources/Spalatorie.cpp.i
+.PHONY : Sources/Spalatorie.cpp.i
+
+Sources/Spalatorie.s: Sources/Spalatorie.cpp.s
+.PHONY : Sources/Spalatorie.s
+
+# target to generate assembly for a file
+Sources/Spalatorie.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2_OOP_Cars.dir/build.make CMakeFiles/Project_2_OOP_Cars.dir/Sources/Spalatorie.cpp.s
+.PHONY : Sources/Spalatorie.cpp.s
+
 Sources/UI.o: Sources/UI.cpp.o
 .PHONY : Sources/UI.o
 
@@ -315,6 +339,9 @@ help:
 	@echo "... Sources/Service.o"
 	@echo "... Sources/Service.i"
 	@echo "... Sources/Service.s"
+	@echo "... Sources/Spalatorie.o"
+	@echo "... Sources/Spalatorie.i"
+	@echo "... Sources/Spalatorie.s"
 	@echo "... Sources/UI.o"
 	@echo "... Sources/UI.i"
 	@echo "... Sources/UI.s"

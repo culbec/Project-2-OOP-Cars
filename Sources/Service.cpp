@@ -126,3 +126,31 @@ carList Service::sortProducerModel(const carList &list) {
 
     return toSort;
 }
+
+WashingList Service::getWashingList() const {
+    return this->washingList;
+}
+
+void Service::addToWashingList(const std::string &regNumber) {
+    auto found = std::find_if(this->getCars().begin(), this->getCars().end(), [regNumber](const Car &car) {
+        return car.getRegNumber() == regNumber;
+    });
+
+    if (found == this->getCars().end())
+        throw ServiceException("Nu exista masina cu numarul de inmatriculare!\n");
+
+    this->washingList.addToWash(*found);
+}
+
+void Service::clearWashingList() {
+    this->washingList.clearWash();
+}
+
+void Service::randomWashingList(unsigned int numberToGenerate, const vector<Car> &cars) {
+    vector<Car> toRandomize = Repository::copyList(cars);
+
+    this->washingList.clearWash();
+    vector<Car> randomWash = WashingList::generateRandom(numberToGenerate, toRandomize);
+    for(const auto& car: randomWash)
+        this->washingList.addToWash(car);
+}
