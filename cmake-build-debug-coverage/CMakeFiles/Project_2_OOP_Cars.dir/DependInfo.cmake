@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/culbec/OOP/Project-2-OOP-Cars/Sources/Car.cpp" "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o" "gcc" "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o.d"
+  "/home/culbec/OOP/Project-2-OOP-Cars/Sources/DTO.cpp" "CMakeFiles/Project_2_OOP_Cars.dir/Sources/DTO.cpp.o" "gcc" "CMakeFiles/Project_2_OOP_Cars.dir/Sources/DTO.cpp.o.d"
   "/home/culbec/OOP/Project-2-OOP-Cars/Sources/Repository.cpp" "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o" "gcc" "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o.d"
   "/home/culbec/OOP/Project-2-OOP-Cars/Sources/Service.cpp" "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o" "gcc" "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o.d"
   "/home/culbec/OOP/Project-2-OOP-Cars/Sources/Spalatorie.cpp" "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Spalatorie.cpp.o" "gcc" "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Spalatorie.cpp.o.d"

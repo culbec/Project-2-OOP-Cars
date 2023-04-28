@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o"
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o.d"
+  "CMakeFiles/Project_2_OOP_Cars.dir/Sources/DTO.cpp.o"
+  "CMakeFiles/Project_2_OOP_Cars.dir/Sources/DTO.cpp.o.d"
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o"
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o.d"
   "CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o"

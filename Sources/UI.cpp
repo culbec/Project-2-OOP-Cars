@@ -8,6 +8,7 @@ void UI::uiCommands() {
     cout << "help, show_cars, add_car, delete_car, modify_car, find_car, filter_producer, filter_type, "
             "sort_reg_number, sort_type, sort _producer_model, exit.\n";
     cout << "Washing List commands: add_to_wash, clear_wash, generate_wash\n";
+    cout << "Count models: count_models\n";
 }
 
 void UI::uiShowCars() const {
@@ -211,6 +212,20 @@ void UI::uiGenerateRandomWash() {
     cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
 }
 
+void UI::uiCountModels() const {
+    if(this->carService.getCars().empty()) {
+        cout << "Nu exista masini in lista!\n";
+        return;
+    }
+
+    unordered_map<string, DTO> totalModels = this->carService.countModels();
+
+    cout << "The models are: \n";
+
+    for(const auto& entry: totalModels)
+        cout << entry.first << " " << entry.second.getCount() << "\n";
+}
+
 void UI::uiRun() {
     string option;
     while (true) {
@@ -245,6 +260,8 @@ void UI::uiRun() {
             this->uiClearWash();
         else if (option == "generate_wash")
             this->uiGenerateRandomWash();
+        else if (option == "count_models")
+            this->uiCountModels();
         else if (option == "exit") {
             cout << "Leaving...";
             return;

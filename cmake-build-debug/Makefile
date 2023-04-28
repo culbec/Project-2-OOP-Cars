@@ -153,6 +153,30 @@ Sources/Car.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2_OOP_Cars.dir/build.make CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.s
 .PHONY : Sources/Car.cpp.s
 
+Sources/DTO.o: Sources/DTO.cpp.o
+.PHONY : Sources/DTO.o
+
+# target to build an object file
+Sources/DTO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2_OOP_Cars.dir/build.make CMakeFiles/Project_2_OOP_Cars.dir/Sources/DTO.cpp.o
+.PHONY : Sources/DTO.cpp.o
+
+Sources/DTO.i: Sources/DTO.cpp.i
+.PHONY : Sources/DTO.i
+
+# target to preprocess a source file
+Sources/DTO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2_OOP_Cars.dir/build.make CMakeFiles/Project_2_OOP_Cars.dir/Sources/DTO.cpp.i
+.PHONY : Sources/DTO.cpp.i
+
+Sources/DTO.s: Sources/DTO.cpp.s
+.PHONY : Sources/DTO.s
+
+# target to generate assembly for a file
+Sources/DTO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2_OOP_Cars.dir/build.make CMakeFiles/Project_2_OOP_Cars.dir/Sources/DTO.cpp.s
+.PHONY : Sources/DTO.cpp.s
+
 Sources/Repository.o: Sources/Repository.cpp.o
 .PHONY : Sources/Repository.o
 
@@ -333,6 +357,9 @@ help:
 	@echo "... Sources/Car.o"
 	@echo "... Sources/Car.i"
 	@echo "... Sources/Car.s"
+	@echo "... Sources/DTO.o"
+	@echo "... Sources/DTO.i"
+	@echo "... Sources/DTO.s"
 	@echo "... Sources/Repository.o"
 	@echo "... Sources/Repository.i"
 	@echo "... Sources/Repository.s"

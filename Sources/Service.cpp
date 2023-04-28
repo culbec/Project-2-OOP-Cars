@@ -154,3 +154,20 @@ void Service::randomWashingList(unsigned int numberToGenerate, const vector<Car>
     for(const auto& car: randomWash)
         this->washingList.addToWash(car);
 }
+
+std::unordered_map<string, DTO> Service::countModels() const {
+    unordered_map<string, DTO> totalModels;
+
+    for(const auto& car: this->getCars())
+        if(totalModels.find(car.getModel()) == totalModels.end()){
+            auto model = car.getModel();
+            auto count = std::count_if(this->getCars().begin(), this->getCars().end(), [model](const Car& car){
+                    return car.getModel() == model;
+            });
+
+            DTO dto(model, count);
+            totalModels.insert({model, dto});
+        }
+
+    return totalModels;
+}

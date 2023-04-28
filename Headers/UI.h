@@ -86,6 +86,8 @@ public:
 
     void uiGenerateRandomWash();
 
+    void uiCountModels() const;
+
     // rulare pentru UI
     void uiRun();
 };

@@ -87,6 +87,9 @@
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Car.h">
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/DTO.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Repository.h">
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>
@@ -106,6 +109,9 @@
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/Car.cpp">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/DTO.cpp">
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/Repository.cpp">

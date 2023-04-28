@@ -1,13 +1,16 @@
 #pragma once
 
 #include "Validator.h"
+#include "DTO.h"
 #include "Repository.h"
 #include "Spalatorie.h"
 #include <algorithm>
+#include <unordered_map>
 
 using std::sort;
 using std::find_if;
 using std::copy_if;
+using std::unordered_map;
 
 class ServiceException : std::exception {
 private:
@@ -122,5 +125,8 @@ public:
      * @post Se genereaza lista random de masini de spalat
      */
     void randomWashingList(unsigned int, const vector<Car> &);
+
+    // counting all the models using UM
+    unordered_map<string, DTO> countModels() const;
 
 };

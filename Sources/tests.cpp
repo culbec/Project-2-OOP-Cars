@@ -482,6 +482,21 @@ void washingListTests() {
     assert(randomList.size() == 2);
 }
 
+void dtoTests() {
+    Service carService;
+
+    carService.addCarService("VS99LLA", "Volkswagen", "Tiguan", "SUV");
+    carService.addCarService("BH91UJL", "Skoda", "Superb", "Sedan");
+    carService.addCarService("MS87MBL", "Seat", "Ibiza", "SUV");
+    carService.addCarService("TL99OAL", "Seat", "Ibiza", "Hatch");
+
+    unordered_map<string, DTO> totalModels = carService.countModels();
+
+    assert(totalModels["Ibiza"].getCount() == 2);
+    assert(totalModels["Ibiza"].getModel() == "Ibiza");
+}
+
+
 void runTests() {
     domainTests();
     repositoryTests();
@@ -490,4 +505,6 @@ void runTests() {
 
     sortTests();
     washingListTests();
+
+    dtoTests();
 }
