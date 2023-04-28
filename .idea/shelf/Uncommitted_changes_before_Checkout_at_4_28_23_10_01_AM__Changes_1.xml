@@ -1,0 +1,79 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1" date="1682665310524" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 4/28/23 10:01 AM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/.ninja_deps" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/.ninja_deps" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/.ninja_deps" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.gcno" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.gcno" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/tests.cpp.gcno" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/UI.cpp.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/main.cpp.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/Car.cpp.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/3.25.2/CompilerIdCXX/a-CMakeCXXCompilerId.gcno" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/3.25.2/CompilerIdCXX/a-CMakeCXXCompilerId.gcno" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/a-CMakeCXXCompilerId.gcno" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.gcno" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.gcno" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/Validator.cpp.gcno" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/tests.cpp.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/3.25.2/CompilerIdC/a-CMakeCCompilerId.gcno" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/3.25.2/CompilerIdC/a-CMakeCCompilerId.gcno" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/a-CMakeCCompilerId.gcno" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_CXX.bin" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_CXX.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/CMakeDetermineCompilerABI_CXX.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/CMakeDetermineCompilerABI_C.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/Validator.cpp.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.gcno" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.gcno" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/Car.cpp.gcno" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.gcno" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.gcno" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/main.cpp.gcno" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.gcno" />
+    <option name="AFTER_PATH" value="cmake-build-debug-coverage/CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.gcno" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_23_10_01_AM_[Changes]1/UI.cpp.gcno" />
+  </binary>
+</changelist>
