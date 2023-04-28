@@ -1,7 +1,5 @@
 #include "../Headers/Repository.h"
 
-Repository::Repository() noexcept = default;
-
 const carList &Repository::getCars() const { return this->cars; }
 
 size_t Repository::getSize() const noexcept { return this->cars.size(); }
@@ -52,18 +50,13 @@ Car Repository::modifyCar(const Car &newCar) {
     }
 }
 
-carList Repository::copyList() const {
+carList Repository::copyList(const carList& list) {
     carList copyList;
 
-    for (auto &car: this->cars) {
+    for (auto &car: list) {
         const Car &copyCar(car);
         copyList.push_back(copyCar);
     }
-
-//	for(auto iter = this->cars.begin(); iter != this->cars.end(); iter++) {
-//		Car copyCar(*iter);
-//		copyList.push_back(copyCar);
-//	}
 
     return copyList;
 }

@@ -13,7 +13,7 @@ using std::remove;
 typedef vector<Car> carList;
 
 // declaram o exceptie custom pentru repository:
-class RepositoryException {
+class RepositoryException:std::exception {
 private:
     string errorMessage;
 public:
@@ -28,7 +28,7 @@ class Repository {
 private:
     carList cars; // lista de masini
 public:
-    Repository() noexcept;
+    Repository() noexcept = default;
 
     /*
         Returneaza lista de masini a repository-ului
@@ -84,6 +84,6 @@ public:
         @pre: true
         @post: lista de masini este copiata
     */
-    carList copyList() const;
+    static carList copyList(const carList&) ;
 };
 

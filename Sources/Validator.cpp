@@ -20,29 +20,36 @@ bool Validator::validateRegNumber(const Car &car) {
             if ((regNumber.at(1) >= '1' && regNumber.at(1) <= '9') &&
                 (regNumber.at(2) >= '0' && regNumber.at(2) <= '9') &&
                 (regNumber.at(3) >= '0' && regNumber.at(3) <= '9')) { //numar de genul B132XYZ
-                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors +
-                                                                                  "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
-                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors +
-                                                                                       "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
-                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z')) errors = errors +
-                                                                                       "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
+                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z'))
+                    errors = errors +
+                             "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
+                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z'))
+                    errors = errors +
+                             "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
+                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z'))
+                    errors = errors +
+                             "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
             } else
                 errors = errors + "'B' trebuie sa fie urmat de 3 cifre!\n";
         } else {
             // numar de genul B10YCZ
-            if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z')) errors = errors +
-                                                                              "'B' trebuie sa fie urmat de 2 cifre si 3 litere!\n";
+            if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z'))
+                errors = errors +
+                         "'B' trebuie sa fie urmat de 2 cifre si 3 litere!\n";
             else if ((regNumber.at(1) >= '0' && regNumber.at(1) <= '9') &&
                      (regNumber.at(2) >= '0' && regNumber.at(2) <= '9')) { // avem numar de genul B100XYZ
                 // numar de genul B10_YZ
-                if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z')) errors = errors +
-                                                                                  "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
+                if (!(regNumber.at(3) >= 'A' && regNumber.at(3) <= 'Z'))
+                    errors = errors +
+                             "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
                     // numar de genul B10X_Z
-                else if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors +
-                                                                                       "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
+                else if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z'))
+                    errors = errors +
+                             "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
                     // numar de genul B10XY_
-                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors +
-                                                                                       "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
+                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z'))
+                    errors = errors +
+                             "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
             } else errors = errors + "'B' trebuie sa fie urmat de 2 cifre si 3 litere!\n";
         }
     } else {
@@ -51,12 +58,15 @@ bool Validator::validateRegNumber(const Car &car) {
         else {
             if ((regNumber.at(2) >= '0' && regNumber.at(2) <= '9') &&
                 (regNumber.at(3) >= '0' && regNumber.at(3) <= '9')) {
-                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z')) errors = errors +
-                                                                                  "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
-                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z')) errors = errors +
-                                                                                       "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
-                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z')) errors = errors +
-                                                                                       "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
+                if (!(regNumber.at(4) >= 'A' && regNumber.at(4) <= 'Z'))
+                    errors = errors +
+                             "Caracterul de pe pozitia 5 trebuie sa fie litera majuscula!\n";
+                else if (!(regNumber.at(5) >= 'A' && regNumber.at(5) <= 'Z'))
+                    errors = errors +
+                             "Caracterul de pe pozitia 6 trebuie sa fie litera majuscula!\n";
+                else if (!(regNumber.at(6) >= 'A' && regNumber.at(6) <= 'Z'))
+                    errors = errors +
+                             "Caracterul de pe pozitia 7 trebuie sa fie litera majuscula!\n";
             } else errors = errors + "Judetul trebuie sa fie urmat de 2 cifre!\n";
         }
     }
@@ -77,7 +87,7 @@ bool Validator::validateProducer(const Car &car) {
         errors += "Producatorul trebuie sa inceapa cu majuscula!\n";
 
     for (unsigned int i = 1; i < producer.size(); i++)
-        if (!(producer.at(i) >= 'a' && producer.at(i) <= 'z')) {
+        if (!(producer.at(i) >= 'a' && producer.at(i) <= 'z') && !(producer.at(i) >= 'A' && producer.at(i) <= 'Z')) {
             errors += "Producatorul trebuie sa contina doar litere!\n";
             break;
         }
@@ -104,27 +114,27 @@ bool Validator::validateType(const Car &car) {
     return true;
 }
 
-bool Validator::validateCar(const Car &car, const Repository &carRepo) const {
+bool Validator::validateCar(const Car &car, const Repository &carRepo) {
     string errors; // aici salvam erorile
 
     try {
         validateRegNumber(car);
     }
-    catch (ValidatorException validatorException) {
+    catch (ValidatorException &validatorException) {
         errors += validatorException.getMessage();
     }
 
     try {
         validateProducer(car);
     }
-    catch (ValidatorException validatorException) {
+    catch (ValidatorException &validatorException) {
         errors += validatorException.getMessage();
     }
 
     try {
         validateModel(car);
     }
-    catch (ValidatorException validatorException) {
+    catch (ValidatorException &validatorException) {
         errors += validatorException.getMessage();
     }
 
@@ -132,7 +142,7 @@ bool Validator::validateCar(const Car &car, const Repository &carRepo) const {
         carRepo.findCar(car.getRegNumber());
         errors += "Masina exista deja in lista!\n";
     }
-    catch (RepositoryException repositoryException) {}
+    catch (RepositoryException &repositoryException) {}
 
     if (!errors.empty())
         throw ValidatorException(errors);

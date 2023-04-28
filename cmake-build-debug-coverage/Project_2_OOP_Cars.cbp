@@ -87,12 +87,6 @@
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Car.h">
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>
-		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/IteratorLDI.h">
-			<Option target="Project_2_OOP_Cars"/>
-		</Unit>
-		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/LDI.h">
-			<Option target="Project_2_OOP_Cars"/>
-		</Unit>
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Repository.h">
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>

@@ -9,7 +9,7 @@ private:
     Service carService;
 public:
     // constructorul implicit al UI-ului
-    UI() noexcept;
+    UI() noexcept = default;
 
     // afiseaza comenzile disponibile
     static void uiCommands();
@@ -71,6 +71,13 @@ public:
     */
     void uiFilterByType() const;
 
+
+    // functiile de sortare
+    void uiSortRegNumber() const;
+
+    void uiSortType() const;
+
+    void uiSortProducerModel() const;
 
     // rulare pentru UI
     void uiRun();

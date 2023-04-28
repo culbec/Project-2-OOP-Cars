@@ -1,16 +1,12 @@
 #include "../Headers/Service.h"
 
-Service::Service() noexcept: carRepository(Repository()), carValidator(Validator()) {}
-
-//const Repository& Service::getRepository() const { return this->carRepository; }
-
 const carList &Service::getCars() const { return this->carRepository.getCars(); }
 
 bool Service::addCarService(const string &regNumber, const string &producer, const string &model, const string &type) {
     Car carToAdd(regNumber, producer, model, type); // initializing the car to add
 
-    this->carValidator.validateCar(carToAdd,
-                                   this->carRepository); // may have an exception, but it is handled by the repository
+    Validator::validateCar(carToAdd,
+                           this->carRepository); // may have an exception, but it is handled by the repository
 
     // daca e cu succes, adaugam masina
     this->carRepository.addCar(carToAdd);
@@ -25,17 +21,17 @@ Car Service::modifyCarService(const string &regNumber, const string &newProducer
     string validationErrors;
 
     try {
-        this->carValidator.validateProducer(carModified); // exception handled by the validator
+        Validator::validateProducer(carModified); // exception handled by the validator
     }
     catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
 
     try {
-        this->carValidator.validateModel(carModified); // exception handled by the validator
+        Validator::validateModel(carModified); // exception handled by the validator
     }
     catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
 
     try {
-        this->carValidator.validateType(carModified); // exception handled by the validator
+        Validator::validateType(carModified); // exception handled by the validator
     }
     catch (ValidatorException &vE) { validationErrors += vE.getMessage(); }
 
@@ -62,26 +58,6 @@ Car Service::findCarService(const string &regNumberToFind) {
     return this->carRepository.getCars().at(foundPosition);
 }
 
-//carList Service::filterByProducer(const string& producer, bool(*compareMethod)(const Car&, const string&)) const{
-//	carList filteredCars; // initializam o lista vida
-//
-//	// iteram prin lista
-//	for (auto iter = this->carRepository.getCars().begin(); iter != this->carRepository.getCars().end(); iter++)
-//		if (compareMethod(*iter, producer))
-//			filteredCars.push_back(*iter); // adaugam masina in lista filtrata daca e ok
-//	
-//	// daca lista filtrata e goala, aruncam exceptie
-//	if (filteredCars.size() == 0)
-//		throw ServiceException("Nu exista masini cu producatorul dat!");
-//	
-//	// altfel, returnam lista de masini filtrata
-//	return filteredCars;
-//}
-//
-//carList Service::filterByType(const string& type) const {
-//	carList filtered Cars; // initializam o lista vida
-//}
-
 carList Service::filter(const string &whatFilter, bool(*compareMethod)(const Car &, const string &)) const {
     carList filteredCars; // initializam o lista vida
 
@@ -92,14 +68,61 @@ carList Service::filter(const string &whatFilter, bool(*compareMethod)(const Car
         if (compareMethod(car, whatFilter))
             filteredCars.push_back(car);
 
-//	for (auto iter = currentCarList.begin(); iter != currentCarList.end(); iter++)
-//		if (compareMethod(*iter, whatFilter))
-//			filteredCars.push_back(*iter); // adaugam masina in lista
-
     // aruncam exceptie daca lista e goala
     if (filteredCars.empty())
         throw ServiceException("Nu s-au gasit masini cu parametrul specificat!\n");
 
     // altfel, returnam lista
     return filteredCars;
+}
+
+/*carList Service::generalSort(carList list, bool (*compareMethod)(const Car &, const Car &)) {
+    for(auto i = 0; i < list.size() - 1; i++)
+        for(auto j = i + 1; j < list.size(); j++)
+            if(compareMethod(list.at(i), list.at(j)))
+                list.swap(i, j);
+    return list;
+}*/
+
+carList Service::sortRegNumber(const carList &list) {
+    /*return Service::generalSort(Repository::copyList(list), [](const Car &car1, const Car &car2) {
+        return car1.getRegNumber() > car2.getRegNumber();
+    });*/
+    carList toSort = Repository::copyList(list);
+
+    sort(toSort.begin(), toSort.end(), [](const Car &car1, const Car &car2) {
+        return car1.getRegNumber() < car2.getRegNumber();
+    });
+
+    return toSort;
+}
+
+carList Service::sortType(const carList &list) {
+    /*return Service::generalSort(Repository::copyList(list), [](const Car &car1, const Car &car2) {
+        return car1.getType() > car2.getType();
+    });*/
+    carList toSort = Repository::copyList(list);
+
+    sort(toSort.begin(), toSort.end(), [](const Car &car1, const Car &car2) {
+        return car1.getType() < car2.getType();
+    });
+
+    return toSort;
+}
+
+carList Service::sortProducerModel(const carList &list) {
+    /*return Service::generalSort(Repository::copyList(list), [](const Car &car1, const Car &car2) {
+        if (car1.getProducer() == car2.getProducer())
+            return car1.getModel() > car2.getModel();
+        return car1.getProducer() > car2.getProducer();
+    });*/
+    carList toSort = Repository::copyList(list);
+
+    sort(toSort.begin(), toSort.end(), [](const Car &car1, const Car &car2) {
+        if (car1.getProducer() == car2.getProducer())
+            return car1.getModel() < car2.getModel();
+        return car1.getProducer() < car2.getProducer();
+    });
+
+    return toSort;
 }

@@ -17,3 +17,6 @@ void validatorTests();
 
 // run service tests
 void serviceTests();
+
+// run sort tests
+void sortTests();

@@ -1,8 +1,13 @@
 #pragma once
 
 #include "Validator.h"
+#include <algorithm>
 
-class ServiceException {
+using std::sort;
+using std::find_if;
+using std::copy_if;
+
+class ServiceException:std::exception {
 private:
     string errorMessage;
 public:
@@ -12,19 +17,13 @@ public:
 };
 
 class Service {
-    // declaram clasele Repository si Validator ca friend
-    friend class Repository;
-
-    friend class Validator;
-
 private:
     // fiecare instanta de tip Service va contine un repository propriu si un validator propriu
-    Validator carValidator;
     Repository carRepository;
 
 public:
     // definim un constructor implicit
-    Service() noexcept;
+    Service() noexcept = default;
 
     // functie care returneaza repo-ul service-ului
     //const Repository& getRepository() const;
@@ -72,25 +71,6 @@ public:
 
     Car findCarService(const string &);
 
-
-    ///*
-    //	Functie de filtrare dupa producator
-    //	@pre: se primeste un parametru de tip string, care reprezinta producatorul masinii dupa care se filtreaza
-    //	@post: lista de masini cu producatorul dat
-    //	@exception: nu exista masini cu producatorul dat
-    //*/
-
-    //carList filterByProducer (const string&) const;
-
-    ///*
-    //	Functie de filtrare dupa tip
-    //	@pre: se primeste un paremetru de tip string, care reprezinta tipul masinii dupa care se filtreaza
-    //	@post: lista de masini cu tipul dat
-    //	@exception: nu exista masini cu tipul dat
-    //*/
-
-    //carList filterByType(const string&, bool(*) const;
-
     carList filter(const string &, bool(*compareMethod)(const Car &, const string &)) const;
 
     static bool compareByProducer(const Car &car, const string &producer) {
@@ -100,5 +80,14 @@ public:
     static bool compareByType(const Car &car, const string &type) {
         return car.getType() == type;
     }
+
+    // functii de sortare
+    // static carList generalSort(carList, bool(*compareMethod)(const Car &, const Car &));
+
+    static carList sortRegNumber(const carList &);
+
+    static carList sortType(const carList &);
+
+    static carList sortProducerModel(const carList &);
 
 };
