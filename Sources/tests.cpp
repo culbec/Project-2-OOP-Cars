@@ -305,13 +305,13 @@ void validatorTests() {
 
     // testam si exceptii multiple
     try {
-        carValid.validateCar(badCar1, carRepo);
+        Validator::validateCar(badCar1, carRepo);
         assert(false);
     }
     catch (const ValidatorException &) { assert(true); }
 
     try {
-        carValid.validateCar(badCar2, carRepo);
+        Validator::validateCar(badCar2, carRepo);
         assert(false);
     }
     catch (const ValidatorException &) { assert(true); }
