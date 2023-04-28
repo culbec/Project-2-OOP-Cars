@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Project_2_OOP_Cars"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project_2_OOP_Cars">
+				<Option output="/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Project_2_OOP_Cars" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/culbec/OOP/Project-2-OOP-Cars/Headers"/>
+					<Add directory="/usr/include/c++/12"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/12"/>
+					<Add directory="/usr/include/c++/12/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/12/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 Project_2_OOP_Cars"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project_2_OOP_Cars/fast">
+				<Option output="/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Project_2_OOP_Cars" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/culbec/OOP/Project-2-OOP-Cars/Headers"/>
+					<Add directory="/usr/include/c++/12"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/12"/>
+					<Add directory="/usr/include/c++/12/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/12/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 Project_2_OOP_Cars/fast"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Car.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/IteratorLDI.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/LDI.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Repository.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Service.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/UI.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Validator.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/tests.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/Car.cpp">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/Repository.cpp">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/Service.cpp">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/UI.cpp">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/Validator.cpp">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Sources/tests.cpp">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/main.cpp">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
