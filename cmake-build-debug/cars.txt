@@ -1,0 +1,6 @@
+CJ99LOL,Volvo,XC90,SUV
+ZL99KKK,BMW,M8,SUV
+CJ99LLL,Volvo,Asd,Adsa
+VS99LLL,Skoda,Fabia,Hatch
+MS99KKK,Vlad,Vlad,Vlad
+CJ01LLL,Volvo,V40,Help

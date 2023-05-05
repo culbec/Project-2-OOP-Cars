@@ -1,4 +1,4 @@
-/home/culbec/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/culbec/OOP/Project-2-OOP-Cars -B /home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug
+/home/culbec/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8770.66/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/culbec/OOP/Project-2-OOP-Cars -B /home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug

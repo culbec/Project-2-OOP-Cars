@@ -16,6 +16,8 @@ public:
     // constructor implicit
     WashingList() noexcept = default;
 
+    vector<Car> washCars() const;
+
     /**
      * @brief Lungimea listei masinilor de spalat
      * @pre true

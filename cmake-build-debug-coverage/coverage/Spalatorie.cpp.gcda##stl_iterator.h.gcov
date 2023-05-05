@@ -1073,9 +1073,19 @@
         -: 1069:      : _M_current(_Iterator()) { }
         -: 1070:
         -: 1071:      explicit _GLIBCXX20_CONSTEXPR
+    #####: 1072:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
+    #####: 1073:      : _M_current(__i) { }
+------------------
+_ZN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS1_SaIS1_EEEC2ERKS3_:
+function _ZN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS1_SaIS1_EEEC2ERKS3_ called 0 returned 0% blocks executed 0%
+    #####: 1072:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
+    #####: 1073:      : _M_current(__i) { }
+------------------
+_ZN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEC2ERKS2_:
 function _ZN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEC2ERKS2_ called 0 returned 0% blocks executed 0%
     #####: 1072:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
     #####: 1073:      : _M_current(__i) { }
+------------------
         -: 1074:
         -: 1075:      // Allow iterator to const_iterator conversion
         -: 1076:#if __cplusplus >= 201103L
@@ -1097,10 +1107,21 @@ function _ZN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEC2ERKS2_ ca
         -: 1092:      // Forward iterator requirements
         -: 1093:      _GLIBCXX20_CONSTEXPR
         -: 1094:      reference
+    #####: 1095:      operator*() const _GLIBCXX_NOEXCEPT
+    #####: 1096:      { return *_M_current; }
+------------------
+_ZNK9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS1_SaIS1_EEEdeEv:
+function _ZNK9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS1_SaIS1_EEEdeEv called 0 returned 0% blocks executed 0%
+    #####: 1095:      operator*() const _GLIBCXX_NOEXCEPT
+    #####: 1096:      { return *_M_current; }
+    %%%%%: 1096-block  0
+------------------
+_ZNK9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEdeEv:
 function _ZNK9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEdeEv called 0 returned 0% blocks executed 0%
     #####: 1095:      operator*() const _GLIBCXX_NOEXCEPT
     #####: 1096:      { return *_M_current; }
     %%%%%: 1096-block  0
+------------------
         -: 1097:
         -: 1098:      _GLIBCXX20_CONSTEXPR
         -: 1099:      pointer
@@ -1109,6 +1130,22 @@ function _ZNK9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEdeEv calle
         -: 1102:
         -: 1103:      _GLIBCXX20_CONSTEXPR
         -: 1104:      __normal_iterator&
+    #####: 1105:      operator++() _GLIBCXX_NOEXCEPT
+        -: 1106:      {
+    #####: 1107:	++_M_current;
+    #####: 1108:	return *this;
+        -: 1109:      }
+------------------
+_ZN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS1_SaIS1_EEEppEv:
+function _ZN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS1_SaIS1_EEEppEv called 0 returned 0% blocks executed 0%
+    #####: 1105:      operator++() _GLIBCXX_NOEXCEPT
+        -: 1106:      {
+    #####: 1107:	++_M_current;
+    #####: 1108:	return *this;
+    %%%%%: 1108-block  0
+        -: 1109:      }
+------------------
+_ZN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEppEv:
 function _ZN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEppEv called 0 returned 0% blocks executed 0%
     #####: 1105:      operator++() _GLIBCXX_NOEXCEPT
         -: 1106:      {
@@ -1116,14 +1153,15 @@ function _ZN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEppEv called
     #####: 1108:	return *this;
     %%%%%: 1108-block  0
         -: 1109:      }
+------------------
         -: 1110:
         -: 1111:      _GLIBCXX20_CONSTEXPR
         -: 1112:      __normal_iterator
-function _ZN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEppEi called 5 returned 100% blocks executed 100%
-        5: 1113:      operator++(int) _GLIBCXX_NOEXCEPT
-        5: 1114:      { return __normal_iterator(_M_current++); }
-        5: 1114-block  0
-call    0 returned 5
+function _ZN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEEppEi called 0 returned 0% blocks executed 0%
+    #####: 1113:      operator++(int) _GLIBCXX_NOEXCEPT
+    #####: 1114:      { return __normal_iterator(_M_current++); }
+    %%%%%: 1114-block  0
+call    0 never executed
         -: 1115:
         -: 1116:      // Bidirectional iterator requirements
         -: 1117:      _GLIBCXX20_CONSTEXPR
@@ -1170,10 +1208,21 @@ call    0 never executed
         -: 1155:
         -: 1156:      _GLIBCXX20_CONSTEXPR
         -: 1157:      const _Iterator&
+    #####: 1158:      base() const _GLIBCXX_NOEXCEPT
+    #####: 1159:      { return _M_current; }
+------------------
+_ZNK9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS1_SaIS1_EEE4baseEv:
+function _ZNK9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS1_SaIS1_EEE4baseEv called 0 returned 0% blocks executed 0%
+    #####: 1158:      base() const _GLIBCXX_NOEXCEPT
+    #####: 1159:      { return _M_current; }
+    %%%%%: 1159-block  0
+------------------
+_ZNK9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEE4baseEv:
 function _ZNK9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS1_SaIS1_EEE4baseEv called 0 returned 0% blocks executed 0%
     #####: 1158:      base() const _GLIBCXX_NOEXCEPT
     #####: 1159:      { return _M_current; }
     %%%%%: 1159-block  0
+------------------
         -: 1160:    };
         -: 1161:
         -: 1162:  // Note: In what follows, the left- and right-hand-side iterators are
@@ -1255,6 +1304,22 @@ call    1 never executed
         -: 1234:  template<typename _Iterator, typename _Container>
         -: 1235:    _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
         -: 1236:    inline bool
+    #####: 1237:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
+        -: 1238:	       const __normal_iterator<_Iterator, _Container>& __rhs)
+        -: 1239:    _GLIBCXX_NOEXCEPT
+    #####: 1240:    { return __lhs.base() != __rhs.base(); }
+------------------
+_ZN9__gnu_cxxneIPK3CarSt6vectorIS1_SaIS1_EEEEbRKNS_17__normal_iteratorIT_T0_EESC_:
+function _ZN9__gnu_cxxneIPK3CarSt6vectorIS1_SaIS1_EEEEbRKNS_17__normal_iteratorIT_T0_EESC_ called 0 returned 0% blocks executed 0%
+    #####: 1237:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
+        -: 1238:	       const __normal_iterator<_Iterator, _Container>& __rhs)
+        -: 1239:    _GLIBCXX_NOEXCEPT
+    #####: 1240:    { return __lhs.base() != __rhs.base(); }
+    %%%%%: 1240-block  0
+call    0 never executed
+call    1 never executed
+------------------
+_ZN9__gnu_cxxneIP3CarSt6vectorIS1_SaIS1_EEEEbRKNS_17__normal_iteratorIT_T0_EESB_:
 function _ZN9__gnu_cxxneIP3CarSt6vectorIS1_SaIS1_EEEEbRKNS_17__normal_iteratorIT_T0_EESB_ called 0 returned 0% blocks executed 0%
     #####: 1237:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
         -: 1238:	       const __normal_iterator<_Iterator, _Container>& __rhs)
@@ -1263,6 +1328,7 @@ function _ZN9__gnu_cxxneIP3CarSt6vectorIS1_SaIS1_EEEEbRKNS_17__normal_iteratorIT
     %%%%%: 1240-block  0
 call    0 never executed
 call    1 never executed
+------------------
         -: 1241:
         -: 1242:  // Random access iterator requirements
         -: 1243:  template<typename _IteratorL, typename _IteratorR, typename _Container>

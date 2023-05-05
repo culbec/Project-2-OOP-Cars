@@ -3620,12 +3620,12 @@ branch  7 never executed
         -: 3596:  template<typename _CharT, typename _Traits, typename _Alloc>
         -: 3597:    _GLIBCXX20_CONSTEXPR
         -: 3598:    inline bool
-function _ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_ called 28 returned 100% blocks executed 100%
-       28: 3599:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+function _ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_ called 31 returned 100% blocks executed 100%
+       31: 3599:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
         -: 3600:	       const _CharT* __rhs)
-       28: 3601:    { return __lhs.compare(__rhs) == 0; }
-       28: 3601-block  0
-call    0 returned 28
+       31: 3601:    { return __lhs.compare(__rhs) == 0; }
+       31: 3601-block  0
+call    0 returned 31
         -: 3602:
         -: 3603:#if __cpp_lib_three_way_comparison
         -: 3604:  /**
@@ -4263,8 +4263,13 @@ call    0 returned 28
         -: 4236:    : public __hash_base<size_t, string>
         -: 4237:    {
         -: 4238:      size_t
-        -: 4239:      operator()(const string& __s) const noexcept
-        -: 4240:      { return std::_Hash_impl::hash(__s.data(), __s.length()); }
+function _ZNKSt4hashINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEclERKS5_ called 0 returned 0% blocks executed 0%
+    #####: 4239:      operator()(const string& __s) const noexcept
+    #####: 4240:      { return std::_Hash_impl::hash(__s.data(), __s.length()); }
+    %%%%%: 4240-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
         -: 4241:    };
         -: 4242:
         -: 4243:  template<>

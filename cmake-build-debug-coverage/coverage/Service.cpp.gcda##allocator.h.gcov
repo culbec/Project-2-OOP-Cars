@@ -157,17 +157,27 @@
         -:  153:      // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  154:      // 3035. std::allocator's constructors should be constexpr
         -:  155:      _GLIBCXX20_CONSTEXPR
+       1*:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt8__detail10_Hash_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE3DTOELb1EEEEC2Ev:
+function _ZNSaINSt8__detail10_Hash_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE3DTOELb1EEEEC2Ev called 1 returned 100% blocks executed 100%
+        1:  156:      allocator() _GLIBCXX_NOTHROW { }
+        1:  156-block  0
+call    0 returned 1
+------------------
+_ZNSaI3CarEC2Ev:
 function _ZNSaI3CarEC2Ev called 0 returned 0% blocks executed 0%
     #####:  156:      allocator() _GLIBCXX_NOTHROW { }
     %%%%%:  156-block  0
 call    0 never executed
+------------------
         -:  157:
         -:  158:      _GLIBCXX20_CONSTEXPR
-function _ZNSaI3CarEC2ERKS0_ called 8 returned 100% blocks executed 100%
-        8:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
-        8:  160:      : __allocator_base<_Tp>(__a) { }
-        8:  160-block  0
-call    0 returned 8
+function _ZNSaI3CarEC2ERKS0_ called 14 returned 100% blocks executed 100%
+       14:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+       14:  160:      : __allocator_base<_Tp>(__a) { }
+       14:  160-block  0
+call    0 returned 14
         -:  161:
         -:  162:#if __cplusplus >= 201103L
         -:  163:      // Avoid implicit deprecation.
@@ -176,15 +186,34 @@ call    0 returned 8
         -:  166:
         -:  167:      template<typename _Tp1>
         -:  168:	_GLIBCXX20_CONSTEXPR
-        -:  169:	allocator(const allocator<_Tp1>&) _GLIBCXX_NOTHROW { }
+function _ZNSaIPNSt8__detail15_Hash_node_baseEEC2INS_10_Hash_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE3DTOELb1EEEEERKSaIT_E called 2 returned 100% blocks executed 100%
+        2:  169:	allocator(const allocator<_Tp1>&) _GLIBCXX_NOTHROW { }
+        2:  169-block  0
+call    0 returned 2
         -:  170:
         -:  171:#if __cpp_constexpr_dynamic_alloc
         -:  172:      constexpr
         -:  173:#endif
+       1*:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaIPNSt8__detail15_Hash_node_baseEED2Ev:
+function _ZNSaIPNSt8__detail15_Hash_node_baseEED2Ev called 0 returned 0% blocks executed 0%
+    #####:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+    %%%%%:  174-block  0
+call    0 never executed
+------------------
+_ZNSaINSt8__detail10_Hash_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE3DTOELb1EEEED2Ev:
+function _ZNSaINSt8__detail10_Hash_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE3DTOELb1EEEED2Ev called 1 returned 100% blocks executed 100%
+        1:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+        1:  174-block  0
+call    0 returned 1
+------------------
+_ZNSaI3CarED2Ev:
 function _ZNSaI3CarED2Ev called 0 returned 0% blocks executed 0%
     #####:  174:      ~allocator() _GLIBCXX_NOTHROW { }
     %%%%%:  174-block  0
 call    0 never executed
+------------------
         -:  175:
         -:  176:#if __cplusplus > 201703L
         -:  177:      [[nodiscard,__gnu__::__always_inline__]]

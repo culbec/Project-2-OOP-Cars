@@ -6,14 +6,12 @@ using std::cin;
 void UI::uiCommands() {
     cout << "\nComenzile sunt: ";
     cout << "help, show_cars, add_car, delete_car, modify_car, find_car, filter_producer, filter_type, "
-            "sort_reg_number, sort_type, sort _producer_model, exit.\n";
+            "sort_reg_number, sort_type, sort_producer_model, export, undo, exit.\n";
     cout << "Washing List commands: add_to_wash, clear_wash, generate_wash\n";
     cout << "Count models: count_models\n";
 }
 
-void UI::uiShowCars() const {
-    //carList cars = this->carService.getRepository().getCars();
-
+void UI::uiShowCars(){
     if (this->carService.getCars().empty()) {
         cout << "\nNu exista masini in lista!\n";
         return;
@@ -21,10 +19,11 @@ void UI::uiShowCars() const {
 
     cout << "\nLista de masini este: \n\n";
 
-    for (const auto &car: this->carService.getCars())
-        cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | " << car.getType()
-             << std::endl;
-    cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+    try {
+        for (const auto car: this->carService.getCars())
+            cout << car;
+        cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
+    } catch (RepositoryException& rE) { cout << rE.getMessage() << std::endl;}
 }
 
 void UI::uiAddCar() {
@@ -42,7 +41,7 @@ void UI::uiAddCar() {
     try {
         this->carService.addCarService(regNumber, producer, model, type);
         cout << "\nMasina adaugata cu succes!\n";
-        cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+        cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
     }
     catch (RepositoryException &rE) { cout << rE.getMessage(); }
     catch (ValidatorException &vE) { cout << vE.getMessage(); }
@@ -62,9 +61,8 @@ void UI::uiDeleteCar() {
         const Car &deletedCar = this->carService.deleteCarService(regNumber);
 
         cout << "\nS-a sters cu succes masina: ";
-        cout << deletedCar.getRegNumber() << " | " << deletedCar.getProducer() << " | " << deletedCar.getModel()
-             << " | " << deletedCar.getType() << std::endl;
-        cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+        cout << deletedCar;
+        cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
     }
     catch (RepositoryException &rE) { cout << rE.getMessage(); }
 }
@@ -91,9 +89,8 @@ void UI::uiModifyCar() {
         Car modifiedCar = this->carService.modifyCarService(regNumber, newProducer, newModel, newType);
 
         cout << "\nS-a modificat cu succes masina: ";
-        cout << modifiedCar.getRegNumber() << " | " << modifiedCar.getProducer() << " | " << modifiedCar.getModel()
-             << " | " << modifiedCar.getType() << std::endl;
-        cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+        cout << modifiedCar;
+        cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
     }
     catch (RepositoryException &rE) { cout << rE.getMessage(); }
     catch (ServiceException &sE) { cout << sE.getMessage(); }
@@ -109,14 +106,13 @@ void UI::uiFindCar() {
         Car foundCar = this->carService.findCarService(regNumber);
 
         cout << "\nMasina este: ";
-        cout << foundCar.getRegNumber() << " | " << foundCar.getProducer() << " | " << foundCar.getModel() << " | "
-             << foundCar.getType() << std::endl;
-        cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+        cout << foundCar;
+        cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
     }
     catch (RepositoryException &rE) { cout << rE.getMessage(); }
 }
 
-void UI::uiFilterByProducer() const {
+void UI::uiFilterByProducer(){
     string producer;
 
     cout << "Introduceti producatorul dupa care vreti sa filtrati: ";
@@ -127,14 +123,13 @@ void UI::uiFilterByProducer() const {
 
         cout << "\nLista de masini filtrata dupa producatorul " << producer << " este:\n";
         for (const auto &car: filteredCars)
-            cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
-                 << car.getType() << std::endl;
-        cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+            cout << car;
+        cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
     }
     catch (ServiceException &sE) { cout << sE.getMessage(); }
 }
 
-void UI::uiFilterByType() const {
+void UI::uiFilterByType() {
     string type;
 
     cout << "Introduceti tipul dupa care vreti sa filtrati: ";
@@ -145,59 +140,56 @@ void UI::uiFilterByType() const {
 
         cout << "\nLista de masini filtrata dupa tipul " << type << " este:\n";
         for (const auto &car: filteredCars)
-            cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
-                 << car.getType() << std::endl;
-        cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+            cout << car;
+        cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
     }
     catch (ServiceException &sE) { cout << sE.getMessage(); }
 }
 
-void UI::uiSortRegNumber() const {
+void UI::uiSortRegNumber(){
     cout << "\nLista de masini sortata dupa numarul de inmatriculare este:\n";
-    for (const auto &car: Service::sortRegNumber(this->carService.getCars()))
-        cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
-             << car.getType() << std::endl;
-    cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+    for (const auto &car: this->carService.sortRegNumber(this->carService.getCars()))
+        cout << car;
+    cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
 }
 
-void UI::uiSortType() const {
+void UI::uiSortType() {
     cout << "\nLista de masini sortata dupa tip este:\n";
-    for (const auto &car: Service::sortType(this->carService.getCars()))
-        cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
-             << car.getType() << std::endl;
-    cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+    for (const auto &car: this->carService.sortType(this->carService.getCars()))
+        cout << car << "\n";
+    cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
 }
 
-void UI::uiSortProducerModel() const {
+void UI::uiSortProducerModel() {
     cout << "\nLista de masini sortata dupa producator si model este:\n";
-    for (const auto &car: Service::sortProducerModel(this->carService.getCars()))
-        cout << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | "
-             << car.getType() << std::endl;
-    cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+    for (const auto &car: this->carService.sortProducerModel(this->carService.getCars()))
+        cout << car << "\n";
+    cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
 }
 
 void UI::uiAddToWash() {
     string regNumber;
-    cout << "Numarul de inmatriculare al masinii de adaugat: "; cin >> regNumber;
+    cout << "Numarul de inmatriculare al masinii de adaugat: ";
+    cin >> regNumber;
 
     try {
         this->carService.addToWashingList(regNumber);
-        cout << "Masini pentru spalat: " << this->carService.getWashingList().washSize() << std::endl;
-    } catch(ServiceException& sE) {cout << sE.getMessage();}
+        cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
+    } catch (ServiceException &sE) { cout << sE.getMessage(); }
 }
 
 void UI::uiClearWash() {
     this->carService.getWashingList().clearWash();
-    cout << "Masini pentru spalat: " << this->carService.getWashingList().washSize() << std::endl;
+    cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
 }
 
 void UI::uiGenerateRandomWash() {
     unsigned int numberToGenerate;
-    if(this->carService.getCars().empty()) {
+    if (this->carService.getCars().empty()) {
         cout << "Nu exista masini in lista!\n";
         return;
     }
-    while(true) {
+    while (true) {
         cout << "Numarul de masini de generat: ";
         cin >> numberToGenerate;
 
@@ -209,11 +201,11 @@ void UI::uiGenerateRandomWash() {
         break;
     }
     carService.randomWashingList(numberToGenerate, this->carService.getCars());
-    cout << "Masini pentru spalat: " << carService.getWashingList().washSize() << std::endl;
+    cout << "\nMasini pentru spalat: " << carService.getWashingList().washSize() << "\n";
 }
 
-void UI::uiCountModels() const {
-    if(this->carService.getCars().empty()) {
+void UI::uiCountModels() {
+    if (this->carService.getCars().empty()) {
         cout << "Nu exista masini in lista!\n";
         return;
     }
@@ -222,14 +214,49 @@ void UI::uiCountModels() const {
 
     cout << "The models are: \n";
 
-    for(const auto& entry: totalModels)
+    for (const auto &entry: totalModels)
         cout << entry.first << " " << entry.second.getCount() << "\n";
+}
+
+void UI::uiExportToFile() {
+    string fileName;
+    cout << "Nume fisier: ";
+    cin >> fileName;
+    while (true) {
+        string option;
+        cout << "Doriti sa exportati fisierul in format CSV sau in format HTML? Tastati 'exit' pentru iesire: ";
+        cin >> option;
+        if (option == "exit") {
+            cout << "Iesire export...\n";
+            return;
+        } else if (option == "CSV") {
+            fileName.append(".csv");
+            this->carService.exportToFile(fileName);
+            break;
+        } else if (option == "HTML") {
+            fileName.append(".html");
+            this->carService.exportToFile(fileName);
+            break;
+        } else {
+            cout << "Optiune invalida!\n";
+        }
+    }
+    cout << "Export cu succes!\n";
+}
+
+void UI::uiUndo() {
+    try {
+        this->carService.undo();
+        cout << "Undo done!" << std::endl;
+    } catch (ServiceException &sE) {
+        cout << sE.getMessage() << std::endl;
+    }
 }
 
 void UI::uiRun() {
     string option;
     while (true) {
-        this->uiCommands();
+        /*this->uiCommands();
         cout << "Introduceti optiunea: ";
         cin >> option;
         if (option == "help")
@@ -262,10 +289,28 @@ void UI::uiRun() {
             this->uiGenerateRandomWash();
         else if (option == "count_models")
             this->uiCountModels();
+        else if (option == "export")
+            this->uiExportToFile();
+        else if (option == "undo")
+            this->uiUndo();
         else if (option == "exit") {
             cout << "Leaving...";
             return;
         } else
-            cout << "Optiune invalida.\n";
+            cout << "Optiune invalida.\n";*/
+        (this->*commands["help"])();
+        cout << "Option: "; cin >> option;
+        if(this->commands.find(option) != this->commands.end()) {
+            if(option == "exit") {
+                cout << "Leaving...\n";
+                return;
+            }
+            else {
+                (this->*commands[option])();
+            }
+        }
+        else {
+            cout << "Invalid option!\n";
+        }
     }
 }

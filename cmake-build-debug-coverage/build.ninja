@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: Project
+# Project: Project_2_OOP_Cars
 # Configurations: Debug
 # =============================================================================
 
@@ -40,6 +40,113 @@ include CMakeFiles/rules.ninja
 # Logical path to working directory; prefix for absolute paths.
 
 cmake_ninja_workdir = /home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage/
+# =============================================================================
+# Object build statements for EXECUTABLE target Project_2_OOP_Cars
+
+
+#############################################
+# Order-only phony target for Project_2_OOP_Cars
+
+build cmake_object_order_depends_target_Project_2_OOP_Cars: phony || CMakeFiles/Project_2_OOP_Cars.dir
+
+build CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o: CXX_COMPILER__Project_2_OOP_Cars_Debug /home/culbec/OOP/Project-2-OOP-Cars/Sources/Car.cpp || cmake_object_order_depends_target_Project_2_OOP_Cars
+  DEP_FILE = CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o.d
+  FLAGS = --coverage -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -I/home/culbec/OOP/Project-2-OOP-Cars/Headers
+  OBJECT_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_2_OOP_Cars.dir/Sources
+  TARGET_COMPILE_PDB = CMakeFiles/Project_2_OOP_Cars.dir/
+  TARGET_PDB = Project_2_OOP_Cars.pdb
+
+build CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o: CXX_COMPILER__Project_2_OOP_Cars_Debug /home/culbec/OOP/Project-2-OOP-Cars/Sources/Repository.cpp || cmake_object_order_depends_target_Project_2_OOP_Cars
+  DEP_FILE = CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o.d
+  FLAGS = --coverage -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -I/home/culbec/OOP/Project-2-OOP-Cars/Headers
+  OBJECT_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_2_OOP_Cars.dir/Sources
+  TARGET_COMPILE_PDB = CMakeFiles/Project_2_OOP_Cars.dir/
+  TARGET_PDB = Project_2_OOP_Cars.pdb
+
+build CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o: CXX_COMPILER__Project_2_OOP_Cars_Debug /home/culbec/OOP/Project-2-OOP-Cars/Sources/Service.cpp || cmake_object_order_depends_target_Project_2_OOP_Cars
+  DEP_FILE = CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o.d
+  FLAGS = --coverage -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -I/home/culbec/OOP/Project-2-OOP-Cars/Headers
+  OBJECT_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_2_OOP_Cars.dir/Sources
+  TARGET_COMPILE_PDB = CMakeFiles/Project_2_OOP_Cars.dir/
+  TARGET_PDB = Project_2_OOP_Cars.pdb
+
+build CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o: CXX_COMPILER__Project_2_OOP_Cars_Debug /home/culbec/OOP/Project-2-OOP-Cars/Sources/tests.cpp || cmake_object_order_depends_target_Project_2_OOP_Cars
+  DEP_FILE = CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o.d
+  FLAGS = --coverage -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -I/home/culbec/OOP/Project-2-OOP-Cars/Headers
+  OBJECT_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_2_OOP_Cars.dir/Sources
+  TARGET_COMPILE_PDB = CMakeFiles/Project_2_OOP_Cars.dir/
+  TARGET_PDB = Project_2_OOP_Cars.pdb
+
+build CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o: CXX_COMPILER__Project_2_OOP_Cars_Debug /home/culbec/OOP/Project-2-OOP-Cars/Sources/UI.cpp || cmake_object_order_depends_target_Project_2_OOP_Cars
+  DEP_FILE = CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o.d
+  FLAGS = --coverage -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -I/home/culbec/OOP/Project-2-OOP-Cars/Headers
+  OBJECT_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_2_OOP_Cars.dir/Sources
+  TARGET_COMPILE_PDB = CMakeFiles/Project_2_OOP_Cars.dir/
+  TARGET_PDB = Project_2_OOP_Cars.pdb
+
+build CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o: CXX_COMPILER__Project_2_OOP_Cars_Debug /home/culbec/OOP/Project-2-OOP-Cars/Sources/Validator.cpp || cmake_object_order_depends_target_Project_2_OOP_Cars
+  DEP_FILE = CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o.d
+  FLAGS = --coverage -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -I/home/culbec/OOP/Project-2-OOP-Cars/Headers
+  OBJECT_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_2_OOP_Cars.dir/Sources
+  TARGET_COMPILE_PDB = CMakeFiles/Project_2_OOP_Cars.dir/
+  TARGET_PDB = Project_2_OOP_Cars.pdb
+
+build CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o: CXX_COMPILER__Project_2_OOP_Cars_Debug /home/culbec/OOP/Project-2-OOP-Cars/main.cpp || cmake_object_order_depends_target_Project_2_OOP_Cars
+  DEP_FILE = CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o.d
+  FLAGS = --coverage -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -I/home/culbec/OOP/Project-2-OOP-Cars/Headers
+  OBJECT_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  TARGET_COMPILE_PDB = CMakeFiles/Project_2_OOP_Cars.dir/
+  TARGET_PDB = Project_2_OOP_Cars.pdb
+
+build CMakeFiles/Project_2_OOP_Cars.dir/Sources/Spalatorie.cpp.o: CXX_COMPILER__Project_2_OOP_Cars_Debug /home/culbec/OOP/Project-2-OOP-Cars/Sources/Spalatorie.cpp || cmake_object_order_depends_target_Project_2_OOP_Cars
+  DEP_FILE = CMakeFiles/Project_2_OOP_Cars.dir/Sources/Spalatorie.cpp.o.d
+  FLAGS = --coverage -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -I/home/culbec/OOP/Project-2-OOP-Cars/Headers
+  OBJECT_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_2_OOP_Cars.dir/Sources
+  TARGET_COMPILE_PDB = CMakeFiles/Project_2_OOP_Cars.dir/
+  TARGET_PDB = Project_2_OOP_Cars.pdb
+
+build CMakeFiles/Project_2_OOP_Cars.dir/Sources/DTO.cpp.o: CXX_COMPILER__Project_2_OOP_Cars_Debug /home/culbec/OOP/Project-2-OOP-Cars/Sources/DTO.cpp || cmake_object_order_depends_target_Project_2_OOP_Cars
+  DEP_FILE = CMakeFiles/Project_2_OOP_Cars.dir/Sources/DTO.cpp.o.d
+  FLAGS = --coverage -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -I/home/culbec/OOP/Project-2-OOP-Cars/Headers
+  OBJECT_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_2_OOP_Cars.dir/Sources
+  TARGET_COMPILE_PDB = CMakeFiles/Project_2_OOP_Cars.dir/
+  TARGET_PDB = Project_2_OOP_Cars.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Project_2_OOP_Cars
+
+
+#############################################
+# Link the executable Project_2_OOP_Cars
+
+build Project_2_OOP_Cars: CXX_EXECUTABLE_LINKER__Project_2_OOP_Cars_Debug CMakeFiles/Project_2_OOP_Cars.dir/Sources/Car.cpp.o CMakeFiles/Project_2_OOP_Cars.dir/Sources/Repository.cpp.o CMakeFiles/Project_2_OOP_Cars.dir/Sources/Service.cpp.o CMakeFiles/Project_2_OOP_Cars.dir/Sources/tests.cpp.o CMakeFiles/Project_2_OOP_Cars.dir/Sources/UI.cpp.o CMakeFiles/Project_2_OOP_Cars.dir/Sources/Validator.cpp.o CMakeFiles/Project_2_OOP_Cars.dir/main.cpp.o CMakeFiles/Project_2_OOP_Cars.dir/Sources/Spalatorie.cpp.o CMakeFiles/Project_2_OOP_Cars.dir/Sources/DTO.cpp.o
+  FLAGS = --coverage -g
+  OBJECT_DIR = CMakeFiles/Project_2_OOP_Cars.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_COMPILE_PDB = CMakeFiles/Project_2_OOP_Cars.dir/
+  TARGET_FILE = Project_2_OOP_Cars
+  TARGET_PDB = Project_2_OOP_Cars.pdb
+
 
 #############################################
 # Utility command for edit_cache
@@ -74,12 +181,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/culbec/OOP/Project-2-OOP-Cars/cmake-build-debug-coverage
 
-build all: phony
-
-# =============================================================================
-# Unknown Build Time Dependencies.
-# Tell Ninja that they may appear as side effects of build rules
-# otherwise ordered by order-only dependencies.
+build all: phony Project_2_OOP_Cars
 
 # =============================================================================
 # Built-in targets

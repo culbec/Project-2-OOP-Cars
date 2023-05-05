@@ -10,94 +10,180 @@
         -:    6:#include <exception>
         -:    7:#include <algorithm>
         -:    8:#include <iterator>
-        -:    9:
-        -:   10:using std::vector;
-        -:   11:using std::exception;
-        -:   12:using std::remove;
-        -:   13:using std::find_if;
-        -:   14:using std::copy;
-        -:   15:using std::back_inserter;
-        -:   16:using std::copy_if;
-        -:   17:
-        -:   18:typedef vector<Car> carList;
-        -:   19:
-        -:   20:// declaram o exceptie custom pentru repository:
-        -:   21:class RepositoryException:std::exception {
-        -:   22:private:
-        -:   23:    string errorMessage;
-        -:   24:public:
-function _ZN19RepositoryExceptionC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 24 returned 100% blocks executed 100%
-       24:   25:    explicit RepositoryException(string message) : errorMessage(std::move(message)) {}
-       24:   25-block  0
-call    0 returned 24
-call    1 returned 24
-call    2 returned 24
-        -:   26:
-        -:   27:    string getMessage() { return this->errorMessage; }
-        -:   28:};
-        -:   29:
-        -:   30:class Repository {
-        -:   31:    friend class Car;
+        -:    9:#include <fstream>
+        -:   10:#include <unordered_map>
+        -:   11:
+        -:   12:using std::ifstream;
+        -:   13:using std::ofstream;
+        -:   14:using std::string;
+        -:   15:using std::vector;
+        -:   16:using std::exception;
+        -:   17:using std::remove;
+        -:   18:using std::find_if;
+        -:   19:using std::copy;
+        -:   20:using std::back_inserter;
+        -:   21:using std::copy_if;
+        -:   22:using std::unordered_map;
+        -:   23:
+        -:   24:typedef vector<Car> carList;
+        -:   25:
+        -:   26:// declaram o exceptie custom pentru repository:
+        -:   27:class RepositoryException : std::exception {
+        -:   28:private:
+        -:   29:    string errorMessage;
+        -:   30:public:
+function _ZN19RepositoryExceptionC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 32 returned 100% blocks executed 100%
+       32:   31:    explicit RepositoryException(string message) : errorMessage(std::move(message)) {}
+       32:   31-block  0
+call    0 returned 32
+call    1 returned 32
+call    2 returned 32
         -:   32:
-        -:   33:private:
-        -:   34:    carList cars; // lista de masini
-        -:   35:public:
-        -:   36:    Repository() noexcept = default;
-        -:   37:
-        -:   38:    /*
-        -:   39:        Returneaza lista de masini a repository-ului
-        -:   40:        @pre: true
-        -:   41:        @post: lista de masini a repo-ului
-        -:   42:    */
-        -:   43:    const carList &getCars() const;
-        -:   44:
-        -:   45:    /*
-        -:   46:        Size-ul listei de masini
-        -:   47:        @pre: true
-        -:   48:        @post: size-ul listei de masini
-        -:   49:    */
-        -:   50:    size_t getSize() const noexcept;
+        -:   33:    string getMessage() { return this->errorMessage; }
+        -:   34:};
+        -:   35:
+        -:   36:class RepoAbstract {
+        -:   37:public:
+        -:   38:    virtual const carList &getCars() const = 0;
+        -:   39:
+        -:   40:    virtual size_t getSize() const noexcept = 0;
+        -:   41:
+        -:   42:    virtual size_t findCar(const string &) const = 0;
+        -:   43:
+        -:   44:    virtual void addCar(const Car &) = 0;
+        -:   45:
+        -:   46:    virtual Car deleteCar(const string &) = 0;
+        -:   47:
+        -:   48:    virtual Car modifyCar(const Car &) = 0;
+        -:   49:
+        -:   50:    virtual carList copyList(const carList &) = 0;
         -:   51:
-        -:   52:    /*
-        -:   53:        Cauta o masina dupa un anumit id si ii returneaza pozitia.
-        -:   54:        @pre: string -> numar de inmatriculare
-        -:   55:        @post: pozitia masinii
-        -:   56:        @exception: masina nu exista in lista
-        -:   57:    */
-        -:   58:
-        -:   59:    unsigned int findCar(const string &) const;
-        -:   60:
-        -:   61:    /*
-        -:   62:        Adauga o masina la lista de masini
-        -:   63:        @pre: Car -> obiect de tip Car valid
-        -:   64:        @post: obiectul de tip Car adaugat la lista de masini
-        -:   65:    */
-        -:   66:    void addCar(const Car &);
-        -:   67:
-        -:   68:    /*
-        -:   69:        Sterge o masina din lista de masini
-        -:   70:        @pre: string -> numar de inmatriculare
-        -:   71:        @post: masina stearsa
-        -:   72:        @exception: nu exista masina in lista
+      11*:   52:    virtual ~RepoAbstract() = default;
+------------------
+_ZN12RepoAbstractD0Ev:
+function _ZN12RepoAbstractD0Ev called 0 returned 0% blocks executed 0%
+    #####:   52:    virtual ~RepoAbstract() = default;
+    %%%%%:   52-block  0
+call    0 never executed
+call    1 never executed
+------------------
+_ZN12RepoAbstractD2Ev:
+function _ZN12RepoAbstractD2Ev called 11 returned 100% blocks executed 100%
+       11:   52:    virtual ~RepoAbstract() = default;
+------------------
+        -:   53:};
+        -:   54:
+        -:   55:class Repository: public RepoAbstract{
+        -:   56:private:
+        -:   57:    carList cars; // lista de masini
+        -:   58:public:
+        -:   59:
+        -:   60:    Repository() noexcept = default; // constructor implicit
+        -:   61:
+        -:   62:    /*
+        -:   63:        Returneaza lista de masini a repository-ului
+        -:   64:        @pre: true
+        -:   65:        @post: lista de masini a repo-ului
+        -:   66:    */
+        -:   67:    const carList &getCars() const override;
+        -:   68:
+        -:   69:    /*
+        -:   70:        Size-ul listei de masini
+        -:   71:        @pre: true
+        -:   72:        @post: size-ul listei de masini
         -:   73:    */
-        -:   74:    Car deleteCar(const string &);
+        -:   74:    size_t getSize() const noexcept override;
         -:   75:
         -:   76:    /*
-        -:   77:        Modifica o masina din lista de masini
+        -:   77:        Cauta o masina dupa un anumit id si ii returneaza pozitia.
         -:   78:        @pre: string -> numar de inmatriculare
-        -:   79:              string -> producator
-        -:   80:              string -> model
-        -:   81:              string -> tip
-        -:   82:        @post: masina modificata
-        -:   83:        @exception: nu exista masina in lista
-        -:   84:    */
-        -:   85:    Car modifyCar(const Car &);
-        -:   86:
-        -:   87:    /*
-        -:   88:        Functie de copiere (deep copy)
-        -:   89:        @pre: true
-        -:   90:        @post: lista de masini este copiata
-        -:   91:    */
-        -:   92:    static carList copyList(const carList&) ;
-        -:   93:};
-        -:   94:
+        -:   79:        @post: pozitia masinii
+        -:   80:        @exception: masina nu exista in lista
+        -:   81:    */
+        -:   82:
+        -:   83:    size_t findCar(const string &) const override;
+        -:   84:
+        -:   85:    /*
+        -:   86:        Adauga o masina la lista de masini
+        -:   87:        @pre: Car -> obiect de tip Car valid
+        -:   88:        @post: obiectul de tip Car adaugat la lista de masini
+        -:   89:    */
+        -:   90:    void addCar(const Car &) override;
+        -:   91:
+        -:   92:    /*
+        -:   93:        Sterge o masina din lista de masini
+        -:   94:        @pre: string -> numar de inmatriculare
+        -:   95:        @post: masina stearsa
+        -:   96:        @exception: nu exista masina in lista
+        -:   97:    */
+        -:   98:    Car deleteCar(const string &) override;
+        -:   99:
+        -:  100:    /*
+        -:  101:        Modifica o masina din lista de masini
+        -:  102:        @pre: string -> numar de inmatriculare
+        -:  103:              string -> producator
+        -:  104:              string -> model
+        -:  105:              string -> tip
+        -:  106:        @post: masina modificata
+        -:  107:        @exception: nu exista masina in lista
+        -:  108:    */
+        -:  109:    Car modifyCar(const Car &) override;
+        -:  110:
+        -:  111:    /*
+        -:  112:        Functie de copiere (deep copy)
+        -:  113:        @pre: true
+        -:  114:        @post: lista de masini este copiata
+        -:  115:    */
+        -:  116:    carList copyList(const carList &) override;
+        -:  117:
+        -:  118:    // destructor virtual -> pentru ca clasele derivate sa isi apeleze constructorul in functie de obiectul lor
+        -:  119://    ~Repository() override = default;
+        -:  120:};
+        -:  121:
+        -:  122:// using inheritance to create a file repository
+        -:  123:
+        -:  124:class FileRepository : public Repository {
+        -:  125:private:
+        -:  126:    string fileName; // numele fisierului in care facem scriere/citire
+        -:  127:    void loadFromFile(); // functie de incarcare din fisier
+        -:  128:    void writeToFile(); // functie de stocare in fisier
+        -:  129:public:
+        -:  130:    // constructorul pentru clasa derivata
+        -:  131:    explicit FileRepository(const string &file) {
+        -:  132:        this->fileName = file;
+        -:  133:        this->loadFromFile();
+        -:  134:    }
+        -:  135:
+        -:  136:    // metode suprascrise din clasa de baza
+        -:  137:    void addCar(const Car &) override;
+        -:  138:
+        -:  139:    Car deleteCar(const string &) override;
+        -:  140:
+        -:  141:    Car modifyCar(const Car &) override;
+        -:  142:};
+        -:  143:
+        -:  144:class RepoLab: public RepoAbstract {
+        -:  145:private:
+        -:  146:    unordered_map<string, Car> cars; // map-ul unde tinem masinile
+        -:  147:    carList toUse; // pentru operatii
+        -:  148:    double randNr = 0.75; // probabilitate random intre 0 si 1
+        -:  149:public:
+        -:  150:    //RepoLab() = default; // constructor trivial
+        -:  151:
+        -:  152:    const carList &getCars() const override; // functia de 'get all' -> pentru map
+        -:  153:
+        -:  154:    size_t getSize() const noexcept override; // functia de 'get size' -> pentru map
+        -:  155:
+        -:  156:    size_t findCar(const string &) const override; // functia de find -> pentru map
+        -:  157:
+        -:  158:    void addCar(const Car&) override; // functia de adaugare -> pentru map
+        -:  159:
+        -:  160:    Car deleteCar(const string&) override; // functia de stergere -> pentru map
+        -:  161:
+        -:  162:    Car modifyCar(const Car &) override; // functia de modificare -> pentru map
+        -:  163:
+        -:  164:    carList copyList(const carList &) override; // functia de copiere -> pentru map
+        -:  165:};
+        -:  166:
+        -:  167:
+        -:  168:

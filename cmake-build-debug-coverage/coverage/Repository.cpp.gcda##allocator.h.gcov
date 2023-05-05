@@ -157,10 +157,10 @@
         -:  153:      // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  154:      // 3035. std::allocator's constructors should be constexpr
         -:  155:      _GLIBCXX20_CONSTEXPR
-function _ZNSaI3CarEC2Ev called 22 returned 100% blocks executed 100%
-       22:  156:      allocator() _GLIBCXX_NOTHROW { }
-       22:  156-block  0
-call    0 returned 22
+function _ZNSaI3CarEC2Ev called 31 returned 100% blocks executed 100%
+       31:  156:      allocator() _GLIBCXX_NOTHROW { }
+       31:  156-block  0
+call    0 returned 31
         -:  157:
         -:  158:      _GLIBCXX20_CONSTEXPR
         -:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
@@ -173,15 +173,34 @@ call    0 returned 22
         -:  166:
         -:  167:      template<typename _Tp1>
         -:  168:	_GLIBCXX20_CONSTEXPR
-        -:  169:	allocator(const allocator<_Tp1>&) _GLIBCXX_NOTHROW { }
+function _ZNSaIPNSt8__detail15_Hash_node_baseEEC2INS_10_Hash_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE3CarELb1EEEEERKSaIT_E called 2 returned 100% blocks executed 100%
+        2:  169:	allocator(const allocator<_Tp1>&) _GLIBCXX_NOTHROW { }
+        2:  169-block  0
+call    0 returned 2
         -:  170:
         -:  171:#if __cpp_constexpr_dynamic_alloc
         -:  172:      constexpr
         -:  173:#endif
-function _ZNSaI3CarED2Ev called 30 returned 100% blocks executed 100%
-       30:  174:      ~allocator() _GLIBCXX_NOTHROW { }
-       30:  174-block  0
-call    0 returned 30
+       50:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt8__detail10_Hash_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE3CarELb1EEEED2Ev:
+function _ZNSaINSt8__detail10_Hash_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE3CarELb1EEEED2Ev called 1 returned 100% blocks executed 100%
+        1:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+        1:  174-block  0
+call    0 returned 1
+------------------
+_ZNSaIPNSt8__detail15_Hash_node_baseEED2Ev:
+function _ZNSaIPNSt8__detail15_Hash_node_baseEED2Ev called 4 returned 100% blocks executed 100%
+        4:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+        4:  174-block  0
+call    0 returned 4
+------------------
+_ZNSaI3CarED2Ev:
+function _ZNSaI3CarED2Ev called 45 returned 100% blocks executed 100%
+       45:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+       45:  174-block  0
+call    0 returned 45
+------------------
         -:  175:
         -:  176:#if __cplusplus > 201703L
         -:  177:      [[nodiscard,__gnu__::__always_inline__]]

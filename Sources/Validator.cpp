@@ -94,7 +94,7 @@ bool Validator::validateType(const Car &car) {
     return true;
 }
 
-bool Validator::validateCar(const Car &car, const Repository &carRepo) {
+bool Validator::validateCar(const Car &car, const RepoAbstract &carRepo) {
     string errors; // aici salvam erorile
 
     try {

@@ -109,7 +109,7 @@ void repositoryTests() {
     }
 
     // testing the copy list function
-    carList carCopyList = Repository::copyList(carRepository.getCars());
+    carList carCopyList = carRepository.copyList(carRepository.getCars());
 
     assert(carCopyList.size() == carRepository.getSize());
 
@@ -314,8 +314,12 @@ void validatorTests() {
 }
 
 void serviceTests() {
+    // initializam repo si washing-list
+
+    RepoLab carRepo;
+    WashingList washList;
     // initializam un service
-    Service carService;
+    Service carService{carRepo, washList};
 
     //assert(carService.carRepository.getSize() == 0);
 
@@ -379,6 +383,7 @@ void serviceTests() {
     assert(carService.addCarService("CT01ZIL", "Skoda", "Fabia", "Combi"));
 
     // cautam dupa numarul de inmatriculare
+    //auto car = carService.findCarService("BV67LZZ");
     assert(carService.findCarService("BV67LZZ").getModel() == "CLA");
     assert(carService.findCarService("CV16LYZ").getProducer() == "Mercedes");
 
@@ -432,16 +437,18 @@ void serviceTests() {
 }
 
 void sortTests() {
-    Service carService;
+    Repository carRepo;
+    WashingList washList;
+    Service carService{carRepo, washList};
 
     carService.addCarService("CJ11SSS", "Volkswagen", "Tiguan", "SUV");
     carService.addCarService("CJ11LLL", "Skoda", "Superb", "Sedan");
     carService.addCarService("VS16LOL", "Seat", "Ibiza", "Sport");
     carService.addCarService("CV99SUL", "Seat", "Altea", "Hatch");
 
-    carList sortedRegNumber = Service::sortRegNumber(carService.getCars());
-    carList sortedType = Service::sortType(carService.getCars());
-    carList sortedProducerModel = Service::sortProducerModel(carService.getCars());
+    carList sortedRegNumber = carService.sortRegNumber(carService.getCars());
+    carList sortedType = carService.sortType(carService.getCars());
+    carList sortedProducerModel = carService.sortProducerModel(carService.getCars());
 
     assert(sortedRegNumber.at(0).getRegNumber() == "CJ11LLL");
     assert(sortedRegNumber.at(1).getRegNumber() == "CJ11SSS");
@@ -456,6 +463,8 @@ void sortTests() {
 void washingListTests() {
     WashingList washingList;
     vector<Car> cars;
+
+    assert(washingList.washCars().empty());
 
     Car car1("VS48TUD", "Volkswagen", "Tiguan", "SUV");
     Car car2("VS75SEP", "Skoda", "Fabia", "Hatch");
@@ -477,13 +486,14 @@ void washingListTests() {
     washingList.clearWash();
     assert(washingList.washSize() == 0);
 
-    vector<Car> copyList = Repository::copyList(cars);
-    vector<Car> randomList = WashingList::generateRandom(2, copyList);
+    vector<Car> randomList = WashingList::generateRandom(2, cars);
     assert(randomList.size() == 2);
 }
 
 void dtoTests() {
-    Service carService;
+    Repository carRepo;
+    WashingList washList;
+    Service carService{carRepo, washList};
 
     carService.addCarService("VS99LLA", "Volkswagen", "Tiguan", "SUV");
     carService.addCarService("BH91UJL", "Skoda", "Superb", "Sedan");
@@ -496,6 +506,83 @@ void dtoTests() {
     assert(totalModels["Ibiza"].getModel() == "Ibiza");
 }
 
+void fileRepoTests() {
+    string fileName = "test.txt";
+    std::ofstream testFile{fileName, std::ios::trunc}; // ne asiguram ca fisierul este gol la fiecare deschidere
+
+    try {
+        FileRepository("test1.txt");
+    } catch(RepositoryException&) {assert(true);}
+
+    Car car1{"CJ99LIL", "Volvo", "V40", "Sedan"};
+    Car car2{"VS65PES", "Renault", "Megane", "Sedan"};
+
+    FileRepository rep1{fileName};
+    assert(rep1.getCars().empty());
+    // adaugam o masina
+    rep1.addCar(car1);
+    assert(rep1.getSize() == 1);
+
+    FileRepository rep2{fileName};
+    assert(rep2.getSize() == 1);
+    assert(rep2.findCar("CJ99LIL") == 0);
+
+    assert(rep1.deleteCar("CJ99LIL") == car1);
+    assert(rep1.getSize() == 0);
+    assert(rep2.getSize() == 1);
+
+    rep1.addCar(car2);
+    Car modif = rep1.modifyCar(car2);
+    assert(modif == car2);
+}
+
+void exportToFileTests() {
+    string fileName = "testExport";
+    std::ofstream{fileName, std::ios::trunc};
+    FileRepository repo{fileName};
+    WashingList washingList;
+    Service service{repo, washingList};
+
+    service.addCarService("CJ11LLL", "Audi", "A4", "Sedan");
+    service.addToWashingList("CJ11LLL");
+
+    assert(washingList.washSize() == 1);
+    service.exportToFile(fileName);
+
+    FileRepository repo2{fileName};
+
+    assert(repo2.getSize() == 1);
+
+    try{
+        service.exportToFile("noexist.txt");
+    } catch(ServiceException&) {assert(true);}
+}
+
+void undoTests() {
+    Repository repository;
+    WashingList washingList;
+    Service service{repository, washingList};
+
+    service.addCarService("CJ11LOL", "Audi", "A4", "Sedan");
+
+    service.undo();
+    assert(service.getCars().empty());
+
+    service.addCarService("CV99LOL", "Volvo", "XC60", "SUV");
+
+    service.deleteCarService("CV99LOL");
+    assert(service.getCars().empty());
+    service.undo();
+    assert(!service.getCars().empty());
+
+    service.addCarService("B100ULL", "Skoda", "Octavia", "Sedan");
+    service.addCarService("VS99UAK", "Seat", "Ibiza", "Hatch");
+
+    service.modifyCarService("B100ULL", "Seat", "Altea", "Hatch");
+    assert(service.getCars()[1].getProducer() == "Seat");
+    service.undo();
+    assert(service.getCars()[1].getProducer() == "Skoda");
+}
 
 void runTests() {
     domainTests();
@@ -503,8 +590,12 @@ void runTests() {
     validatorTests();
     serviceTests();
 
-    sortTests();
     washingListTests();
 
+    sortTests();
     dtoTests();
+
+    fileRepoTests();
+    exportToFileTests();
+    undoTests();
 }

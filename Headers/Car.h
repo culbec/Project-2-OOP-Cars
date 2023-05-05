@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 using std::string;
 
@@ -47,5 +48,11 @@ public:
     bool operator==(const Car &otherCar) const {
         return this->getRegNumber() == otherCar.getRegNumber();
     }
+
+    friend std::ostream &operator<<(std::ostream &os, const Car &car) {
+        os << car.getRegNumber() << " | " << car.getProducer() << " | " << car.getModel() << " | " << car.getType() << "\n";
+        return os;
+    }
 };
+
 

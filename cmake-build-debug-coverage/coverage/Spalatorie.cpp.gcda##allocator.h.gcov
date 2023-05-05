@@ -163,8 +163,11 @@ function _ZNSaI3CarEC2Ev called 0 returned 0% blocks executed 0%
 call    0 never executed
         -:  157:
         -:  158:      _GLIBCXX20_CONSTEXPR
-        -:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
-        -:  160:      : __allocator_base<_Tp>(__a) { }
+function _ZNSaI3CarEC2ERKS0_ called 0 returned 0% blocks executed 0%
+    #####:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+    #####:  160:      : __allocator_base<_Tp>(__a) { }
+    %%%%%:  160-block  0
+call    0 never executed
         -:  161:
         -:  162:#if __cplusplus >= 201103L
         -:  163:      // Avoid implicit deprecation.

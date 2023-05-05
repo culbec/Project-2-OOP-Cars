@@ -102,6 +102,9 @@
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/UI.h">
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>
+		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Undo.h">
+			<Option target="Project_2_OOP_Cars"/>
+		</Unit>
 		<Unit filename="/home/culbec/OOP/Project-2-OOP-Cars/Headers/Validator.h">
 			<Option target="Project_2_OOP_Cars"/>
 		</Unit>

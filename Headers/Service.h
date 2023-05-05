@@ -4,8 +4,10 @@
 #include "DTO.h"
 #include "Repository.h"
 #include "Spalatorie.h"
+#include "Undo.h"
 #include <algorithm>
 #include <unordered_map>
+#include <memory>
 
 using std::sort;
 using std::find_if;
@@ -24,12 +26,15 @@ public:
 class Service {
 private:
     // fiecare instanta de tip Service va contine un repository propriu si un validator propriu
-    Repository carRepository;
-    WashingList washingList;
+    RepoAbstract& carRepository;
+    WashingList& washingList;
+
+    // lista de actiuni undo
+    vector<std::unique_ptr<ActiuneUndo>> undoList;
 
 public:
-    // definim un constructor implicit
-    Service() noexcept = default;
+    // definim un constructor explicit
+    Service(RepoAbstract& rep, WashingList& washL) noexcept: carRepository{rep}, washingList{washL} {}
 
     // functie care returneaza repo-ul service-ului
     //const Repository& getRepository() const;
@@ -90,11 +95,11 @@ public:
     // functii de sortare
     // static carList generalSort(carList, bool(*compareMethod)(const Car &, const Car &));
 
-    static carList sortRegNumber(const carList &);
+    carList sortRegNumber(const carList &);
 
-    static carList sortType(const carList &);
+    carList sortType(const carList &);
 
-    static carList sortProducerModel(const carList &);
+    carList sortProducerModel(const carList &);
 
     /**
      * @brief Returneaza lista masinilor pentru spalat
@@ -128,5 +133,19 @@ public:
 
     // counting all the models using UM
     unordered_map<string, DTO> countModels() const;
+
+    /**
+     * @brief Salveaza intr-un fisier cu numele dat continutul cosului
+     * @param fileName: numele fisierului unde se face export-ul
+     * @exception Nu se poate deschide fisierul
+     */
+    void exportToFile(const string& fileName);
+
+    /**
+     * @brief Functie de undo. Reinstaureaza starea dinaintea unei adaugari, stergeri sau modificari
+     * @pre true
+     * @post Se reinstaureaza starea precedenta unei adaugari, stergeri, modificari
+     */
+    void undo();
 
 };

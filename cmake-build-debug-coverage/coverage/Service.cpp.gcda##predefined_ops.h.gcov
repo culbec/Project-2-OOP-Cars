@@ -514,45 +514,88 @@ call    1 returned 2
         -:  307:
         -:  308:      _GLIBCXX20_CONSTEXPR
         -:  309:      explicit
-function _ZN9__gnu_cxx5__ops10_Iter_predIZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRK3CarE_EC2ESE_ called 2 returned 100% blocks executed 100%
-        2:  310:      _Iter_pred(_Predicate __pred)
-        2:  311:	: _M_pred(_GLIBCXX_MOVE(__pred))
-        2:  311-block  0
-call    0 returned 2
-call    1 returned 2
-        2:  312:      { }
+        6:  310:      _Iter_pred(_Predicate __pred)
+        6:  311:	: _M_pred(_GLIBCXX_MOVE(__pred))
+        6:  312:      { }
+------------------
+_ZN9__gnu_cxx5__ops10_Iter_predIZNK7Service11countModelsB5cxx11EvEUlRK3CarE_EC2ES6_:
+function _ZN9__gnu_cxx5__ops10_Iter_predIZNK7Service11countModelsB5cxx11EvEUlRK3CarE_EC2ES6_ called 3 returned 100% blocks executed 100%
+        3:  310:      _Iter_pred(_Predicate __pred)
+        3:  311:	: _M_pred(_GLIBCXX_MOVE(__pred))
+        3:  311-block  0
+call    0 returned 3
+call    1 returned 3
+        3:  312:      { }
+------------------
+_ZN9__gnu_cxx5__ops10_Iter_predIZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRK3CarE_EC2ESE_:
+function _ZN9__gnu_cxx5__ops10_Iter_predIZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRK3CarE_EC2ESE_ called 3 returned 100% blocks executed 100%
+        3:  310:      _Iter_pred(_Predicate __pred)
+        3:  311:	: _M_pred(_GLIBCXX_MOVE(__pred))
+        3:  311-block  0
+call    0 returned 3
+call    1 returned 3
+        3:  312:      { }
+------------------
         -:  313:
         -:  314:      template<typename _Iterator>
         -:  315:	_GLIBCXX20_CONSTEXPR
         -:  316:	bool
-function _ZN9__gnu_cxx5__ops10_Iter_predIZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRK3CarE_EclINS_17__normal_iteratorIPSC_St6vectorISB_SaISB_EEEEEEbT_ called 8 returned 100% blocks executed 100%
-        8:  317:	operator()(_Iterator __it)
-        8:  318:	{ return bool(_M_pred(*__it)); }
-        8:  318-block  0
-call    0 returned 8
-call    1 returned 8
+       21:  317:	operator()(_Iterator __it)
+       21:  318:	{ return bool(_M_pred(*__it)); }
+------------------
+_ZN9__gnu_cxx5__ops10_Iter_predIZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRK3CarE_EclINS_17__normal_iteratorIPSC_St6vectorISB_SaISB_EEEEEEbT_:
+function _ZN9__gnu_cxx5__ops10_Iter_predIZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRK3CarE_EclINS_17__normal_iteratorIPSC_St6vectorISB_SaISB_EEEEEEbT_ called 9 returned 100% blocks executed 100%
+        9:  317:	operator()(_Iterator __it)
+        9:  318:	{ return bool(_M_pred(*__it)); }
+        9:  318-block  0
+call    0 returned 9
+call    1 returned 9
+------------------
+_ZN9__gnu_cxx5__ops10_Iter_predIZNK7Service11countModelsB5cxx11EvEUlRK3CarE_EclINS_17__normal_iteratorIPS4_St6vectorIS3_SaIS3_EEEEEEbT_:
+function _ZN9__gnu_cxx5__ops10_Iter_predIZNK7Service11countModelsB5cxx11EvEUlRK3CarE_EclINS_17__normal_iteratorIPS4_St6vectorIS3_SaIS3_EEEEEEbT_ called 12 returned 100% blocks executed 100%
+       12:  317:	operator()(_Iterator __it)
+       12:  318:	{ return bool(_M_pred(*__it)); }
+       12:  318-block  0
+call    0 returned 12
+call    1 returned 12
+------------------
         -:  319:    };
         -:  320:
         -:  321:  template<typename _Predicate>
         -:  322:    _GLIBCXX20_CONSTEXPR
         -:  323:    inline _Iter_pred<_Predicate>
-function _ZN9__gnu_cxx5__ops11__pred_iterIZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRK3CarE_EENS0_10_Iter_predIT_EESG_ called 2 returned 100% blocks executed 78%
-        2:  324:    __pred_iter(_Predicate __pred)
-        2:  325:    { return _Iter_pred<_Predicate>(_GLIBCXX_MOVE(__pred)); }
-        2:  325-block  0
-call    0 returned 2
-call    1 returned 2
-branch  2 taken 2 (fallthrough)
+        6:  324:    __pred_iter(_Predicate __pred)
+        6:  325:    { return _Iter_pred<_Predicate>(_GLIBCXX_MOVE(__pred)); }
+------------------
+_ZN9__gnu_cxx5__ops11__pred_iterIZNK7Service11countModelsB5cxx11EvEUlRK3CarE_EENS0_10_Iter_predIT_EES8_:
+function _ZN9__gnu_cxx5__ops11__pred_iterIZNK7Service11countModelsB5cxx11EvEUlRK3CarE_EENS0_10_Iter_predIT_EES8_ called 3 returned 100% blocks executed 100%
+        3:  324:    __pred_iter(_Predicate __pred)
+        3:  325:    { return _Iter_pred<_Predicate>(_GLIBCXX_MOVE(__pred)); }
+        3:  325-block  0
+call    0 returned 3
+call    1 returned 3
+call    2 returned 3
+call    3 returned 3
+------------------
+_ZN9__gnu_cxx5__ops11__pred_iterIZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRK3CarE_EENS0_10_Iter_predIT_EESG_:
+function _ZN9__gnu_cxx5__ops11__pred_iterIZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRK3CarE_EENS0_10_Iter_predIT_EESG_ called 3 returned 100% blocks executed 78%
+        3:  324:    __pred_iter(_Predicate __pred)
+        3:  325:    { return _Iter_pred<_Predicate>(_GLIBCXX_MOVE(__pred)); }
+        3:  325-block  0
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
 branch  3 taken 0 (throw)
-        2:  325-block  1
-call    4 returned 2
-branch  5 taken 2 (fallthrough)
+        3:  325-block  1
+call    4 returned 3
+branch  5 taken 3 (fallthrough)
 branch  6 taken 0 (throw)
-        2:  325-block  2
-call    7 returned 2
-        2:  325-block  3
+        3:  325-block  2
+call    7 returned 3
+        3:  325-block  3
     $$$$$:  325-block  4
 call    8 never executed
+------------------
         -:  326:
         -:  327:  template<typename _Compare, typename _Value>
         -:  328:    struct _Iter_comp_to_val

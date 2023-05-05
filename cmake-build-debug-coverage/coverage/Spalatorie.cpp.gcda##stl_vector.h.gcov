@@ -149,9 +149,13 @@ call    1 never executed
     #####:  140:	{ }
         -:  141:
         -:  142:	_GLIBCXX20_CONSTEXPR
-        -:  143:	_Vector_impl(_Tp_alloc_type const& __a) _GLIBCXX_NOEXCEPT
-        -:  144:	: _Tp_alloc_type(__a)
-        -:  145:	{ }
+function _ZNSt12_Vector_baseI3CarSaIS0_EE12_Vector_implC2ERKS1_ called 0 returned 0% blocks executed 0%
+    #####:  143:	_Vector_impl(_Tp_alloc_type const& __a) _GLIBCXX_NOEXCEPT
+    #####:  144:	: _Tp_alloc_type(__a)
+    %%%%%:  144-block  0
+call    0 never executed
+call    1 never executed
+    #####:  145:	{ }
         -:  146:
         -:  147:#if __cplusplus >= 201103L
         -:  148:	// Not defaulted, to enforce noexcept(true) even when
@@ -343,9 +347,18 @@ call    0 never executed
         -:  327:#endif
         -:  328:
         -:  329:      _GLIBCXX20_CONSTEXPR
-        -:  330:      _Vector_base(size_t __n, const allocator_type& __a)
-        -:  331:      : _M_impl(__a)
-        -:  332:      { _M_create_storage(__n); }
+function _ZNSt12_Vector_baseI3CarSaIS0_EEC2EmRKS1_ called 0 returned 0% blocks executed 0%
+    #####:  330:      _Vector_base(size_t __n, const allocator_type& __a)
+    #####:  331:      : _M_impl(__a)
+    %%%%%:  331-block  0
+call    0 never executed
+    #####:  332:      { _M_create_storage(__n); }
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  332-block  0
+    $$$$$:  332-block  1
+call    3 never executed
         -:  333:
         -:  334:#if __cplusplus >= 201103L
         -:  335:      _Vector_base(_Vector_base&&) = default;
@@ -424,12 +437,15 @@ call    0 never executed
         -:  390:    protected:
         -:  391:      _GLIBCXX20_CONSTEXPR
         -:  392:      void
-        -:  393:      _M_create_storage(size_t __n)
+function _ZNSt12_Vector_baseI3CarSaIS0_EE17_M_create_storageEm called 0 returned 0% blocks executed 0%
+    #####:  393:      _M_create_storage(size_t __n)
         -:  394:      {
-        -:  395:	this->_M_impl._M_start = this->_M_allocate(__n);
-        -:  396:	this->_M_impl._M_finish = this->_M_impl._M_start;
-        -:  397:	this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
-        -:  398:      }
+    #####:  395:	this->_M_impl._M_start = this->_M_allocate(__n);
+    %%%%%:  395-block  0
+call    0 never executed
+    #####:  396:	this->_M_impl._M_finish = this->_M_impl._M_start;
+    #####:  397:	this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+    #####:  398:      }
         -:  399:    };
         -:  400:
         -:  401:  /**
@@ -640,15 +656,41 @@ call    0 never executed
         -:  593:       *  by @a __x (unless the allocator traits dictate a different object).
         -:  594:       */
         -:  595:      _GLIBCXX20_CONSTEXPR
-        -:  596:      vector(const vector& __x)
+function _ZNSt6vectorI3CarSaIS0_EEC2ERKS2_ called 0 returned 0% blocks executed 0%
+    #####:  596:      vector(const vector& __x)
         -:  597:      : _Base(__x.size(),
-        -:  598:	_Alloc_traits::_S_select_on_copy(__x._M_get_Tp_allocator()))
+    #####:  598:	_Alloc_traits::_S_select_on_copy(__x._M_get_Tp_allocator()))
+    %%%%%:  598-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  598-block  1
+call    4 never executed
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  598-block  2
+call    8 never executed
+    $$$$$:  598-block  3
+call    9 never executed
+    $$$$$:  598-block  4
+call   10 never executed
         -:  599:      {
-        -:  600:	this->_M_impl._M_finish =
-        -:  601:	  std::__uninitialized_copy_a(__x.begin(), __x.end(),
+    #####:  600:	this->_M_impl._M_finish =
+    #####:  601:	  std::__uninitialized_copy_a(__x.begin(), __x.end(),
+call    0 never executed
+call    1 never executed
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
         -:  602:				      this->_M_impl._M_start,
-        -:  603:				      _M_get_Tp_allocator());
-        -:  604:      }
+    #####:  603:				      _M_get_Tp_allocator());
+call    0 never executed
+    #####:  604:      }
+    %%%%%:  604-block  0
+    $$$$$:  604-block  1
+call    0 never executed
         -:  605:
         -:  606:#if __cplusplus >= 201103L
         -:  607:      /**
@@ -930,8 +972,11 @@ call    0 never executed
         -:  875:       */
         -:  876:      _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
         -:  877:      const_iterator
-        -:  878:      begin() const _GLIBCXX_NOEXCEPT
-        -:  879:      { return const_iterator(this->_M_impl._M_start); }
+function _ZNKSt6vectorI3CarSaIS0_EE5beginEv called 0 returned 0% blocks executed 0%
+    #####:  878:      begin() const _GLIBCXX_NOEXCEPT
+    #####:  879:      { return const_iterator(this->_M_impl._M_start); }
+    %%%%%:  879-block  0
+call    0 never executed
         -:  880:
         -:  881:      /**
         -:  882:       *  Returns a read/write iterator that points one past the last
@@ -953,8 +998,11 @@ call    0 never executed
         -:  895:       */
         -:  896:      _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
         -:  897:      const_iterator
-        -:  898:      end() const _GLIBCXX_NOEXCEPT
-        -:  899:      { return const_iterator(this->_M_impl._M_finish); }
+function _ZNKSt6vectorI3CarSaIS0_EE3endEv called 0 returned 0% blocks executed 0%
+    #####:  898:      end() const _GLIBCXX_NOEXCEPT
+    #####:  899:      { return const_iterator(this->_M_impl._M_finish); }
+    %%%%%:  899-block  0
+call    0 never executed
         -:  900:
         -:  901:      /**
         -:  902:       *  Returns a read/write reverse iterator that points to the

@@ -85,7 +85,8 @@ function _ZNSt15__new_allocatorI3CarEC2Ev called 0 returned 0% blocks executed 0
     #####:   80:      __new_allocator() _GLIBCXX_USE_NOEXCEPT { }
         -:   81:
         -:   82:      _GLIBCXX20_CONSTEXPR
-        -:   83:      __new_allocator(const __new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+function _ZNSt15__new_allocatorI3CarEC2ERKS1_ called 0 returned 0% blocks executed 0%
+    #####:   83:      __new_allocator(const __new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
         -:   84:
         -:   85:      template<typename _Tp1>
         -:   86:	_GLIBCXX20_CONSTEXPR

@@ -563,8 +563,8 @@
         -:  559:  template<typename _Iterator>
         -:  560:    _GLIBCXX20_CONSTEXPR
         -:  561:    inline _Iterator
-       24:  562:    __miter_base(_Iterator __it)
-       24:  563:    { return __it; }
+       20:  562:    __miter_base(_Iterator __it)
+       20:  563:    { return __it; }
 ------------------
 _ZSt12__miter_baseIN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS2_SaIS2_EEEEET_S8_:
 function _ZSt12__miter_baseIN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS2_SaIS2_EEEEET_S8_ called 12 returned 100% blocks executed 100%
@@ -573,10 +573,10 @@ function _ZSt12__miter_baseIN9__gnu_cxx17__normal_iteratorIP3CarSt6vectorIS2_SaI
        12:  563-block  0
 ------------------
 _ZSt12__miter_baseIN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS2_SaIS2_EEEEET_S9_:
-function _ZSt12__miter_baseIN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS2_SaIS2_EEEEET_S9_ called 12 returned 100% blocks executed 100%
-       12:  562:    __miter_base(_Iterator __it)
-       12:  563:    { return __it; }
-       12:  563-block  0
+function _ZSt12__miter_baseIN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS2_SaIS2_EEEEET_S9_ called 8 returned 100% blocks executed 100%
+        8:  562:    __miter_base(_Iterator __it)
+        8:  563:    { return __it; }
+        8:  563-block  0
 ------------------
         -:  564:
         -:  565:_GLIBCXX_END_NAMESPACE_VERSION

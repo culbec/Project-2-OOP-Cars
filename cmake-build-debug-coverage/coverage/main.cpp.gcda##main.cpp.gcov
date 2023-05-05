@@ -4,18 +4,46 @@
         -:    0:Runs:1
         -:    1:#include <iostream>
         -:    2:#include "Headers/UI.h"
-        -:    3:#include "Headers/tests.h"
-        -:    4:
+        -:    3:#include "Headers/Repository.h"
+        -:    4:#include "Headers/Spalatorie.h"
+        -:    5:#include "Headers/Service.h"
+        -:    6:#include "Headers/tests.h"
+        -:    7:
 function main called 1 returned 100% blocks executed 100%
-        1:    5:int main() {
-        1:    6:    runTests();
-        1:    6-block  0
+        1:    8:int main() {
+        1:    9:    runTests();
+        1:    9-block  0
 call    0 returned 1
-        1:    7:    std::cout << "Tests ok!\n\n";
+        1:   10:    std::cout << "Tests ok!\n";
 call    0 returned 1
-        -:    8:
-        -:    9:    //UI ui;
-        -:   10:    //ui.uiRun();
         -:   11:
-        1:   12:    return 0;
-        -:   13:}
+        -:   12:    /*WashingList washingList;
+        -:   13:    while (true) {
+        -:   14:        int option;
+        -:   15:        std::cout << "1. Memory Repository\n2. File Repository\n";
+        -:   16:        std::cout << "Your option: ";
+        -:   17:        std::cin >> option;
+        -:   18:
+        -:   19:        if (option == 1) {
+        -:   20:            RepoLab carRepo;
+        -:   21:            Service carServiceMem(carRepo, washingList);
+        -:   22:            UI uiMem(carServiceMem);
+        -:   23:            uiMem.uiRun();
+        -:   24:            break;
+        -:   25:        } else if (option == 2) {
+        -:   26:            try {
+        -:   27:                FileRepository fileRepo("cars.txt");
+        -:   28:                Service carServiceFile(fileRepo, washingList);
+        -:   29:                UI uiFile(carServiceFile);
+        -:   30:                uiFile.uiRun();
+        -:   31:            } catch (RepositoryException &rE) {
+        -:   32:                std::cout << rE.getMessage();
+        -:   33:            }
+        -:   34:            break;
+        -:   35:        } else {
+        -:   36:            std::cout << "Invalid option!\n";
+        -:   37:            break;
+        -:   38:        }
+        -:   39:    }*/
+        1:   40:    return 0;
+        -:   41:}

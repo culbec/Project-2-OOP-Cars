@@ -74,6 +74,6 @@ call    0 returned 11
         -:   67:        @exception: nu are parametrii valizi sau exista deja in lista
         -:   68:    */
         -:   69:
-        -:   70:    static bool validateCar(const Car &, const Repository &) ;
+        -:   70:    static bool validateCar(const Car &, const RepoAbstract &) ;
         -:   71:};
         -:   72:

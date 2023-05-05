@@ -5,147 +5,172 @@
         -:    1:#pragma once
         -:    2:
         -:    3:#include "Validator.h"
-        -:    4:#include "Repository.h"
-        -:    5:#include "Spalatorie.h"
-        -:    6:#include <algorithm>
-        -:    7:
-        -:    8:using std::sort;
-        -:    9:using std::find_if;
-        -:   10:using std::copy_if;
+        -:    4:#include "DTO.h"
+        -:    5:#include "Repository.h"
+        -:    6:#include "Spalatorie.h"
+        -:    7:#include "Undo.h"
+        -:    8:#include <algorithm>
+        -:    9:#include <unordered_map>
+        -:   10:#include <memory>
         -:   11:
-        -:   12:class ServiceException : std::exception {
-        -:   13:private:
-        -:   14:    string errorMessage;
-        -:   15:public:
-        -:   16:    explicit ServiceException(string message) : errorMessage(std::move(message)) {}
-        -:   17:
+        -:   12:using std::sort;
+        -:   13:using std::find_if;
+        -:   14:using std::copy_if;
+        -:   15:using std::unordered_map;
+        -:   16:
+        -:   17:class ServiceException : std::exception {
+        -:   18:private:
+        -:   19:    string errorMessage;
+        -:   20:public:
+        -:   21:    explicit ServiceException(string message) : errorMessage(std::move(message)) {}
+        -:   22:
 function _ZN16ServiceException10getMessageB5cxx11Ev called 0 returned 0% blocks executed 0%
-    #####:   18:    string getMessage() { return this->errorMessage; }
-    %%%%%:   18-block  0
+    #####:   23:    string getMessage() { return this->errorMessage; }
+    %%%%%:   23-block  0
 call    0 never executed
-        -:   19:};
-        -:   20:
-        -:   21:class Service {
-        -:   22:private:
-        -:   23:    // fiecare instanta de tip Service va contine un repository propriu si un validator propriu
-        -:   24:    Repository carRepository;
-        -:   25:    WashingList washingList;
-        -:   26:
-        -:   27:public:
-        -:   28:    // definim un constructor implicit
-        -:   29:    Service() noexcept = default;
-        -:   30:
-        -:   31:    // functie care returneaza repo-ul service-ului
-        -:   32:    //const Repository& getRepository() const;
-        -:   33:
-        -:   34:    const carList &getCars() const;
-        -:   35:
-        -:   36:    //// functie care returneaza validatorul service-ului
-        -:   37:    //Validator getValidator() const;
+        -:   24:};
+        -:   25:
+        -:   26:class Service {
+        -:   27:private:
+        -:   28:    // fiecare instanta de tip Service va contine un repository propriu si un validator propriu
+        -:   29:    RepoAbstract& carRepository;
+        -:   30:    WashingList& washingList;
+        -:   31:
+        -:   32:    // lista de actiuni undo
+        -:   33:    vector<std::unique_ptr<ActiuneUndo>> undoList;
+        -:   34:
+        -:   35:public:
+        -:   36:    // definim un constructor explicit
+        -:   37:    Service(RepoAbstract& rep, WashingList& washL) noexcept: carRepository{rep}, washingList{washL} {}
         -:   38:
-        -:   39:    /*
-        -:   40:        Se adauga o masina in lista de masini.
-        -:   41:        @pre: se primesc 4 parametrii de tip string, ce reprezinta parametrii masinii de adaugat
-        -:   42:        @post: masina se adauga
-        -:   43:        @exception: masina invalida sau deja exista in lista.
-        -:   44:    */
-        -:   45:
-        -:   46:    bool addCarService(const string &, const string &, const string &, const string &);
-        -:   47:
-        -:   48:    /*
-        -:   49:        Se modifica o masina din lista de masini
-        -:   50:        @pre: se primesc 4 parametrii, de tip string, ce reprezinta:
-        -:   51:              - numarul de inmatriculare al masinii de modificat;
-        -:   52:              - parametrii ce masinii ce vor fi modificati;
-        -:   53:        @post: masina cu parametrii specificati se modifica;
-        -:   54:        @exception: masina invalida sau nu exista masina in lista;
-        -:   55:    */
-        -:   56:
-        -:   57:    Car modifyCarService(const string &, const string &, const string &, const string &);
-        -:   58:
-        -:   59:    /*
-        -:   60:        Se sterge o masina din lista de masini
-        -:   61:        @pre: se primeste un parametru, de tip string, ce reprezinta numarul de inmatriculare al masinii de sters
-        -:   62:        @post: se sterge masina
-        -:   63:        @exception: nu exista masina in lista
-        -:   64:    */
-        -:   65:
-        -:   66:    Car deleteCarService(const string &);
-        -:   67:
-        -:   68:    /*
-        -:   69:        Cautare masina dupa numar de inmatriculare.
-        -:   70:        @pre: parametru de tip string, ce reprezinta numarul masinii de inmatriculare al masinii de gasit
-        -:   71:        @post: masina cu numarul de inmatriculare
-        -:   72:        @exception: nu exista masina in lista
-        -:   73:    */
-        -:   74:
-        -:   75:    Car findCarService(const string &);
-        -:   76:
-        -:   77:    carList filter(const string &, bool(*compareMethod)(const Car &, const string &)) const;
-        -:   78:
-function _ZN7Service17compareByProducerERK3CarRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
-    #####:   79:    static bool compareByProducer(const Car &car, const string &producer) {
-    #####:   80:        return car.getProducer() == producer;
-    %%%%%:   80-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    %%%%%:   80-block  1
-call    3 never executed
-call    4 never executed
-    %%%%%:   80-block  2
-        -:   81:    }
+        -:   39:    // functie care returneaza repo-ul service-ului
+        -:   40:    //const Repository& getRepository() const;
+        -:   41:
+        -:   42:    const carList &getCars() const;
+        -:   43:
+        -:   44:    //// functie care returneaza validatorul service-ului
+        -:   45:    //Validator getValidator() const;
+        -:   46:
+        -:   47:    /*
+        -:   48:        Se adauga o masina in lista de masini.
+        -:   49:        @pre: se primesc 4 parametrii de tip string, ce reprezinta parametrii masinii de adaugat
+        -:   50:        @post: masina se adauga
+        -:   51:        @exception: masina invalida sau deja exista in lista.
+        -:   52:    */
+        -:   53:
+        -:   54:    bool addCarService(const string &, const string &, const string &, const string &);
+        -:   55:
+        -:   56:    /*
+        -:   57:        Se modifica o masina din lista de masini
+        -:   58:        @pre: se primesc 4 parametrii, de tip string, ce reprezinta:
+        -:   59:              - numarul de inmatriculare al masinii de modificat;
+        -:   60:              - parametrii ce masinii ce vor fi modificati;
+        -:   61:        @post: masina cu parametrii specificati se modifica;
+        -:   62:        @exception: masina invalida sau nu exista masina in lista;
+        -:   63:    */
+        -:   64:
+        -:   65:    Car modifyCarService(const string &, const string &, const string &, const string &);
+        -:   66:
+        -:   67:    /*
+        -:   68:        Se sterge o masina din lista de masini
+        -:   69:        @pre: se primeste un parametru, de tip string, ce reprezinta numarul de inmatriculare al masinii de sters
+        -:   70:        @post: se sterge masina
+        -:   71:        @exception: nu exista masina in lista
+        -:   72:    */
+        -:   73:
+        -:   74:    Car deleteCarService(const string &);
+        -:   75:
+        -:   76:    /*
+        -:   77:        Cautare masina dupa numar de inmatriculare.
+        -:   78:        @pre: parametru de tip string, ce reprezinta numarul masinii de inmatriculare al masinii de gasit
+        -:   79:        @post: masina cu numarul de inmatriculare
+        -:   80:        @exception: nu exista masina in lista
+        -:   81:    */
         -:   82:
-function _ZN7Service13compareByTypeERK3CarRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
-    #####:   83:    static bool compareByType(const Car &car, const string &type) {
-    #####:   84:        return car.getType() == type;
-    %%%%%:   84-block  0
+        -:   83:    Car findCarService(const string &);
+        -:   84:
+        -:   85:    carList filter(const string &, bool(*compareMethod)(const Car &, const string &)) const;
+        -:   86:
+function _ZN7Service17compareByProducerERK3CarRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
+    #####:   87:    static bool compareByProducer(const Car &car, const string &producer) {
+    #####:   88:        return car.getProducer() == producer;
+    %%%%%:   88-block  0
 call    0 never executed
 branch  1 never executed
 branch  2 never executed
-    %%%%%:   84-block  1
+    %%%%%:   88-block  1
 call    3 never executed
 call    4 never executed
-    %%%%%:   84-block  2
-        -:   85:    }
-        -:   86:
-        -:   87:    // functii de sortare
-        -:   88:    // static carList generalSort(carList, bool(*compareMethod)(const Car &, const Car &));
-        -:   89:
-        -:   90:    static carList sortRegNumber(const carList &);
-        -:   91:
-        -:   92:    static carList sortType(const carList &);
-        -:   93:
-        -:   94:    static carList sortProducerModel(const carList &);
-        -:   95:
-        -:   96:    /**
-        -:   97:     * @brief Returneaza lista masinilor pentru spalat
-        -:   98:     * @pre true
-        -:   99:     * @post true
-        -:  100:     * @return lista masinilor pentru spalat
-        -:  101:     */
-        -:  102:     WashingList getWashingList() const;
+    %%%%%:   88-block  2
+        -:   89:    }
+        -:   90:
+function _ZN7Service13compareByTypeERK3CarRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
+    #####:   91:    static bool compareByType(const Car &car, const string &type) {
+    #####:   92:        return car.getType() == type;
+    %%%%%:   92-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   92-block  1
+call    3 never executed
+call    4 never executed
+    %%%%%:   92-block  2
+        -:   93:    }
+        -:   94:
+        -:   95:    // functii de sortare
+        -:   96:    // static carList generalSort(carList, bool(*compareMethod)(const Car &, const Car &));
+        -:   97:
+        -:   98:    carList sortRegNumber(const carList &);
+        -:   99:
+        -:  100:    carList sortType(const carList &);
+        -:  101:
+        -:  102:    carList sortProducerModel(const carList &);
         -:  103:
         -:  104:    /**
-        -:  105:     * @brief Adauga o masina in lista pentru masinile de spalat
-        -:  106:     * @pre Masina cu numarul de inmatriculare exista in lista
-        -:  107:     * @post Se adauga masina in lista de masini de spalat
-        -:  108:     * @exception Nu exista masina in lista de masini
+        -:  105:     * @brief Returneaza lista masinilor pentru spalat
+        -:  106:     * @pre true
+        -:  107:     * @post true
+        -:  108:     * @return lista masinilor pentru spalat
         -:  109:     */
-        -:  110:    void addToWashingList(const string &);
+        -:  110:     WashingList getWashingList() const;
         -:  111:
         -:  112:    /**
-        -:  113:     * @brief Goleste lista masinilor de spalat
-        -:  114:     * @pre true
-        -:  115:     * @post Lista masinilor de spalat se goleste
-        -:  116:     */
-        -:  117:    void clearWashingList();
-        -:  118:
-        -:  119:    /**
-        -:  120:     * @brief Genereaza o lista random de masini de spalat
-        -:  121:     * @pre true
-        -:  122:     * @post Se genereaza lista random de masini de spalat
-        -:  123:     */
-        -:  124:    void randomWashingList(unsigned int, const vector<Car> &);
-        -:  125:
-        -:  126:};
+        -:  113:     * @brief Adauga o masina in lista pentru masinile de spalat
+        -:  114:     * @pre Masina cu numarul de inmatriculare exista in lista
+        -:  115:     * @post Se adauga masina in lista de masini de spalat
+        -:  116:     * @exception Nu exista masina in lista de masini
+        -:  117:     */
+        -:  118:    void addToWashingList(const string &);
+        -:  119:
+        -:  120:    /**
+        -:  121:     * @brief Goleste lista masinilor de spalat
+        -:  122:     * @pre true
+        -:  123:     * @post Lista masinilor de spalat se goleste
+        -:  124:     */
+        -:  125:    void clearWashingList();
+        -:  126:
+        -:  127:    /**
+        -:  128:     * @brief Genereaza o lista random de masini de spalat
+        -:  129:     * @pre true
+        -:  130:     * @post Se genereaza lista random de masini de spalat
+        -:  131:     */
+        -:  132:    void randomWashingList(unsigned int, const vector<Car> &);
+        -:  133:
+        -:  134:    // counting all the models using UM
+        -:  135:    unordered_map<string, DTO> countModels() const;
+        -:  136:
+        -:  137:    /**
+        -:  138:     * @brief Salveaza intr-un fisier cu numele dat continutul cosului
+        -:  139:     * @param fileName: numele fisierului unde se face export-ul
+        -:  140:     * @exception Nu se poate deschide fisierul
+        -:  141:     */
+        -:  142:    void exportToFile(const string& fileName);
+        -:  143:
+        -:  144:    /**
+        -:  145:     * @brief Functie de undo. Reinstaureaza starea dinaintea unei adaugari, stergeri sau modificari
+        -:  146:     * @pre true
+        -:  147:     * @post Se reinstaureaza starea precedenta unei adaugari, stergeri, modificari
+        -:  148:     */
+        -:  149:    void undo();
+        -:  150:
+        -:  151:};

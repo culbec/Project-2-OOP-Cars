@@ -1,18 +1,44 @@
 #pragma once
 
 #include <iostream>
+#include <string>
+#include <unordered_map>
+#include <memory>
+#include <functional>
 #include "../Headers/Service.h"
 
 class UI {
 private:
     // UI-ul contine un service pentru masini
-    Service carService;
+    Service& carService;
+
+    // meniul de comenzi
+    std::unordered_map<std::string, void(UI::*)()> commands {
+            {"help", &UI::uiCommands },
+            {"show_cars", &UI::uiShowCars },
+            {"add_car", &UI::uiAddCar},
+            {"delete_car", &UI::uiDeleteCar},
+            {"modify_car", &UI::uiModifyCar},
+            {"find_car", &UI::uiFindCar},
+            {"filter_producer", &UI::uiFilterByProducer},
+            {"filter_type", &UI::uiFilterByType},
+            {"sort_reg_number", &UI::uiSortRegNumber},
+            {"sort_type", &UI::uiSortType},
+            {"sort_producer_model", &UI::uiSortProducerModel},
+            {"exit", nullptr},
+            {"add_to_wash", &UI::uiAddToWash},
+            {"clear_wash", &UI::uiClearWash},
+            {"generate_wash", &UI::uiGenerateRandomWash},
+            {"count_models", &UI::uiCountModels},
+            {"export", &UI::uiExportToFile},
+            {"undo", &UI::uiUndo}
+    };
 public:
     // constructorul implicit al UI-ului
-    UI() noexcept = default;
+    explicit UI(Service& service) noexcept: carService(service) {}
 
     // afiseaza comenzile disponibile
-    static void uiCommands();
+    void uiCommands();
 
     /*
         Functie de afisare a masinilor
@@ -20,7 +46,7 @@ public:
         @post: lista de masini
         @eroare: nu exista masini in lista
     */
-    void uiShowCars() const;
+    void uiShowCars();
 
     /*
         Functie de adaugare a unei masini
@@ -61,7 +87,7 @@ public:
         @post: lista de masini filtrate
         @eroare: lista filtrata este goala
     */
-    void uiFilterByProducer() const;
+    void uiFilterByProducer();
 
     /*
         Functie de filtrare a masinilor dupa tip
@@ -69,15 +95,15 @@ public:
         @post: lista de masini filtrate
         @eroare: lista filtrata este goala
     */
-    void uiFilterByType() const;
+    void uiFilterByType();
 
 
     // functiile de sortare
-    void uiSortRegNumber() const;
+    void uiSortRegNumber();
 
-    void uiSortType() const;
+    void uiSortType();
 
-    void uiSortProducerModel() const;
+    void uiSortProducerModel();
 
     // functiile pentru washing list
     void uiAddToWash();
@@ -86,7 +112,21 @@ public:
 
     void uiGenerateRandomWash();
 
-    void uiCountModels() const;
+    void uiCountModels();
+
+    /*
+     * Functie de export in fisier a datelor din lista de masini pentru spalat
+     * @pre: true
+     * @post: se exporta masinile, daca exista, in fisierul specificat
+     */
+    void uiExportToFile();
+
+    /*
+     * Functie de undo a ultimei operatii efectuate
+     * @pre: sa se fi efectuat operatii inainte de apel
+     * @post: se va restaura starea precedenta ultimei operatii executate
+     */
+    void uiUndo();
 
     // rulare pentru UI
     void uiRun();

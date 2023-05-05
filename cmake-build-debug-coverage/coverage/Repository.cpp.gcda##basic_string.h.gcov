@@ -3589,27 +3589,27 @@ call    1 never executed
         -: 3581:    _GLIBCXX20_CONSTEXPR
         -: 3582:    inline
         -: 3583:    typename __gnu_cxx::__enable_if<__is_char<_CharT>::__value, bool>::__type
-function _ZSteqIcEN9__gnu_cxx11__enable_ifIXsrSt9__is_charIT_E7__valueEbE6__typeERKNSt7__cxx1112basic_stringIS3_St11char_traitsIS3_ESaIS3_EEESE_ called 95 returned 100% blocks executed 100%
-       95: 3584:    operator==(const basic_string<_CharT>& __lhs,
+function _ZSteqIcEN9__gnu_cxx11__enable_ifIXsrSt9__is_charIT_E7__valueEbE6__typeERKNSt7__cxx1112basic_stringIS3_St11char_traitsIS3_ESaIS3_EEESE_ called 150 returned 100% blocks executed 100%
+      150: 3584:    operator==(const basic_string<_CharT>& __lhs,
         -: 3585:	       const basic_string<_CharT>& __rhs) _GLIBCXX_NOEXCEPT
-       95: 3586:    { return (__lhs.size() == __rhs.size()
-       95: 3586-block  0
-call    0 returned 95
-call    1 returned 95
-       95: 3587:	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
-branch  0 taken 68 (fallthrough)
-branch  1 taken 27
-       68: 3587-block  0
-call    2 returned 68
-call    3 returned 68
-call    4 returned 68
-call    5 returned 68
-branch  6 taken 26 (fallthrough)
-branch  7 taken 42
-       26: 3587-block  1
-       69: 3587-block  2
-       95: 3588:						    __lhs.size())); }
-       95: 3588-block  0
+      150: 3586:    { return (__lhs.size() == __rhs.size()
+      150: 3586-block  0
+call    0 returned 150
+call    1 returned 150
+      150: 3587:	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
+branch  0 taken 113 (fallthrough)
+branch  1 taken 37
+      113: 3587-block  0
+call    2 returned 113
+call    3 returned 113
+call    4 returned 113
+call    5 returned 113
+branch  6 taken 46 (fallthrough)
+branch  7 taken 67
+       46: 3587-block  1
+      104: 3587-block  2
+      150: 3588:						    __lhs.size())); }
+      150: 3588-block  0
         -: 3589:
         -: 3590:  /**
         -: 3591:   *  @brief  Test equivalence of string and C string.
@@ -4260,8 +4260,13 @@ branch  7 taken 42
         -: 4236:    : public __hash_base<size_t, string>
         -: 4237:    {
         -: 4238:      size_t
-        -: 4239:      operator()(const string& __s) const noexcept
-        -: 4240:      { return std::_Hash_impl::hash(__s.data(), __s.length()); }
+function _ZNKSt4hashINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEclERKS5_ called 10 returned 100% blocks executed 100%
+       10: 4239:      operator()(const string& __s) const noexcept
+       10: 4240:      { return std::_Hash_impl::hash(__s.data(), __s.length()); }
+       10: 4240-block  0
+call    0 returned 10
+call    1 returned 10
+call    2 returned 10
         -: 4241:    };
         -: 4242:
         -: 4243:  template<>

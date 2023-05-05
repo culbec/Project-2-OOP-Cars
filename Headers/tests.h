@@ -23,3 +23,15 @@ void sortTests();
 
 // run washing list tests
 void washingListTests();
+
+// run DTO tests
+void dtoTests();
+
+// run FileRepo tests
+void fileRepoTests();
+
+// run export tests
+void exportToFileTests();
+
+// run undo tests
+void undoTests();

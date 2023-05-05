@@ -718,7 +718,8 @@ call    0 never executed
         -:  603:  template<typename _CharT, typename _Traits, typename _Alloc>
         -:  604:    _GLIBCXX20_CONSTEXPR
         -:  605:    basic_string<_CharT, _Traits, _Alloc>
-        -:  606:    operator+(const _CharT* __lhs,
+function _ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_RKS8_ called 0 returned 0% blocks executed 0%
+    #####:  606:    operator+(const _CharT* __lhs,
         -:  607:	      const basic_string<_CharT, _Traits, _Alloc>& __rhs)
         -:  608:    {
         -:  609:      __glibcxx_requires_string(__lhs);
@@ -727,14 +728,45 @@ call    0 never executed
         -:  612:      typedef typename __gnu_cxx::__alloc_traits<_Alloc>::template
         -:  613:	rebind<_CharT>::other _Char_alloc_type;
         -:  614:      typedef __gnu_cxx::__alloc_traits<_Char_alloc_type> _Alloc_traits;
-        -:  615:      const __size_type __len = _Traits::length(__lhs);
-        -:  616:      __string_type __str(_Alloc_traits::_S_select_on_copy(
+    #####:  615:      const __size_type __len = _Traits::length(__lhs);
+    %%%%%:  615-block  0
+call    0 never executed
+    #####:  616:      __string_type __str(_Alloc_traits::_S_select_on_copy(
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  616-block  0
+call    4 never executed
+call    5 never executed
+call    6 never executed
+    $$$$$:  616-block  1
+call    7 never executed
+    $$$$$:  616-block  2
+    $$$$$:  616-block  3
+call    8 never executed
         -:  617:          __rhs.get_allocator()));
-        -:  618:      __str.reserve(__len + __rhs.size());
-        -:  619:      __str.append(__lhs, __len);
-        -:  620:      __str.append(__rhs);
-        -:  621:      return __str;
-        -:  622:    }
+    #####:  618:      __str.reserve(__len + __rhs.size());
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  619:      __str.append(__lhs, __len);
+    %%%%%:  619-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  620:      __str.append(__rhs);
+    %%%%%:  620-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  621:      return __str;
+    %%%%%:  621-block  0
+    %%%%%:  621-block  1
+    =====:  622:    }
+    $$$$$:  622-block  0
+call    0 never executed
         -:  623:
         -:  624:  template<typename _CharT, typename _Traits, typename _Alloc>
         -:  625:    _GLIBCXX20_CONSTEXPR

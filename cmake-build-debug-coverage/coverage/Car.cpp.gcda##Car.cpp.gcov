@@ -6,89 +6,89 @@
         -:    2:
         -:    3:#include "../Headers/Car.h"
         -:    4:
-function _ZN3CarC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_S5_S5_ called 51 returned 100% blocks executed 100%
-       51:    5:Car::Car(string regNumberC, string producerC, string modelC, string typeC) {
-       51:    5-block  0
-call    0 returned 51
-call    1 returned 51
-call    2 returned 51
-call    3 returned 51
-       51:    6:    this->regNumber = std::move(regNumberC); // placeholder pt ID, e acelasi lucru
-call    0 returned 51
-call    1 returned 51
-       51:    7:    this->producer = std::move(producerC);
-call    0 returned 51
-call    1 returned 51
-       51:    8:    this->model = std::move(modelC);
-call    0 returned 51
-call    1 returned 51
-       51:    9:    this->type = std::move(typeC);
-call    0 returned 51
-call    1 returned 51
-       51:   10:}
+function _ZN3CarC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_S5_S5_ called 67 returned 100% blocks executed 100%
+       67:    5:Car::Car(string regNumberC, string producerC, string modelC, string typeC) {
+       67:    5-block  0
+call    0 returned 67
+call    1 returned 67
+call    2 returned 67
+call    3 returned 67
+       67:    6:    this->regNumber = std::move(regNumberC); // placeholder pt ID, e acelasi lucru
+call    0 returned 67
+call    1 returned 67
+       67:    7:    this->producer = std::move(producerC);
+call    0 returned 67
+call    1 returned 67
+       67:    8:    this->model = std::move(modelC);
+call    0 returned 67
+call    1 returned 67
+       67:    9:    this->type = std::move(typeC);
+call    0 returned 67
+call    1 returned 67
+       67:   10:}
         -:   11:
-function _ZN3CarC2ERKS_ called 121 returned 100% blocks executed 49%
-      121:   12:Car::Car(const Car &other) {
-      121:   12-block  0
-call    0 returned 121
-call    1 returned 121
-call    2 returned 121
-call    3 returned 121
+function _ZN3CarC2ERKS_ called 204 returned 100% blocks executed 49%
+      204:   12:Car::Car(const Car &other) {
+      204:   12-block  0
+call    0 returned 204
+call    1 returned 204
+call    2 returned 204
+call    3 returned 204
         -:   13:    // std::cout << "Copy constructor called!\n";
         -:   14:
-      121:   15:    this->setRegNumber(other.getRegNumber());
-call    0 returned 121
-branch  1 taken 121 (fallthrough)
+      204:   15:    this->setRegNumber(other.getRegNumber());
+call    0 returned 204
+branch  1 taken 204 (fallthrough)
 branch  2 taken 0 (throw)
-      121:   15-block  0
-call    3 returned 121
-branch  4 taken 121 (fallthrough)
+      204:   15-block  0
+call    3 returned 204
+branch  4 taken 204 (fallthrough)
 branch  5 taken 0 (throw)
-      121:   15-block  1
-call    6 returned 121
+      204:   15-block  1
+call    6 returned 204
     $$$$$:   15-block  2
 call    7 never executed
     $$$$$:   15-block  3
-      121:   16:    this->setProducer(other.getProducer());
-call    0 returned 121
-branch  1 taken 121 (fallthrough)
+      204:   16:    this->setProducer(other.getProducer());
+call    0 returned 204
+branch  1 taken 204 (fallthrough)
 branch  2 taken 0 (throw)
-      121:   16-block  0
-call    3 returned 121
-branch  4 taken 121 (fallthrough)
+      204:   16-block  0
+call    3 returned 204
+branch  4 taken 204 (fallthrough)
 branch  5 taken 0 (throw)
-      121:   16-block  1
-call    6 returned 121
+      204:   16-block  1
+call    6 returned 204
     $$$$$:   16-block  2
 call    7 never executed
     $$$$$:   16-block  3
-      121:   17:    this->setModel(other.getModel());
-call    0 returned 121
-branch  1 taken 121 (fallthrough)
+      204:   17:    this->setModel(other.getModel());
+call    0 returned 204
+branch  1 taken 204 (fallthrough)
 branch  2 taken 0 (throw)
-      121:   17-block  0
-call    3 returned 121
-branch  4 taken 121 (fallthrough)
+      204:   17-block  0
+call    3 returned 204
+branch  4 taken 204 (fallthrough)
 branch  5 taken 0 (throw)
-      121:   17-block  1
-call    6 returned 121
+      204:   17-block  1
+call    6 returned 204
     $$$$$:   17-block  2
 call    7 never executed
     $$$$$:   17-block  3
-      121:   18:    this->setType(other.getType());
-call    0 returned 121
-branch  1 taken 121 (fallthrough)
+      204:   18:    this->setType(other.getType());
+call    0 returned 204
+branch  1 taken 204 (fallthrough)
 branch  2 taken 0 (throw)
-      121:   18-block  0
-call    3 returned 121
-branch  4 taken 121 (fallthrough)
+      204:   18-block  0
+call    3 returned 204
+branch  4 taken 204 (fallthrough)
 branch  5 taken 0 (throw)
-      121:   18-block  1
-call    6 returned 121
+      204:   18-block  1
+call    6 returned 204
     $$$$$:   18-block  2
 call    7 never executed
     $$$$$:   18-block  3
-      121:   19:}
+      204:   19:}
     $$$$$:   19-block  0
 call    0 never executed
     $$$$$:   19-block  1
@@ -98,43 +98,43 @@ call    2 never executed
     $$$$$:   19-block  3
 call    3 never executed
         -:   20:
-function _ZNK3Car12getRegNumberB5cxx11Ev called 256 returned 100% blocks executed 100%
-      256:   21:string Car::getRegNumber() const { return this->regNumber; }
-      256:   21-block  0
-call    0 returned 256
+function _ZNK3Car12getRegNumberB5cxx11Ev called 404 returned 100% blocks executed 100%
+      404:   21:string Car::getRegNumber() const { return this->regNumber; }
+      404:   21-block  0
+call    0 returned 404
         -:   22:
-function _ZNK3Car11getProducerB5cxx11Ev called 177 returned 100% blocks executed 100%
-      177:   23:string Car::getProducer() const { return this->producer; }
-      177:   23-block  0
-call    0 returned 177
+function _ZNK3Car11getProducerB5cxx11Ev called 280 returned 100% blocks executed 100%
+      280:   23:string Car::getProducer() const { return this->producer; }
+      280:   23-block  0
+call    0 returned 280
         -:   24:
-function _ZNK3Car8getModelB5cxx11Ev called 156 returned 100% blocks executed 100%
-      156:   25:string Car::getModel() const { return this->model; }
-      156:   25-block  0
-call    0 returned 156
+function _ZNK3Car8getModelB5cxx11Ev called 276 returned 100% blocks executed 100%
+      276:   25:string Car::getModel() const { return this->model; }
+      276:   25-block  0
+call    0 returned 276
         -:   26:
-function _ZNK3Car7getTypeB5cxx11Ev called 160 returned 100% blocks executed 100%
-      160:   27:string Car::getType() const { return this->type; }
-      160:   27-block  0
-call    0 returned 160
+function _ZNK3Car7getTypeB5cxx11Ev called 252 returned 100% blocks executed 100%
+      252:   27:string Car::getType() const { return this->type; }
+      252:   27-block  0
+call    0 returned 252
         -:   28:
-function _ZN3Car12setRegNumberERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 121 returned 100% blocks executed 100%
-      121:   29:void Car::setRegNumber(const string &newRegNumber) { this->regNumber = newRegNumber; }
-      121:   29-block  0
-call    0 returned 121
+function _ZN3Car12setRegNumberERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 204 returned 100% blocks executed 100%
+      204:   29:void Car::setRegNumber(const string &newRegNumber) { this->regNumber = newRegNumber; }
+      204:   29-block  0
+call    0 returned 204
         -:   30:
-function _ZN3Car11setProducerERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 123 returned 100% blocks executed 100%
-      123:   31:void Car::setProducer(const string &newProducer) { this->producer = newProducer; }
-      123:   31-block  0
-call    0 returned 123
+function _ZN3Car11setProducerERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 206 returned 100% blocks executed 100%
+      206:   31:void Car::setProducer(const string &newProducer) { this->producer = newProducer; }
+      206:   31-block  0
+call    0 returned 206
         -:   32:
-function _ZN3Car8setModelERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 123 returned 100% blocks executed 100%
-      123:   33:void Car::setModel(const string &newModel) { this->model = newModel; }
-      123:   33-block  0
-call    0 returned 123
+function _ZN3Car8setModelERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 206 returned 100% blocks executed 100%
+      206:   33:void Car::setModel(const string &newModel) { this->model = newModel; }
+      206:   33-block  0
+call    0 returned 206
         -:   34:
-function _ZN3Car7setTypeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 123 returned 100% blocks executed 100%
-      123:   35:void Car::setType(const string &newType) { this->type = newType; }
-      123:   35-block  0
-call    0 returned 123
+function _ZN3Car7setTypeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 206 returned 100% blocks executed 100%
+      206:   35:void Car::setType(const string &newType) { this->type = newType; }
+      206:   35-block  0
+call    0 returned 206
         -:   36:

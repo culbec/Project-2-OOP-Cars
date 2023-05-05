@@ -1,5 +1,9 @@
 #include "../Headers/Spalatorie.h"
 
+vector<Car> WashingList::washCars() const {
+    return this->toWash;
+}
+
 size_t WashingList::washSize() const {
     return this->toWash.size();
 }

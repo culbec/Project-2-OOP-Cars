@@ -67,6 +67,6 @@ public:
         @exception: nu are parametrii valizi sau exista deja in lista
     */
 
-    static bool validateCar(const Car &, const Repository &) ;
+    static bool validateCar(const Car &, const RepoAbstract &) ;
 };
 

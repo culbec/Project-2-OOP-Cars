@@ -362,6 +362,8 @@
     #####:  358:	return _M_local_data();
     %%%%%:  358-block  0
 call    0 never executed
+    %%%%%:  358-block  1
+call    1 never executed
         -:  359:      }
         -:  360:
         -:  361:    private:
@@ -4261,8 +4263,13 @@ call    0 never executed
         -: 4236:    : public __hash_base<size_t, string>
         -: 4237:    {
         -: 4238:      size_t
-        -: 4239:      operator()(const string& __s) const noexcept
-        -: 4240:      { return std::_Hash_impl::hash(__s.data(), __s.length()); }
+function _ZNKSt4hashINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEclERKS5_ called 0 returned 0% blocks executed 0%
+    #####: 4239:      operator()(const string& __s) const noexcept
+    #####: 4240:      { return std::_Hash_impl::hash(__s.data(), __s.length()); }
+    %%%%%: 4240-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
         -: 4241:    };
         -: 4242:
         -: 4243:  template<>

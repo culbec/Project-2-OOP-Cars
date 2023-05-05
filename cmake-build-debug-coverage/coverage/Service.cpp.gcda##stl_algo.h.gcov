@@ -5110,8 +5110,8 @@ call    0 returned 1
         -: 3865:  template<typename _InputIterator, typename _Predicate>
         -: 3866:    _GLIBCXX20_CONSTEXPR
         -: 3867:    inline _InputIterator
-function _ZSt7find_ifIN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS2_SaIS2_EEEEZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRS3_E_ET_SK_SK_T0_ called 2 returned 100% blocks executed 64%
-        2: 3868:    find_if(_InputIterator __first, _InputIterator __last,
+function _ZSt7find_ifIN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS2_SaIS2_EEEEZN7Service16addToWashingListERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEUlRS3_E_ET_SK_SK_T0_ called 3 returned 100% blocks executed 64%
+        3: 3868:    find_if(_InputIterator __first, _InputIterator __last,
         -: 3869:	    _Predicate __pred)
         -: 3870:    {
         -: 3871:      // concept requirements
@@ -5120,30 +5120,30 @@ function _ZSt7find_ifIN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS2_SaIS2_EE
         -: 3874:	      typename iterator_traits<_InputIterator>::value_type>)
         -: 3875:      __glibcxx_requires_valid_range(__first, __last);
         -: 3876:
-        4: 3877:      return std::__find_if(__first, __last,
-        2: 3877-block  0
-call    0 returned 2
-branch  1 taken 2 (fallthrough)
+        6: 3877:      return std::__find_if(__first, __last,
+        3: 3877-block  0
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
 branch  2 taken 0 (throw)
-        2: 3877-block  1
-call    3 returned 2
-branch  4 taken 2 (fallthrough)
+        3: 3877-block  1
+call    3 returned 3
+branch  4 taken 3 (fallthrough)
 branch  5 taken 0 (throw)
-        2: 3877-block  2
-call    6 returned 2
-branch  7 taken 2 (fallthrough)
+        3: 3877-block  2
+call    6 returned 3
+branch  7 taken 3 (fallthrough)
 branch  8 taken 0 (throw)
-        2: 3877-block  3
-call    9 returned 2
-call   10 returned 2
+        3: 3877-block  3
+call    9 returned 3
+call   10 returned 3
     $$$$$: 3877-block  4
 call   11 never executed
     $$$$$: 3877-block  5
 call   12 never executed
     $$$$$: 3877-block  6
-        4: 3878:			    __gnu_cxx::__ops::__pred_iter(__pred));
-        2: 3878-block  0
-        2: 3878-block  1
+        6: 3878:			    __gnu_cxx::__ops::__pred_iter(__pred));
+        3: 3878-block  0
+        3: 3878-block  1
         -: 3879:    }
         -: 3880:
         -: 3881:  /**
@@ -5315,7 +5315,8 @@ call   12 never executed
         -: 4047:  template<typename _InputIterator, typename _Predicate>
         -: 4048:    _GLIBCXX20_CONSTEXPR
         -: 4049:    inline typename iterator_traits<_InputIterator>::difference_type
-        -: 4050:    count_if(_InputIterator __first, _InputIterator __last, _Predicate __pred)
+function _ZSt8count_ifIN9__gnu_cxx17__normal_iteratorIPK3CarSt6vectorIS2_SaIS2_EEEEZNK7Service11countModelsB5cxx11EvEUlRS3_E_ENSt15iterator_traitsIT_E15difference_typeESD_SD_T0_ called 3 returned 100% blocks executed 64%
+        3: 4050:    count_if(_InputIterator __first, _InputIterator __last, _Predicate __pred)
         -: 4051:    {
         -: 4052:      // concept requirements
         -: 4053:      __glibcxx_function_requires(_InputIteratorConcept<_InputIterator>)
@@ -5323,8 +5324,30 @@ call   12 never executed
         -: 4055:	    typename iterator_traits<_InputIterator>::value_type>)
         -: 4056:      __glibcxx_requires_valid_range(__first, __last);
         -: 4057:
-        -: 4058:      return std::__count_if(__first, __last,
-        -: 4059:			     __gnu_cxx::__ops::__pred_iter(__pred));
+        6: 4058:      return std::__count_if(__first, __last,
+        3: 4058-block  0
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+        3: 4058-block  1
+call    3 returned 3
+branch  4 taken 3 (fallthrough)
+branch  5 taken 0 (throw)
+        3: 4058-block  2
+call    6 returned 3
+branch  7 taken 3 (fallthrough)
+branch  8 taken 0 (throw)
+        3: 4058-block  3
+call    9 returned 3
+call   10 returned 3
+    $$$$$: 4058-block  4
+call   11 never executed
+    $$$$$: 4058-block  5
+call   12 never executed
+    $$$$$: 4058-block  6
+        6: 4059:			     __gnu_cxx::__ops::__pred_iter(__pred));
+        3: 4059-block  0
+        3: 4059-block  1
         -: 4060:    }
         -: 4061:
         -: 4062:  /**
